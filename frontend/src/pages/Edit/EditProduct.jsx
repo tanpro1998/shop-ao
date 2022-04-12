@@ -80,6 +80,20 @@ const EditProduct = () => {
               >
                 <Input />
               </Form.Item>
+              {/* <Form.Item
+                name="colors"
+                label="Colors"
+                rules={[{ required: true }]}
+              >
+                <Input />
+              </Form.Item>
+              <Form.Item
+                name="sizes"
+                label="Sizes"
+                rules={[{ required: true }]}
+              >
+                <Input />
+              </Form.Item> */}
               <Form.Item
                 name="desc"
                 label="Description"

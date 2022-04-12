@@ -27,7 +27,7 @@ export const addProduct = (reqObj) => async (dispatch) => {
     }, 500);
   } catch (err) {
     console.log(err);
-    message.error("Something went wrong");
+    message.error("Something went wrong or you are not admin!");
   }
 };
 
@@ -41,7 +41,7 @@ export const editProduct = (reqObj) => async (dispatch) => {
     }, 500);
   } catch (err) {
     console.log(err);
-    message.error("Something went wrong");
+    message.error("Something went wrong or you are not admin");
   }
 };
 
@@ -55,7 +55,7 @@ export const deleteProduct = (reqObj) => async (dispatch) => {
     }, 500);
   } catch (err) {
     console.log(err);
-    message.error("Something went wrong");
+    message.error("Something went wrong or you are not admin");
   }
 };
 
@@ -79,7 +79,7 @@ export const addAccessory = (reqObj) => async (dispatch) => {
     }, 500);
   } catch (err) {
     console.log(err);
-    message.error("Something went wrong");
+    message.error("Something went wrong or you are not admin");
   }
 };
 
@@ -107,7 +107,7 @@ export const deleteAccessory = (reqObj) => async (dispatch) => {
     }, 500);
   } catch (err) {
     console.log(err);
-    message.error("Something went wrong");
+    message.error("Something went wrong or you are not admin");
   }
 };
 
