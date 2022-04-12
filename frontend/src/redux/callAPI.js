@@ -130,8 +130,8 @@ export const userLogin = (reqObj) => async (dispatch) => {
   try {
     const res = await publicRequest.post("/users/login", reqObj);
     localStorage.setItem("user", JSON.stringify(res.data));
-    localStorage.setItem("access", res.data.accessToken);
-    localStorage.setItem("refresh", res.data.refreshToken);
+    jsCookie.set("access", res.data.accessToken);
+    jsCookie.set("refresh", res.data.refreshToken);
     message.success("Login Success");
     setTimeout(() => {
       window.location.href = "/";
