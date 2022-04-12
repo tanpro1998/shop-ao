@@ -1,6 +1,5 @@
 import axios from "axios";
 import { message } from "antd";
-import jsCookie from "js-cookie";
 
 import { getAllAccessory } from "./accessoriesSlice";
 import { getAllProduct } from "./productSlice";
