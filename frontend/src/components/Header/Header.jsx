@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, Dropdown, Button } from "antd";
 import { useSelector } from "react-redux";
+import jsCookie from "js-cookie";
 
 const mainNav = [
   {
@@ -28,6 +29,8 @@ const menu = (
       key={3}
       onClick={() => {
         localStorage.clear();
+        jsCookie.remove("access");
+        jsCookie.remove("refresh");
         window.location.href = "/login";
       }}
     >

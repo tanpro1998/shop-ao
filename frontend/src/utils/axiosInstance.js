@@ -1,11 +1,12 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import dayjs from "dayjs";
+import jsCookie from "js-cookie";
 
 const BASE_URL = "http://localhost:5000/api";
 
-const ACCESS_TOKEN = localStorage.getItem("access");
-const REFRESH_TOKEN = localStorage.getItem("refresh");
+const ACCESS_TOKEN = jsCookie.get("access");
+const REFRESH_TOKEN = jsCookie.get("refresh");
 
 export const publicRequest = axios.create({
   baseURL: BASE_URL,
@@ -33,8 +34,8 @@ userRequest.interceptors.request.use(
     const isExpired = dayjs.unix(decodedToken.exp).diff(dayjs()) < 1;
     if (isExpired) {
       const data = await refreshToken();
-      localStorage.setItem("access", data.accessToken);
-      localStorage.setItem("refresh", data.refreshToken);
+      jsCookie.set("access", data.accessToken);
+      jsCookie.set("refresh", data.refreshToken);
       config.headers.authorization = `Bearer ${data.accessToken}`;
     }
     return config;
