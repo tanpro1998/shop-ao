@@ -34,12 +34,14 @@ const generateRefreshToken = (user) => {
   return jwt.sign(
     { id: user._id, isAdmin: user.isAdmin },
     process.env.JWT_REFRESH_SECRET,
-    { expiresIn: "1d" }
+    { expiresIn: "15s" }
   );
 };
 
 userRouter.post("/login", async (req, res) => {
   const cookies = req.cookies;
+  console.log("cookies: " + JSON.stringify(cookies));
+
   const { username, password } = req.body;
   try {
     const user = await User.findOne({ username }).exec();
@@ -70,7 +72,8 @@ userRouter.post("/login", async (req, res) => {
         }
         // Save refresh token with current user
         user.refreshToken = [...newRefreshTokenArray, newRefreshToken];
-        await user.save();
+        const result = await user.save();
+        console.log(result);
         res.cookie("refresh", newRefreshToken, {
           httpOnly: true,
           secure: true,
@@ -80,7 +83,7 @@ userRouter.post("/login", async (req, res) => {
         res.status(200).json({
           auth: true,
           accessToken: accessToken,
-          refreshToken: newRefreshToken,
+          // refreshToken: newRefreshToken,
           ...user._doc,
         });
       } else {
@@ -96,8 +99,9 @@ userRouter.post("/login", async (req, res) => {
 
 userRouter.post("/refresh", async (req, res) => {
   const cookies = req.cookies;
+  if (!cookies.refresh) return res.status(401);
   const refreshToken = cookies.refresh;
-  if (!refreshToken) return res.status(401).json("You are not authenticated!");
+  // if (!refreshToken) return res.status(401).json("You are not authenticated!");
   res.clearCookie("refresh", {
     httpOnly: true,
     sameSite: "none",
@@ -116,7 +120,8 @@ userRouter.post("/refresh", async (req, res) => {
           username: user.username,
         }).exec();
         hackedUser.refreshToken = [];
-        await hackedUser.save();
+        const result = await hackedUser.save();
+        console.log(result);
       }
     );
     return res.status(403).json("Refresh token is not valid!");
@@ -124,20 +129,25 @@ userRouter.post("/refresh", async (req, res) => {
   const newRefreshTokenArray = foundUser.refreshToken.filter(
     (refresh) => refresh !== refreshToken
   );
+
   jwt.verify(
     refreshToken,
     process.env.JWT_REFRESH_SECRET,
     async (err, user) => {
       if (err) {
+        console.log("expired refresh token");
         foundUser.refreshToken = [...newRefreshTokenArray];
-        await foundUser.save();
+        const result = await foundUser.save();
+        console.log(result);
       }
       if (err || foundUser.username !== user.username) return res.status(403);
 
+      // Refresh token was still valid
       const newAccessToken = generateAccessToken(user);
       const newRefreshToken = generateRefreshToken(user);
       foundUser.refreshToken = [...newRefreshTokenArray, newRefreshToken];
-      await foundUser.save();
+      const result = await foundUser.save();
+      console.log(result);
 
       res.cookie("refresh", newRefreshToken, {
         httpOnly: true,
@@ -145,7 +155,7 @@ userRouter.post("/refresh", async (req, res) => {
         sameSite: "none",
         maxAge: 24 * 60 * 60 * 1000,
       });
-      res.json({ newAccessToken });
+      res.json(newAccessToken);
     }
   );
   // if (!refreshTokens.includes(refreshToken))
@@ -164,10 +174,35 @@ userRouter.post("/refresh", async (req, res) => {
   // });
 });
 
-userRouter.post("/logout", verifyToken, (req, res) => {
-  const refreshToken = req.body.token;
-  refreshTokens = refreshTokens.filter((token) => token !== refreshToken);
-  res.status(200).json("Logged out Success!");
+userRouter.post("/logout", async (req, res) => {
+  const cookies = req.cookies;
+  if (!cookies?.refresh) return res.status(204);
+  const refreshToken = cookies.refresh;
+
+  // refresh token in DB
+  const foundUser = await User.findOne({ refreshToken }).exec();
+  if (!foundUser) {
+    res.clearCookie("refresh", {
+      httpOnly: true,
+      sameSite: "none",
+      secure: true,
+    });
+    return res.status(204);
+  }
+
+  // Delete token in DB
+  foundUser.refreshToken = foundUser.refreshToken.filter(
+    (refresh) => refresh !== refreshToken
+  );
+  const result = await foundUser.save();
+  console.log(result);
+
+  res.clearCookie("refresh", {
+    httpOnly: true,
+    sameSite: "none",
+    secure: true,
+  });
+  res.status(204);
 });
 
 export { userRouter };

@@ -8,7 +8,9 @@ import { productRouter } from "./routes/productRoute.js";
 import { cartRouter } from "./routes/cartRoute.js";
 import { orderRouter } from "./routes/orderRoute.js";
 import { stripeRouter } from "./routes/stripe.js";
-import { accessoriesRouter } from "./routes/accessoriesRoute.js";
+import { accessoriesRouter } from "./routes/accessoriesRoute.js"
+import cookieParser from "cookie-parser";
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 dotenv.config();
@@ -17,6 +19,7 @@ connectDB();
 
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser())
 
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);

@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, Dropdown, Button } from "antd";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogout } from "../../redux/callAPI";
 
 const mainNav = [
   {
@@ -13,36 +14,42 @@ const mainNav = [
   { display: "Liên Hệ", path: "/contact" },
 ];
 
-const menu = (
-  <Menu>
-    <Menu.Item key={0}>
-      <a href="/">Trang chủ</a>
-    </Menu.Item>
-    <Menu.Item key={1}>
-      <a href="/catalog">Sản phẩm</a>
-    </Menu.Item>
-    <Menu.Item key={2}>
-      <a href="/admin">Admin</a>
-    </Menu.Item>
-    <Menu.Item
-      key={3}
-      onClick={() => {
-        localStorage.clear();
-        window.location.href = "/login";
-      }}
-    >
-      <li>Đăng xuất</li>
-    </Menu.Item>
-  </Menu>
-);
-
 const Header = ({ admin }) => {
+  const dispatch = useDispatch();
   const { pathname } = useLocation();
   const activeNav = mainNav.findIndex((e) => e.path === pathname);
   const headerRef = useRef("");
   const user = JSON.parse(localStorage.getItem("user"));
   const isAdmin = user?.isAdmin;
   const { quantity } = useSelector((state) => state.cart);
+
+  const handleLogout = () => {
+    dispatch(userLogout());
+  };
+
+  const menu = (
+    <Menu>
+      <Menu.Item key={0}>
+        <a href="/">Trang chủ</a>
+      </Menu.Item>
+      <Menu.Item key={1}>
+        <a href="/catalog">Sản phẩm</a>
+      </Menu.Item>
+      <Menu.Item key={2}>
+        <a href="/admin">Admin</a>
+      </Menu.Item>
+      <Menu.Item
+        key={3}
+        onClick={() => {
+          handleLogout();
+          localStorage.clear();
+          window.location.href = "/login";
+        }}
+      >
+        <li>Đăng xuất</li>
+      </Menu.Item>
+    </Menu>
+  );
 
   useEffect(() => {
     window.addEventListener("scroll", () => {

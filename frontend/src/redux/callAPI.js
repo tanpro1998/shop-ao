@@ -142,6 +142,21 @@ export const userLogin = (reqObj) => async (dispatch) => {
   }
 };
 
+export const userLogout = () => async (dispatch) => {
+  dispatch(loading());
+  try {
+    await publicRequest.post("/users/logout");
+    // jsCookie.remove("refresh");
+    message.success("Logout Success");
+    setTimeout(() => {
+      window.location.href = "/login";
+    }, 500);
+  } catch (err) {
+    console.log(err);
+    message.error("Something went wrong");
+  }
+};
+
 export const checkOut = (reqObj) => async (dispatch) => {
   dispatch(loading());
   try {
