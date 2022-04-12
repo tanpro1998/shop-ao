@@ -20,12 +20,14 @@ userRouter.post("/register", async (req, res) => {
   }
 });
 
+let refreshTokens = [];
+
 const generateAccessToken = (user) => {
   return jwt.sign(
     { id: user._id, isAdmin: user.isAdmin },
     process.env.JWT_SECRET,
     {
-      expiresIn: "10s",
+      expiresIn: "5s",
     }
   );
 };
@@ -33,54 +35,24 @@ const generateAccessToken = (user) => {
 const generateRefreshToken = (user) => {
   return jwt.sign(
     { id: user._id, isAdmin: user.isAdmin },
-    process.env.JWT_REFRESH_SECRET,
-    { expiresIn: "1d" }
+    process.env.JWT_REFRESH_SECRET
   );
 };
 
 userRouter.post("/login", async (req, res) => {
-  const cookies = req.cookies;
   const { username, password } = req.body;
   try {
-    const user = await User.findOne({ username }).exec();
+    const user = await User.findOne({ username });
     if (user) {
       const validPassword = await bcrypt.compare(password, user.password);
       if (validPassword) {
         const accessToken = generateAccessToken(user);
-        const newRefreshToken = generateRefreshToken(user);
-        let newRefreshTokenArray = !cookies?.refresh
-          ? user.refreshToken
-          : user.refreshToken.filter((refresh) => refresh !== cookies.refresh);
-
-        if (cookies?.refresh) {
-          const refreshToken = cookies.refresh;
-          const foundToken = await User.findOne({ refreshToken }).exec();
-
-          // Detected refresh token
-
-          if (!foundToken) {
-            // Clear previous refresh token
-            newRefreshTokenArray = [];
-          }
-          res.clearCookie("refresh", {
-            httpOnly: true,
-            secure: true,
-            sameSite: "none",
-          });
-        }
-        // Save refresh token with current user
-        user.refreshToken = [...newRefreshTokenArray, newRefreshToken];
-        await user.save();
-        res.cookie("refresh", newRefreshToken, {
-          httpOnly: true,
-          secure: true,
-          sameSite: "none",
-          maxAge: 24 * 60 * 60 * 1000,
-        });
+        const refreshToken = generateRefreshToken(user);
+        refreshTokens.push(refreshToken);
         res.status(200).json({
           auth: true,
           accessToken: accessToken,
-          refreshToken: newRefreshToken,
+          refreshToken: refreshToken,
           ...user._doc,
         });
       } else {
@@ -94,74 +66,24 @@ userRouter.post("/login", async (req, res) => {
   }
 });
 
-userRouter.post("/refresh", async (req, res) => {
-  const cookies = req.cookies;
-  const refreshToken = cookies.refresh;
+userRouter.post("/refresh", (req, res) => {
+  const refreshToken = req.body.token;
   if (!refreshToken) return res.status(401).json("You are not authenticated!");
-  res.clearCookie("refresh", {
-    httpOnly: true,
-    sameSite: "none",
-    secure: true,
-  });
-  const foundUser = await User.findOne({ refreshToken }).exec();
-
-  // Detected refreshToken
-  if (!foundUser) {
-    jwt.verify(
-      refreshToken,
-      process.env.JWT_REFRESH_SECRET,
-      async (err, user) => {
-        err && console.log(err);
-        const hackedUser = await User.findOne({
-          username: user.username,
-        }).exec();
-        hackedUser.refreshToken = [];
-        await hackedUser.save();
-      }
-    );
+  if (!refreshTokens.includes(refreshToken))
     return res.status(403).json("Refresh token is not valid!");
-  }
-  const newRefreshTokenArray = foundUser.refreshToken.filter(
-    (refresh) => refresh !== refreshToken
-  );
-  jwt.verify(
-    refreshToken,
-    process.env.JWT_REFRESH_SECRET,
-    async (err, user) => {
-      if (err) {
-        foundUser.refreshToken = [...newRefreshTokenArray];
-        await foundUser.save();
-      }
-      if (err || foundUser.username !== user.username) return res.status(403);
 
-      const newAccessToken = generateAccessToken(user);
-      const newRefreshToken = generateRefreshToken(user);
-      foundUser.refreshToken = [...newRefreshTokenArray, newRefreshToken];
-      await foundUser.save();
+  jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET, (err, user) => {
+    err && console.log(err);
+    refreshTokens = refreshTokens.filter((token) => token !== refreshToken);
 
-      res.cookie("refresh", newRefreshToken, {
-        httpOnly: true,
-        secure: true,
-        sameSite: "none",
-        maxAge: 24 * 60 * 60 * 1000,
-      });
-      res.json({ newAccessToken });
-    }
-  );
-  // if (!refreshTokens.includes(refreshToken))
+    const newAccessToken = generateAccessToken(user);
+    const newRefreshToken = generateRefreshToken(user);
 
-  // jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET, (err, user) => {
-  //   err && console.log(err);
-  //   refreshTokens = refreshTokens.filter((token) => token !== refreshToken);
-
-  //   const newAccessToken = generateAccessToken(user);
-  //   const newRefreshToken = generateRefreshToken(user);
-
-  //   refreshTokens.push(newRefreshToken);
-  //   res
-  //     .status(200)
-  //     .json({ accessToken: newAccessToken, refreshToken: newRefreshToken });
-  // });
+    refreshTokens.push(newRefreshToken);
+    res
+      .status(200)
+      .json({ accessToken: newAccessToken, refreshToken: newRefreshToken });
+  });
 });
 
 userRouter.post("/logout", verifyToken, (req, res) => {
