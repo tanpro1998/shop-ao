@@ -141,7 +141,7 @@
         right: 0;
         // transform: scale(0) rotate(90deg);
         transform: translateY(-100%) rotate(90deg);
-        transition: transform 0.5s ease;
+        transition: transform 0.5s ease-in-out;
 
         @include tablet {
           height: 100%;
