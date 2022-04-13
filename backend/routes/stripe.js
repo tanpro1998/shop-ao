@@ -4,7 +4,6 @@ import Stripe from "stripe";
 const KEY = process.env.STRIPE_SECRET_KEY;
 
 const stripe = new Stripe(`${KEY}`);
-
 stripeRouter.post("/payment", (req, res) => {
   stripe.charges.create(
     {

@@ -4,10 +4,12 @@ import {
   MoneyCollectOutlined,
   ShoppingCartOutlined,
   UpOutlined,
+  DownOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import number from "../../utils/number";
 
-const Widget = ({ type, users }) => {
+const Widget = ({ type, user, product, order, sum, up }) => {
   let data;
 
   switch (type) {
@@ -70,20 +72,31 @@ const Widget = ({ type, users }) => {
     default:
       break;
   }
+
   return (
     <div className="widget">
       <div className="widget__left">
         <span className="widget__left__title">{data.title}</span>
         <span className="widget__left__counter">
-          {data.isMoney && "$"}
-          {users?.length}
+          {type === "users" && user.length}
+          {type === "products" && product.length}
+          {type === "orders" && order?.length}
+          {type === "earns" && number(sum)}
+          {data.isMoney && " VND"}
         </span>
         <span className="widget__left__link">{data.link}</span>
       </div>
       <div className="widget__right">
         <div className="widget__right__percent">
-          <UpOutlined />
-          30%
+          {up === true ? (
+            <UpOutlined style={{ color: "green" }} />
+          ) : (
+            <DownOutlined style={{ color: "red" }} />
+          )}
+          {type === "users" && "40%"}
+          {type === "products" && "50%"}
+          {type === "orders" && "20%"}
+          {type === "earns" && "30%"}
         </div>
         <div className="widget__right__icon">{data.icon}</div>
       </div>

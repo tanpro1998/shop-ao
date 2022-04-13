@@ -4,20 +4,10 @@ import jsCookie from "js-cookie";
 
 import { getAllAccessory } from "./accessoriesSlice";
 import { getAllProduct } from "./productSlice";
-import {getAllUser } from "./userSlice";
+import { getAllUser } from "./userSlice";
 
 import { loading } from "./alertSlice";
 import { publicRequest, userRequest } from "../utils/axiosInstance";
-
-export const getAllUsers = () => async (dispatch) => {
-  dispatch(loading());
-  try {
-    const res = await publicRequest.get("/users/getallusers");
-    dispatch(getAllUser(res.data));
-  } catch (err) {
-    console.log(err);
-  }
-};
 
 export const getAllProducts = () => async (dispatch) => {
   dispatch(loading());

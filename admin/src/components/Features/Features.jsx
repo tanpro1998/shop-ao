@@ -16,7 +16,7 @@ const Features = () => {
       </div>
       <div className="features__bottom">
         <div className="features__bottom__circle">
-          <CircularProgressbar value={870} text={"80%"} strokeWidth={5} />
+          <CircularProgressbar value={80} text={"80%"} strokeWidth={5} />
         </div>
         <p className="features__bottom__title">Total sales</p>
         <p className="features__bottom__amount">$500</p>

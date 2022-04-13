@@ -11,10 +11,10 @@ const root = ReactDOMClient.createRoot(container);
 
 root.render(
   // <React.StrictMode>
+  <Provider store={store}>
     <DarkModeProvider>
-      <Provider store={store}>
-        <App />
-      </Provider>
+      <App />
     </DarkModeProvider>
+  </Provider>
   // </React.StrictMode>
 );
