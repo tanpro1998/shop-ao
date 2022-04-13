@@ -5,6 +5,15 @@ import jwt from "jsonwebtoken";
 import { verifyToken } from "./verifyToken.js";
 const userRouter = express.Router();
 
+userRouter.get("/getallusers", async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).json(users);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 userRouter.post("/register", async (req, res) => {
   const { name, username, password, cfpassword } = req.body;
   if (password !== cfpassword)
@@ -174,7 +183,7 @@ userRouter.post("/refresh", async (req, res) => {
   // });
 });
 
-userRouter.post("/logout", async (req, res) => {
+userRouter.get("/logout", async (req, res) => {
   const cookies = req.cookies;
   if (!cookies?.refresh) return res.status(204);
   const refreshToken = cookies.refresh;

@@ -7,7 +7,7 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 
-const Widget = ({ type }) => {
+const Widget = ({ type, users }) => {
   let data;
 
   switch (type) {
@@ -74,7 +74,10 @@ const Widget = ({ type }) => {
     <div className="widget">
       <div className="widget__left">
         <span className="widget__left__title">{data.title}</span>
-        <span className="widget__left__counter">{data.isMoney && "$"}100</span>
+        <span className="widget__left__counter">
+          {data.isMoney && "$"}
+          {users?.length}
+        </span>
         <span className="widget__left__link">{data.link}</span>
       </div>
       <div className="widget__right">
