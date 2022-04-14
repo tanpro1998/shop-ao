@@ -33,6 +33,7 @@ productRouter.post("/editproduct", verifyTokenAdmin, async (req, res) => {
     product.colors = req.body.colors;
     product.slug = req.body.slug;
     product.sizes = req.body.sizes;
+    product.desc = req.body.desc;
 
     await product.save();
     res.send("Edit Product Successful");
@@ -41,7 +42,7 @@ productRouter.post("/editproduct", verifyTokenAdmin, async (req, res) => {
   }
 });
 
-productRouter.post("/deleteproduct", async (req, res) => {
+productRouter.post("/deleteproduct", verifyTokenAdmin, async (req, res) => {
   await Product.findOneAndDelete({ _id: req.body.productId });
   try {
     res.send("Delete Product Successful");
