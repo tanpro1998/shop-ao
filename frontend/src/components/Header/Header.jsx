@@ -24,10 +24,6 @@ const Header = ({ admin }) => {
   const isAdmin = user?.isAdmin;
   const { quantity } = useSelector((state) => state.cart);
 
-  const handleLogout = () => {
-    dispatch(userLogout());
-  };
-
   const menu = (
     <Menu>
       <Menu.Item key={0}>
@@ -42,7 +38,6 @@ const Header = ({ admin }) => {
       <Menu.Item
         key={3}
         onClick={() => {
-          handleLogout();
           localStorage.clear();
           jsCookie.remove("access");
           jsCookie.remove("refresh");
