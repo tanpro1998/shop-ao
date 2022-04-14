@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, Dropdown, Button } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogout } from "../../redux/callAPI";
+import jsCookie from "js-cookie";
 
 const mainNav = [
   {
@@ -43,6 +44,8 @@ const Header = ({ admin }) => {
         onClick={() => {
           handleLogout();
           localStorage.clear();
+          jsCookie.remove("access");
+          jsCookie.remove("refresh");
           window.location.href = "/login";
         }}
       >
