@@ -34,8 +34,8 @@ userRequest.interceptors.request.use(
     const isExpired = dayjs.unix(decodedToken.exp).diff(dayjs()) < 1;
     if (isExpired) {
       const data = await refreshToken();
-      // localStorage.setItem("access", data.accessToken);
-      // localStorage.setItem("refresh", data.refreshToken);
+      jsCookie.set("access", data.accessToken);
+      jsCookie.set("refresh", data.refreshToken);
       config.headers.authorization = `Bearer ${data.accessToken}`;
     }
     return config;
