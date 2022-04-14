@@ -47,6 +47,31 @@ const Header = ({ admin }) => {
   const isAdmin = user?.isAdmin;
   const { quantity } = useSelector((state) => state.cart);
 
+  const menu = (
+    <Menu>
+      <Menu.Item key={0}>
+        <a href="/">Trang chủ</a>
+      </Menu.Item>
+      <Menu.Item key={1}>
+        <a href="/catalog">Sản phẩm</a>
+      </Menu.Item>
+      <Menu.Item key={2}>
+        <a href="/admin">Admin</a>
+      </Menu.Item>
+      <Menu.Item
+        key={3}
+        onClick={() => {
+          localStorage.clear();
+          jsCookie.remove("access");
+          jsCookie.remove("refresh");
+          window.location.href = "/login";
+        }}
+      >
+        <li>Đăng xuất</li>
+      </Menu.Item>
+    </Menu>
+  );
+
   useEffect(() => {
     window.addEventListener("scroll", () => {
       if (

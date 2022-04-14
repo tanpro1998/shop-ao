@@ -3,6 +3,8 @@ import { message } from "antd";
 
 import { getAllAccessory } from "./accessoriesSlice";
 import { getAllProduct } from "./productSlice";
+import { getAllUser } from "./userSlice";
+
 import { loading } from "./alertSlice";
 import { publicRequest, userRequest } from "../utils/axiosInstance";
 import jsCookie from "js-cookie";
@@ -135,6 +137,21 @@ export const userLogin = (reqObj) => async (dispatch) => {
     message.success("Login Success");
     setTimeout(() => {
       window.location.href = "/";
+    }, 500);
+  } catch (err) {
+    console.log(err);
+    message.error("Something went wrong");
+  }
+};
+
+export const userLogout = () => async (dispatch) => {
+  dispatch(loading());
+  try {
+    await publicRequest.post("/users/logout");
+    // jsCookie.remove("refresh");
+    message.success("Logout Success");
+    setTimeout(() => {
+      window.location.href = "/login";
     }, 500);
   } catch (err) {
     console.log(err);

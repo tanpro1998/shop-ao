@@ -9,6 +9,9 @@ import { cartRouter } from "./routes/cartRoute.js";
 import { orderRouter } from "./routes/orderRoute.js";
 import { stripeRouter } from "./routes/stripe.js";
 import { accessoriesRouter } from "./routes/accessoriesRoute.js";
+import { stripeRTRouter } from "./routes/stripeReturn.js";
+import cookieParser from "cookie-parser";
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 dotenv.config();
@@ -17,6 +20,7 @@ connectDB();
 
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser());
 
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
@@ -24,6 +28,7 @@ app.use("/api/accessories", accessoriesRouter);
 app.use("/api/carts", cartRouter);
 app.use("/api/orders", orderRouter);
 app.use("/api/checkout", stripeRouter);
+app.use("https://api.stripe.com", stripeRTRouter);
 
 // const __dirname = path.resolve();
 // if (process.env.NODE_ENV === "production") {

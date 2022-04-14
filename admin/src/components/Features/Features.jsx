@@ -6,8 +6,9 @@ import {
 } from "@ant-design/icons";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import number from "../../utils/number";
 
-const Features = () => {
+const Features = ({ sum }) => {
   return (
     <div className="features">
       <div className="features__top">
@@ -19,7 +20,7 @@ const Features = () => {
           <CircularProgressbar value={80} text={"80%"} strokeWidth={5} />
         </div>
         <p className="features__bottom__title">Total sales</p>
-        <p className="features__bottom__amount">$500</p>
+        <p className="features__bottom__amount">{number(sum)} VND</p>
         <p className="features__bottom__desc">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut
           consectetur reprehenderit magni ab eos illo maiores animi aliquam
@@ -29,22 +30,26 @@ const Features = () => {
           <div className="features__bottom__summary__item">
             <div className="features__bottom__summary__item__title">Target</div>
             <div className="features__bottom__summary__item__result">
-              <ArrowDownOutlined />
-              <div className="number">$20k</div>
+              <ArrowDownOutlined className="down" />
+              <div className="number">{number(500000)}</div>
             </div>
           </div>
           <div className="features__bottom__summary__item">
-            <div className="features__bottom__summary__item__title">Last Week</div>
+            <div className="features__bottom__summary__item__title">
+              Last Week
+            </div>
             <div className="features__bottom__summary__item__result">
-              <ArrowDownOutlined />
-              <div className="number">$20k</div>
+              <ArrowUpOutlined className="up" />
+              <div className="number">{number(400000)}</div>
             </div>
           </div>
           <div className="features__bottom__summary__item">
-            <div className="features__bottom__summary__item__title">Last Month</div>
+            <div className="features__bottom__summary__item__title">
+              Last Month
+            </div>
             <div className="features__bottom__summary__item__result">
-              <ArrowDownOutlined />
-              <div className="number">$20k</div>
+              <ArrowUpOutlined className="up" />
+              <div className="number">{number(1000000)}</div>
             </div>
           </div>
         </div>
