@@ -13,13 +13,16 @@ import {
   CloudOutlined,
 } from "@ant-design/icons";
 import { DarkModeContext } from "../../context/darkModeContext";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
   return (
     <div className="sidebar">
       <div className="sidebar__top">
-        <span className="sidebar__top__logo">Flash Admin</span>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <span className="sidebar__top__logo">Flash Admin</span>
+        </Link>
       </div>
       <div className="sidebar__center">
         <ul>
@@ -29,14 +32,24 @@ const Sidebar = () => {
             <span>Dashboard</span>
           </li>
           <p className="sidebar__center__title">LISTS</p>
-          <li>
-            <UserOutlined className="sidebar__center__icon" />
-            <span>Users</span>
-          </li>
-          <li>
-            <CodepenOutlined className="sidebar__center__icon" />
-            <span>Products</span>
-          </li>
+          <Link
+            to="/users"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <li>
+              <UserOutlined className="sidebar__center__icon" />
+              <span>Users</span>
+            </li>
+          </Link>
+          <Link
+            to="/products"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <li>
+              <CodepenOutlined className="sidebar__center__icon" />
+              <span>Products</span>
+            </li>
+          </Link>
           <li>
             <ShopOutlined className="sidebar__center__icon" />
             <span>Orders</span>

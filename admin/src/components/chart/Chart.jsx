@@ -8,14 +8,22 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const Chart = ({ title, aspect }) => {
+const Chart = ({ title, aspect, allData }) => {
+  // let i;
+  // for (i = 0; i < allData?.length; i++) {
+  //   console.log(allData[i].amount);
+  // }
   const data = [
-    { name: "January", Total: 1500 },
-    { name: "February", Total: 2600 },
-    { name: "March", Total: 1000 },
-    { name: "April", Total: 3000 },
-    { name: "May", Total: 1200 },
-    { name: "June", Total: 2000 },
+    { name: "January", Total: allData !== undefined && allData[0].amount },
+    { name: "February", Total: allData !== undefined && allData[1].amount },
+    { name: "March", Total: allData !== undefined && allData[2].amount },
+    { name: "April", Total: allData !== undefined && allData[3].amount },
+    { name: "May", Total: allData !== undefined && allData[4].amount },
+    { name: "June", Total: allData !== undefined && allData[5].amount },
+    { name: "July", Total: allData !== undefined && allData[6].amount },
+    { name: "August", Total: allData !== undefined && allData[7].amount },
+    { name: "September", Total: allData !== undefined && allData[8].amount },
+    { name: "October", Total: allData !== undefined && allData[9].amount },
   ];
   return (
     <div className="chart">

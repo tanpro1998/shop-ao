@@ -9,5 +9,5 @@ export const axiosInstance = axios.create({
 
 export const stripeInstance = axios.create({
   baseURL: "https://api.stripe.com",
-  headers: { authorization: `Bearer ${KEY}` },
+  headers: { Authorization: `Bearer ${KEY}` },
 });

@@ -4,6 +4,7 @@ import Features from "../../components/Features/Features";
 import Navbar from "../../components/Navbar/Navbar";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Widget from "../../components/Widget/Widget";
+import Table from "../../components/table/Table";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllAccessories,
@@ -45,8 +46,6 @@ const Home = () => {
   for (let i = 0; i < resultOrders?.length; i++) {
     sum += resultOrders[i].amount;
   }
-  // console.log(sum);
-
   return (
     <div className="home">
       <Sidebar />
@@ -59,8 +58,12 @@ const Home = () => {
           <Widget type="earns" up={true} sum={sum} />
         </div>
         <div className="charts">
-          <Features />
-          <Chart title={"Last 6 Months"} aspect={2 / 1} />
+          <Features sum={sum} />
+          <Chart allData={resultOrders} title={"Last 10 Months"} aspect={2 / 1} />
+        </div>
+        <div className="listContainer">
+          <div className="listTitle">All Orders</div>
+          <Table orders={resultOrders} />
         </div>
       </div>
     </div>

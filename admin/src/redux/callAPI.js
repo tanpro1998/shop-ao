@@ -4,6 +4,7 @@ import { getAllProduct } from "./productSlice";
 import { getAllAccessory } from "./accessorySlice";
 import { getAllOrder } from "./orderSlice";
 import axios from "axios";
+import { message } from "antd";
 export const getAllUsers = () => async (dispatch) => {
   try {
     const res = await axiosInstance.get("/users/getallusers");
@@ -36,5 +37,18 @@ export const getAllOrders = () => async (dispatch) => {
     dispatch(getAllOrder(res.data));
   } catch (err) {
     console.log(err);
+  }
+};
+
+export const deleteProduct = (reqObj) => async (dispatch) => {
+  try {
+    await axiosInstance.post("/products/deleteproduct", reqObj);
+    message.success("Delete Product Success");
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
+  } catch (err) {
+    console.log(err);
+    message.error("Something went wrong");
   }
 };
