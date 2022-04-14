@@ -3,7 +3,6 @@ import { axiosInstance, stripeInstance } from "../utils/axiosInstance";
 import { getAllProduct } from "./productSlice";
 import { getAllAccessory } from "./accessorySlice";
 import { getAllOrder } from "./orderSlice";
-import axios from "axios";
 import { message } from "antd";
 export const getAllUsers = () => async (dispatch) => {
   try {

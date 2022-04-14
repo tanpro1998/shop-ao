@@ -6,11 +6,9 @@ import { Popconfirm } from "antd";
 import { useDispatch } from "react-redux";
 import { deleteProduct } from "../../redux/callAPI";
 const TableData = ({ user, product, type }) => {
+  console.log(product._id);
   const dispatch = useDispatch();
 
-  const handleClick = () => {
-    dispatch(deleteProduct({ productId: product?._id }));
-  };
   const UserColumns = [
     { field: "_id", headerName: "ID", width: 300 },
     {
@@ -72,7 +70,11 @@ const TableData = ({ user, product, type }) => {
 
             <div
               className="deleteButton"
-              onClick={() => handleClick(params.product?._id)}
+              onClick={() =>
+                dispatch(
+                  deleteProduct({ productId: "6242d1898af62aaf64ab900f" })
+                )
+              }
             >
               Delete
             </div>
