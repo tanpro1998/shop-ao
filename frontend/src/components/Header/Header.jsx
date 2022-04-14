@@ -1,8 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, Dropdown, Button } from "antd";
-import { useDispatch, useSelector } from "react-redux";
-import { userLogout } from "../../redux/callAPI";
+import { useSelector } from "react-redux";
 import jsCookie from "js-cookie";
 
 const mainNav = [
@@ -16,7 +15,6 @@ const mainNav = [
 ];
 
 const Header = ({ admin }) => {
-  const dispatch = useDispatch();
   const { pathname } = useLocation();
   const activeNav = mainNav.findIndex((e) => e.path === pathname);
   const headerRef = useRef("");
