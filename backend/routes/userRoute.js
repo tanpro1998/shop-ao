@@ -223,6 +223,15 @@ import jwt from "jsonwebtoken";
 import { verifyToken } from "./verifyToken.js";
 const userRouter = express.Router();
 
+userRouter.get("/getallusers", async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).json(users);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 userRouter.post("/register", async (req, res) => {
   const { name, username, password, cfpassword } = req.body;
   if (password !== cfpassword)
@@ -254,7 +263,7 @@ const generateRefreshToken = (user) => {
   return jwt.sign(
     { id: user._id, isAdmin: user.isAdmin },
     process.env.JWT_REFRESH_SECRET,
-    {expiresIn: "3d"}
+    { expiresIn: "3d" }
   );
 };
 

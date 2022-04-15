@@ -1,5 +1,9 @@
 import { getAllUser } from "./userSlice";
-import { axiosInstance, stripeInstance } from "../utils/axiosInstance";
+import {
+  axiosInstance,
+  axiosToken,
+  stripeInstance,
+} from "../utils/axiosInstance";
 import { getAllProduct } from "./productSlice";
 import { getAllAccessory } from "./accessorySlice";
 import { getAllOrder } from "./orderSlice";
@@ -43,6 +47,18 @@ export const deleteProduct = (reqObj) => async (dispatch) => {
   try {
     await axiosInstance.post("/products/deleteproduct", reqObj);
     message.success("Delete Product Success");
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
+  } catch (err) {
+    console.log(err);
+    message.error("Something went wrong");
+  }
+};
+export const deleteAccessory = (reqObj) => async (dispatch) => {
+  try {
+    await axiosInstance.post("/accessories/deleteaccessory", reqObj);
+    message.success("Delete Accessory Success");
     setTimeout(() => {
       window.location.reload();
     }, 500);

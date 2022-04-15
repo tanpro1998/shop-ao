@@ -22,7 +22,7 @@ const Home = () => {
   const [allProducts, setAllProducts] = useState([]);
   const [allAccessories, setAllAccessories] = useState([]);
   const [allOrders, setAllOrders] = useState([]);
-  const resultOrders = allOrders.data;
+  const resultOrders = allOrders?.data;
 
   const total = allProducts.concat(allAccessories);
 
@@ -42,10 +42,13 @@ const Home = () => {
     setAllOrders(orders);
   }, [users, products, accessories, orders]);
 
+  console.log(allOrders);
+
   let sum = 0;
   for (let i = 0; i < resultOrders?.length; i++) {
     sum += resultOrders[i].amount;
   }
+  // console.log(orders);
   return (
     <div className="home">
       <Sidebar />
@@ -59,7 +62,11 @@ const Home = () => {
         </div>
         <div className="charts">
           <Features sum={sum} />
-          <Chart allData={resultOrders} title={"Last 10 Months"} aspect={2 / 1} />
+          <Chart
+            allData={resultOrders}
+            title={"Last 10 Months"}
+            aspect={2 / 1}
+          />
         </div>
         <div className="listContainer">
           <div className="listTitle">All Orders</div>

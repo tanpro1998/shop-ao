@@ -13,7 +13,6 @@ import {
 import number from "../../utils/number";
 
 const List = ({ orders }) => {
-  console.log(orders);
   return (
     <div>
       <TableContainer component={Paper} className="table">
@@ -21,7 +20,6 @@ const List = ({ orders }) => {
           <TableHead>
             <TableRow>
               <TableCell className="tableCell">Tracking ID</TableCell>
-              {/* <TableCell className="tableCell">Product</TableCell> */}
               <TableCell className="tableCell">Customer</TableCell>
               <TableCell className="tableCell">Address</TableCell>
               <TableCell className="tableCell">Amount</TableCell>

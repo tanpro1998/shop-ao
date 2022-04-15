@@ -40,7 +40,7 @@ accessoriesRouter.post("/editaccessory", async (req, res) => {
 
 accessoriesRouter.post("/deleteaccessory", async (req, res) => {
   try {
-    await Accessories.findOneAndDelete({ _id: req.body.accessoryid });
+    await Accessories.findOneAndDelete({ _id: req.body.accessoryId });
     res.send("Delete Accessory Successful");
   } catch (err) {
     return res.status(400).json(err);

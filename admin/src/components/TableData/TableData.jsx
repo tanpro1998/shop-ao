@@ -4,9 +4,8 @@ import { Link } from "react-router-dom";
 import "./tableData.scss";
 import { Popconfirm } from "antd";
 import { useDispatch } from "react-redux";
-import { deleteProduct } from "../../redux/callAPI";
+import { deleteProduct, deleteAccessory } from "../../redux/callAPI";
 const TableData = ({ user, product, type }) => {
-  console.log(product._id);
   const dispatch = useDispatch();
 
   const UserColumns = [
@@ -45,11 +44,19 @@ const TableData = ({ user, product, type }) => {
   ];
 
   const ProductColumns = [
-    { field: "_id", headerName: "ID", width: 300 },
+    { field: "_id", headerName: "ID", width: 400 },
     {
       field: "title",
       headerName: "Product",
-      width: 300,
+      width: 500,
+      renderCell: (params) => {
+        return (
+          <div className="cellImage">
+            <img src={params.row.image01} alt="" />
+            <div>{params.row.title}</div>
+          </div>
+        );
+      },
     },
 
     {
@@ -70,11 +77,10 @@ const TableData = ({ user, product, type }) => {
 
             <div
               className="deleteButton"
-              onClick={() =>
-                dispatch(
-                  deleteProduct({ productId: "6242d1898af62aaf64ab900f" })
-                )
-              }
+              onClick={() => [
+                dispatch(deleteProduct({ productId: params.row._id })),
+                dispatch(deleteAccessory({ accessoryId: params.row._id })),
+              ]}
             >
               Delete
             </div>

@@ -17,13 +17,13 @@
     }
   }
 
-  .cellWithImg {
+  .cellImage {
     display: flex;
     align-items: center;
 
-    .cellImg {
-      width: 32px;
-      height: 32px;
+    img {
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       object-fit: cover;
       margin-right: 20px;
@@ -50,4 +50,9 @@
       cursor: pointer;
     }
   }
+
+  // .cellImage {
+  //   img {
+  //     width: 32px;
+  //   }
 }

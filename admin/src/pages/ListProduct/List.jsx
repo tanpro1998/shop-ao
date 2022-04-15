@@ -24,7 +24,6 @@ const List = () => {
     setAllAccessories(accessories);
   }, [products, accessories]);
 
-
   return (
     <div className="list">
       <Sidebar />
