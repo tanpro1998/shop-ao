@@ -42,9 +42,9 @@ productRouter.post("/editproduct", verifyTokenAdmin, async (req, res) => {
   }
 });
 
-productRouter.post("/deleteproduct", async (req, res) => {
-  await Product.findOneAndDelete({ _id: req.body.productId });
+productRouter.post("/deleteproduct", verifyTokenAdmin, async (req, res) => {
   try {
+    await Product.findOneAndDelete({ _id: req.body.productId });
     res.send("Delete Product Successful");
   } catch (err) {
     return res.status(400).json(err);

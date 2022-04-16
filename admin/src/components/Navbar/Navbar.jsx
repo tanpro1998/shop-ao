@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Menu, Dropdown, Button } from "antd";
 import {
   SearchOutlined,
   GlobalOutlined,
@@ -9,9 +10,11 @@ import {
   BulbOutlined,
 } from "@ant-design/icons";
 import { DarkModeContext } from "../../context/darkModeContext";
+import jsCookie from "js-cookie";
 
-const Navbar = () => {
+const Navbar = ({ currentUser }) => {
   const { dispatch } = useContext(DarkModeContext);
+
   return (
     <div className="navbar">
       <div className="navbar__wrapper">
@@ -46,9 +49,24 @@ const Navbar = () => {
           </div>
           <div className="navbar__wrapper__items__item">
             <img
-              src="https://mondaycareer.com/wp-content/uploads/2020/11/%E1%BA%A3nh-avatar-%C4%91%E1%BA%B9p-c%C3%B4-g%C3%A1i-%C4%91eo-k%C3%ADnh.jpg"
+              src={
+                currentUser
+                  ? "https://scontent.fsgn5-9.fna.fbcdn.net/v/t39.30808-6/273301925_664914081311894_2335935164305714610_n.jpg?_nc_cat=105&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=pvbSUP-OgioAX8_xC71&_nc_ht=scontent.fsgn5-9.fna&oh=00_AT-oL0eb3g4zb-C22jjQnl6TVlhwWJ5LNMZfiFZEjPtoMw&oe=625D9910"
+                  : "https://www.seekpng.com/png/detail/428-4287240_no-avatar-user-circle-icon-png.png"
+              }
               alt=""
             />
+            <div
+              onClick={() => {
+                localStorage.clear();
+                jsCookie.remove("access");
+                jsCookie.remove("refresh");
+                window.location.href = "/login";
+              }}
+              className="logoutBtn"
+            >
+              Log Out
+            </div>
           </div>
         </div>
       </div>

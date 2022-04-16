@@ -4,31 +4,49 @@ import { DarkModeContext } from "./context/darkModeContext";
 import Home from "./pages/Home/Home";
 import ListUser from "./pages/ListUser/List";
 import ListProduct from "./pages/ListProduct/List";
+import ListOrder from "./pages/ListOrder/List";
+import Login from "./pages/Login/Login";
 function App() {
-  const currentUser = true;
+  const user = JSON.parse(localStorage.getItem("user"));
   const { darkMode } = useContext(DarkModeContext);
 
-  const RequireAuth = ({ children }) => {
-    return currentUser ? children : <Navigate to="/login" />;
-  };
   return (
     <div className={darkMode ? "app dark" : "app"}>
       <BrowserRouter>
         <Routes>
           <Route path="/">
-            <Route
-              index
-              element={
-                <RequireAuth>
-                  <Home />
-                </RequireAuth>
-              }
-            />
+            {user ? (
+              <Route index element={<Home currentUser={user} />} />
+            ) : (
+              <Route index element={<Navigate to="/login" />} />
+            )}
             <Route path="users">
-              <Route index element={<ListUser />} />
+              {user ? (
+                <Route index element={<ListUser currentUser={user} />} />
+              ) : (
+                <Route index element={<Navigate to="/" />} />
+              )}
             </Route>
             <Route path="products">
-              <Route index element={<ListProduct />} />
+              {user ? (
+                <Route index element={<ListProduct currentUser={user} />} />
+              ) : (
+                <Route index element={<Navigate to="/" />} />
+              )}
+            </Route>
+            <Route path="orders">
+              {user ? (
+                <Route index element={<ListOrder currentUser={user} />} />
+              ) : (
+                <Route index element={<Navigate to="/" />} />
+              )}
+            </Route>
+            <Route path="login">
+              {!user ? (
+                <Route index element={<Login />} />
+              ) : (
+                <Route index element={<Navigate to="/" />} />
+              )}
             </Route>
           </Route>
         </Routes>

@@ -6,7 +6,7 @@ import TableData from "../../components/TableData/TableData";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../redux/callAPI";
 
-const List = () => {
+const List = ({ currentUser }) => {
   const { users } = useSelector((state) => state.users);
 
   const [allUsers, setAllUsers] = useState([]);
@@ -24,7 +24,7 @@ const List = () => {
     <div className="list">
       <Sidebar />
       <div className="listContainer">
-        <Navbar />
+        <Navbar currentUser={currentUser} />
         <TableData type="users" user={allUsers} />
       </div>
     </div>

@@ -4,7 +4,14 @@
 
   .sidebar {
     background-color: black;
-    color: white;
+
+    &__center {
+      li {
+        span {
+          color: white;
+        }
+      }
+    }
   }
 
   .navbar {
@@ -23,6 +30,21 @@
         }
       }
     }
-    
+  }
+
+  .listContainer {
+    .tableData {
+      .dataGrid {
+        color: white;
+      }
+    }
+  }
+
+  .table {
+    background-color: black;
+
+    .tableCell {
+      color: white;
+    }
   }
 }

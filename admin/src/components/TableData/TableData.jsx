@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import "./tableData.scss";
-import { Popconfirm } from "antd";
 import { useDispatch } from "react-redux";
 import { deleteProduct, deleteAccessory } from "../../redux/callAPI";
+import number from "../../utils/number";
 const TableData = ({ user, product, type }) => {
   const dispatch = useDispatch();
 
@@ -23,8 +23,15 @@ const TableData = ({ user, product, type }) => {
     },
     {
       field: "isAdmin",
-      headerName: "Admin",
+      headerName: "Role",
       width: 300,
+      renderCell: (params) => {
+        return (
+          <div className="cellRole">
+            <div>{params.row.isAdmin === true ? "Admin" : "User"}</div>
+          </div>
+        );
+      },
     },
     {
       field: "action",
@@ -63,6 +70,13 @@ const TableData = ({ user, product, type }) => {
       field: "price",
       headerName: "Price",
       width: 300,
+      renderCell: (params) => {
+        return (
+          <div className="cellPrice">
+            <div>{number(params.row.price)} VND</div>
+          </div>
+        );
+      },
     },
     {
       field: "action",
@@ -105,6 +119,7 @@ const TableData = ({ user, product, type }) => {
         checkboxSelection
         pageSize={9}
         rowsPerPageOptions={[9]}
+        getRowId={(row) => row._id}
       />
     </div>
   );

@@ -4,7 +4,6 @@ import Features from "../../components/Features/Features";
 import Navbar from "../../components/Navbar/Navbar";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Widget from "../../components/Widget/Widget";
-import Table from "../../components/table/Table";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllAccessories,
@@ -13,7 +12,7 @@ import {
   getAllUsers,
 } from "../../redux/callAPI";
 
-const Home = () => {
+const Home = ({ currentUser }) => {
   const { users } = useSelector((state) => state.users);
   const { products } = useSelector((state) => state.products);
   const { accessories } = useSelector((state) => state.accessories);
@@ -42,18 +41,15 @@ const Home = () => {
     setAllOrders(orders);
   }, [users, products, accessories, orders]);
 
-  console.log(allOrders);
-
   let sum = 0;
   for (let i = 0; i < resultOrders?.length; i++) {
     sum += resultOrders[i].amount;
   }
-  // console.log(orders);
   return (
     <div className="home">
       <Sidebar />
       <div className="home__container">
-        <Navbar />
+        <Navbar currentUser={currentUser} />
         <div className="widgets">
           <Widget type="users" user={allUsers} up={true} />
           <Widget type="products" product={total} up={false} />
@@ -67,10 +63,6 @@ const Home = () => {
             title={"Last 10 Months"}
             aspect={2 / 1}
           />
-        </div>
-        <div className="listContainer">
-          <div className="listTitle">All Orders</div>
-          <Table orders={resultOrders} />
         </div>
       </div>
     </div>

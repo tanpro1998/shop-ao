@@ -1,6 +1,7 @@
 import express from "express";
 const accessoriesRouter = express.Router();
 import { Accessories } from "../models/accessoriesModel.js";
+import { verifyTokenAdmin } from "./verifyToken.js";
 
 accessoriesRouter.get("/getallaccessories", async (req, res) => {
   try {
@@ -38,14 +39,18 @@ accessoriesRouter.post("/editaccessory", async (req, res) => {
   }
 });
 
-accessoriesRouter.post("/deleteaccessory", async (req, res) => {
-  try {
-    await Accessories.findOneAndDelete({ _id: req.body.accessoryId });
-    res.send("Delete Accessory Successful");
-  } catch (err) {
-    return res.status(400).json(err);
+accessoriesRouter.post(
+  "/deleteaccessory",
+  verifyTokenAdmin,
+  async (req, res) => {
+    try {
+      await Accessories.findOneAndDelete({ _id: req.body.accessoryId });
+      res.send("Delete Accessory Successful");
+    } catch (err) {
+      return res.status(400).json(err);
+    }
   }
-});
+);
 
 accessoriesRouter.get("/find/:id", async (req, res) => {
   try {

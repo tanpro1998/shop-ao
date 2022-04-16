@@ -109,7 +109,7 @@ const Home = () => {
           <SectionTitle>Sản phẩm bán chạy</SectionTitle>
           <SectionBody>
             <Grid col={4} mdCol={2} smCol={1} gap={20}>
-              {totalProducts.slice(0, 12).map((item, index) => (
+              {totalProducts.slice(0, 16).map((item, index) => (
                 <Product
                   key={index}
                   img01={item.image01}

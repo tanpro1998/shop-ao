@@ -1,0 +1,41 @@
+.login {
+  &__form {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-200px);
+
+    &__header {
+      text-align: center;
+      font-size: 3rem;
+    }
+
+    .inputs {
+      margin-top: 3rem;
+
+      .input {
+        width: 300px;
+        height: 30px;
+        margin-top: 1rem;
+        outline: none;
+        padding-left: 10px;
+      }
+    }
+
+    .button {
+        padding: 10px 20px;
+        width: 100%;
+        margin-top: 1rem;
+        background-color: #1789ff;
+        border: none;
+        font-size: 16px;
+        color: white;
+        cursor: pointer;
+    }
+
+    .register-link {
+      margin-top: 1rem;
+    }
+  }
+}

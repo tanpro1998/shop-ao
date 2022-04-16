@@ -8,7 +8,7 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import number from "../../utils/number";
-
+import { Link } from "react-router-dom";
 const Widget = ({ type, user, product, order, sum, up }) => {
   let data;
 
@@ -84,7 +84,18 @@ const Widget = ({ type, user, product, order, sum, up }) => {
           {type === "earns" && number(sum)}
           {data.isMoney && " VND"}
         </span>
-        <span className="widget__left__link">{data.link}</span>
+        <Link
+          to={
+            type === "users"
+              ? "/users"
+              : type === "products"
+              ? "/products"
+              : "/orders"
+          }
+          style={{ color: "black" }}
+        >
+          <span className="widget__left__link">{data.link}</span>
+        </Link>
       </div>
       <div className="widget__right">
         <div className="widget__right__percent">

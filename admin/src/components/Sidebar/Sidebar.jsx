@@ -32,10 +32,7 @@ const Sidebar = () => {
             <span>Dashboard</span>
           </li>
           <p className="sidebar__center__title">LISTS</p>
-          <Link
-            to="/users"
-            style={{ textDecoration: "none", color: "inherit" }}
-          >
+          <Link to="/users" style={{ textDecoration: "none", color: "black" }}>
             <li>
               <UserOutlined className="sidebar__center__icon" />
               <span>Users</span>
@@ -43,17 +40,19 @@ const Sidebar = () => {
           </Link>
           <Link
             to="/products"
-            style={{ textDecoration: "none", color: "inherit" }}
+            style={{ textDecoration: "none", color: "black" }}
           >
             <li>
               <CodepenOutlined className="sidebar__center__icon" />
               <span>Products</span>
             </li>
           </Link>
-          <li>
-            <ShopOutlined className="sidebar__center__icon" />
-            <span>Orders</span>
-          </li>
+          <Link to="/orders" style={{ textDecoration: "none", color: "black" }}>
+            <li>
+              <ShopOutlined className="sidebar__center__icon" />
+              <span>Orders</span>
+            </li>
+          </Link>
           <li>
             <CarOutlined className="sidebar__center__icon" />
             <span>Delivery</span>
