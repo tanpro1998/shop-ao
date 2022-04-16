@@ -16,26 +16,26 @@
 
       .input {
         width: 300px;
-        height: 30px;
+        height: 40px;
         margin-top: 1rem;
         outline: none;
         padding-left: 10px;
+
+        &:focus {
+          border-color: #1789ff;
+        }
       }
     }
 
     .button {
-        padding: 10px 20px;
-        width: 100%;
-        margin-top: 1rem;
-        background-color: #1789ff;
-        border: none;
-        font-size: 16px;
-        color: white;
-        cursor: pointer;
-    }
-
-    .register-link {
+      padding: 15px 20px;
+      width: 100%;
       margin-top: 1rem;
+      background-color: #1789ff;
+      border: none;
+      font-size: 16px;
+      color: white;
+      cursor: pointer;
     }
   }
 }

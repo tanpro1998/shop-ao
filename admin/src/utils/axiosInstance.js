@@ -1,18 +1,21 @@
 import axios from "axios";
-import jsCookie from "js-cookie";
 import jwt_decode from "jwt-decode";
 import dayjs from "dayjs";
 
 const BASE_URL = "http://localhost:5000/api";
 const KEY = process.env.REACT_APP_STRIPE_SECRET_KEY;
-const ACCESS_TOKEN = jsCookie.get("access");
-const REFRESH_TOKEN = jsCookie.get("refresh");
+const ACCESS_TOKEN = localStorage.getItem("access");
+const REFRESH_TOKEN = localStorage.getItem("refresh");
 
-export const axiosInstance = axios.create({
+export const axiosPublic = axios.create({
   baseURL: BASE_URL,
 });
 
-export const axiosToken = axios.create({
+export const axiosProduct = axios.create({
+  baseURL: BASE_URL,
+  headers: { authorization: `Bearer ${ACCESS_TOKEN}` },
+});
+export const axiosAccessory = axios.create({
   baseURL: BASE_URL,
   headers: { authorization: `Bearer ${ACCESS_TOKEN}` },
 });
@@ -33,14 +36,31 @@ const refreshToken = async () => {
   }
 };
 
-axiosToken.interceptors.request.use(
+axiosProduct.interceptors.request.use(
   async (config) => {
     const decodedToken = jwt_decode(ACCESS_TOKEN);
     const isExpired = dayjs.unix(decodedToken.exp).diff(dayjs()) < 1;
     if (isExpired) {
       const data = await refreshToken();
-      jsCookie.set("access", data.accessToken);
-      jsCookie.set("refresh", data.refreshToken);
+      localStorage.setItem("access", data.accessToken);
+      localStorage.setItem("refresh", data.refreshToken);
+      config.headers.authorization = `Bearer ${data.accessToken}`;
+    }
+    return config;
+  },
+  (err) => {
+    return Promise.reject(err);
+  }
+);
+
+axiosAccessory.interceptors.request.use(
+  async (config) => {
+    const decodedToken = jwt_decode(ACCESS_TOKEN);
+    const isExpired = dayjs.unix(decodedToken.exp).diff(dayjs()) < 1;
+    if (isExpired) {
+      const data = await refreshToken();
+      localStorage.setItem("access", data.accessToken);
+      localStorage.setItem("refresh", data.refreshToken);
       config.headers.authorization = `Bearer ${data.accessToken}`;
     }
     return config;

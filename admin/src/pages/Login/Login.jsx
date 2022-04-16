@@ -1,15 +1,14 @@
 import React from "react";
 import "./login.scss";
 import { Form, Input } from "antd";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { userLogin } from "../../redux/callAPI";
+import { useDispatch } from "react-redux";
+import { adminLogin } from "../../redux/callAPI";
 
 const Login = () => {
   const dispatch = useDispatch();
 
   const onFinish = (values) => {
-    dispatch(userLogin(values));
+    dispatch(adminLogin(values));
   };
   return (
     <div className="login">
@@ -34,9 +33,6 @@ const Login = () => {
             </Form.Item>
           </div>
           <button className="button">Login</button>
-          <Link to="/register" style={{textDecoration: "none", color: "#1789ff"}}>
-            <p className="register-link">Register Now</p>
-          </Link>
         </Form>
       </div>
     </div>

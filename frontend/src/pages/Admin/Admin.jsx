@@ -11,7 +11,6 @@ import policy from "../../assets/fake-data/card";
 import Grid from "../../components/Grid/Grid";
 import { Link } from "react-router-dom";
 import Product from "../../components/Product/Product";
-import banner from "../../assets/images/banner.png";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Loading from "../../components/Loading/Loading";
@@ -19,7 +18,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../redux/callAPI";
 
 const Admin = () => {
-  // const admin = JSON.parse(localStorage.getItem("user")).isAdmin;
   const admin = true;
   const { products } = useSelector((state) => state.products);
   const { loading } = useSelector((state) => state.alert);

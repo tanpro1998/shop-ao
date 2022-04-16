@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { Menu, Dropdown, Button } from "antd";
 import {
   SearchOutlined,
   GlobalOutlined,
@@ -10,7 +9,7 @@ import {
   BulbOutlined,
 } from "@ant-design/icons";
 import { DarkModeContext } from "../../context/darkModeContext";
-import jsCookie from "js-cookie";
+import "./navbar.scss";
 
 const Navbar = ({ currentUser }) => {
   const { dispatch } = useContext(DarkModeContext);
@@ -57,13 +56,13 @@ const Navbar = ({ currentUser }) => {
               alt=""
             />
             <div
-              onClick={() => {
-                localStorage.clear();
-                jsCookie.remove("access");
-                jsCookie.remove("refresh");
-                window.location.href = "/login";
-              }}
               className="logoutBtn"
+              onClick={() => [
+                localStorage.removeItem("admin"),
+                localStorage.removeItem("access"),
+                localStorage.removeItem("refresh"),
+                (window.location.href = "/login"),
+              ]}
             >
               Log Out
             </div>

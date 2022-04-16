@@ -3,7 +3,7 @@ import { message } from "antd";
 
 import { getAllAccessory } from "./accessoriesSlice";
 import { getAllProduct } from "./productSlice";
-import { getAllUser } from "./userSlice";
+// import { getAllUser } from "./userSlice";
 
 import { loading } from "./alertSlice";
 import { publicRequest, userRequest } from "../utils/axiosInstance";
@@ -71,47 +71,47 @@ export const getAllAccessories = () => async (dispatch) => {
   }
 };
 
-export const addAccessory = (reqObj) => async (dispatch) => {
-  dispatch(loading());
-  try {
-    await userRequest.post("/accessories/addaccessory", reqObj);
-    message.success("Add Accessory Success");
-    setTimeout(() => {
-      window.location.href = "/admin";
-    }, 500);
-  } catch (err) {
-    console.log(err);
-    message.error("Something went wrong or you are not admin");
-  }
-};
+// export const addAccessory = (reqObj) => async (dispatch) => {
+//   dispatch(loading());
+//   try {
+//     await userRequest.post("/accessories/addaccessory", reqObj);
+//     message.success("Add Accessory Success");
+//     setTimeout(() => {
+//       window.location.href = "/admin";
+//     }, 500);
+//   } catch (err) {
+//     console.log(err);
+//     message.error("Something went wrong or you are not admin");
+//   }
+// };
 
-export const editAccessory = (reqObj) => async (dispatch) => {
-  dispatch(loading());
-  try {
-    await userRequest.post("/accessories/editaccessory", reqObj);
-    message.success("Edit Accessory Success");
-    setTimeout(() => {
-      window.location.href = "/admin";
-    }, 500);
-  } catch (err) {
-    console.log(err);
-    message.error("Something went wrong");
-  }
-};
+// export const editAccessory = (reqObj) => async (dispatch) => {
+//   dispatch(loading());
+//   try {
+//     await userRequest.post("/accessories/editaccessory", reqObj);
+//     message.success("Edit Accessory Success");
+//     setTimeout(() => {
+//       window.location.href = "/admin";
+//     }, 500);
+//   } catch (err) {
+//     console.log(err);
+//     message.error("Something went wrong");
+//   }
+// };
 
-export const deleteAccessory = (reqObj) => async (dispatch) => {
-  dispatch(loading());
-  try {
-    await userRequest.post("/accessories/deleteaccessory", reqObj);
-    message.success("Delete Access Success");
-    setTimeout(() => {
-      window.location.reload();
-    }, 500);
-  } catch (err) {
-    console.log(err);
-    message.error("Something went wrong or you are not admin");
-  }
-};
+// export const deleteAccessory = (reqObj) => async (dispatch) => {
+//   dispatch(loading());
+//   try {
+//     await userRequest.post("/accessories/deleteaccessory", reqObj);
+//     message.success("Delete Access Success");
+//     setTimeout(() => {
+//       window.location.reload();
+//     }, 500);
+//   } catch (err) {
+//     console.log(err);
+//     message.error("Something went wrong or you are not admin");
+//   }
+// };
 
 export const userRegister = (reqObj) => async (dispatch) => {
   dispatch(loading());

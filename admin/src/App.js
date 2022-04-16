@@ -7,7 +7,7 @@ import ListProduct from "./pages/ListProduct/List";
 import ListOrder from "./pages/ListOrder/List";
 import Login from "./pages/Login/Login";
 function App() {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const admin = JSON.parse(localStorage.getItem("admin"));
   const { darkMode } = useContext(DarkModeContext);
 
   return (
@@ -15,34 +15,34 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/">
-            {user ? (
-              <Route index element={<Home currentUser={user} />} />
+            {admin ? (
+              <Route index element={<Home currentUser={admin} />} />
             ) : (
               <Route index element={<Navigate to="/login" />} />
             )}
             <Route path="users">
-              {user ? (
-                <Route index element={<ListUser currentUser={user} />} />
+              {admin ? (
+                <Route index element={<ListUser currentUser={admin} />} />
               ) : (
                 <Route index element={<Navigate to="/" />} />
               )}
             </Route>
             <Route path="products">
-              {user ? (
-                <Route index element={<ListProduct currentUser={user} />} />
+              {admin ? (
+                <Route index element={<ListProduct currentUser={admin} />} />
               ) : (
                 <Route index element={<Navigate to="/" />} />
               )}
             </Route>
             <Route path="orders">
-              {user ? (
-                <Route index element={<ListOrder currentUser={user} />} />
+              {admin ? (
+                <Route index element={<ListOrder currentUser={admin} />} />
               ) : (
                 <Route index element={<Navigate to="/" />} />
               )}
             </Route>
             <Route path="login">
-              {!user ? (
+              {!admin ? (
                 <Route index element={<Login />} />
               ) : (
                 <Route index element={<Navigate to="/" />} />

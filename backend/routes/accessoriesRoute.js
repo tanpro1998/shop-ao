@@ -1,7 +1,7 @@
 import express from "express";
 const accessoriesRouter = express.Router();
 import { Accessories } from "../models/accessoriesModel.js";
-import { verifyTokenAdmin } from "./verifyToken.js";
+import { verifyToken, verifyTokenAdmin } from "./verifyToken.js";
 
 accessoriesRouter.get("/getallaccessories", async (req, res) => {
   try {

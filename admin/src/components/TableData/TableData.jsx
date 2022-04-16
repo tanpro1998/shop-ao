@@ -93,7 +93,7 @@ const TableData = ({ user, product, type }) => {
               className="deleteButton"
               onClick={() => [
                 dispatch(deleteProduct({ productId: params.row._id })),
-                dispatch(deleteAccessory({ accessoryId: params.row._id })),
+                // dispatch(deleteAccessory({ accessoryId: params.row._id })),
               ]}
             >
               Delete
