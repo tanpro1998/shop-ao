@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Button from "../../components/Button/Button";
 import Header from "../../components/Header/Header";
 import Helmet from "../../components/Helmet/Helmet";
+import { Form, Input } from "antd";
+const { TextArea } = Input;
 
 const Contact = () => {
   const [send, setSend] = useState(false);
@@ -9,30 +11,43 @@ const Contact = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleSend = (e) => {
-    e.preventDefault();
+  const handleSubmit = (e) => {
     setSend(!send);
     setTimeout(() => {
-      window.location.href = '/'
-    }, 3000)
+      window.location.href = "/";
+    }, 1000);
   };
 
   return (
     <Helmet title="Liên Hệ">
       <Header />
-      <div className="wrapper">
-        <div className="contact">
-          <div className="contact__form">
-            <h3 className="contact__f">Liên hệ với chúng tôi</h3>
-            <form className="contact__form__item">
-              <input type="text" placeholder="Tên" />
-              <input type="text" placeholder="Email" />
-              <textarea placeholder="Lời nhắn"></textarea>
+      <div className="contact">
+        <div className="wrapper">
+          <Form
+            layout="vertical"
+            className="contact__form p-5 ml-5"
+            onFinish={handleSubmit}
+          >
+            <h1 className="">Liên Hệ</h1>
+            <hr />
+            <Input className="input" required placeholder="Name" />
+            <Input
+              type="email"
+              className="input"
+              required
+              placeholder="Email"
+            />
+            <Input
+              type="number"
+              className="input"
+              required
+              placeholder="Phone"
+            />
 
-              <button onClick={handleSend} className="btn">Submit</button>
-              {send && <p className="success">Thành công, cảm ơn bạn đã ủng hộ Shop!</p>}
-            </form>
-          </div>
+            <TextArea className="textarea" rows={4} placeholder="Message" />
+            <Button>Submit</Button>
+            {send && <div className="success">Thành công, cảm ơn bạn đã ủng hộ Shop!</div>}
+          </Form>
           <div className="contact__support">
             <h3>Gọi ngay</h3>
             <span>+84 9649038991</span>

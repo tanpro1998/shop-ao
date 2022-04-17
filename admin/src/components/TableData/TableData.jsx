@@ -5,7 +5,7 @@ import "./tableData.scss";
 import { useDispatch } from "react-redux";
 import { deleteProduct, deleteAccessory } from "../../redux/callAPI";
 import number from "../../utils/number";
-const TableData = ({ user, product, type }) => {
+const TableData = ({ users, products, accessories, type }) => {
   const dispatch = useDispatch();
 
   const UserColumns = [
@@ -86,15 +86,67 @@ const TableData = ({ user, product, type }) => {
         return (
           <div className="cellAction">
             <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
+              <div className="viewButton">Edit</div>
             </Link>
 
             <div
               className="deleteButton"
-              onClick={() => [
-                dispatch(deleteProduct({ productId: params.row._id })),
-                // dispatch(deleteAccessory({ accessoryId: params.row._id })),
-              ]}
+              onClick={() => {
+                dispatch(deleteProduct({ productId: params.row._id }));
+              }}
+            >
+              Delete
+            </div>
+          </div>
+        );
+      },
+    },
+  ];
+
+  const AccessoryColumns = [
+    { field: "_id", headerName: "ID", width: 400 },
+    {
+      field: "title",
+      headerName: "Accessory",
+      width: 500,
+      renderCell: (params) => {
+        return (
+          <div className="cellImage">
+            <img src={params.row.image01} alt="" />
+            <div>{params.row.title}</div>
+          </div>
+        );
+      },
+    },
+
+    {
+      field: "price",
+      headerName: "Price",
+      width: 300,
+      renderCell: (params) => {
+        return (
+          <div className="cellPrice">
+            <div>{number(params.row.price)} VND</div>
+          </div>
+        );
+      },
+    },
+    {
+      field: "action",
+      headerName: "Action",
+      width: 300,
+      renderCell: (params) => {
+        return (
+          <div className="cellAction">
+            <Link to="/users/test" style={{ textDecoration: "none" }}>
+              <div className="viewButton">Edit</div>
+            </Link>
+
+            <div
+              className="deleteButton"
+              onClick={() => {
+                dispatch(deleteAccessory({ accessoryId: params.row._id }));
+              }}
             >
               Delete
             </div>
@@ -107,15 +159,34 @@ const TableData = ({ user, product, type }) => {
   return (
     <div className="tableData">
       <div className="tableData__title">
-        {type === "users" ? "Add New User" : "Add New Product"}
-        <Link to="#" className="link">
+        {type === "users"
+          ? "Add New User"
+          : type === "products"
+          ? "Add New Product"
+          : "Add New Accessory"}
+        <Link
+          to={type === "products" ? "/addproduct" : "/addaccessory"}
+          className="link"
+        >
           Add New
         </Link>
       </div>
       <DataGrid
         className="dataGrid"
-        columns={type === "users" ? UserColumns : ProductColumns}
-        rows={type === "users" ? user : product}
+        columns={
+          type === "users"
+            ? UserColumns
+            : type === "products"
+            ? ProductColumns
+            : AccessoryColumns
+        }
+        rows={
+          type === "users"
+            ? users
+            : type === "products"
+            ? products
+            : accessories
+        }
         checkboxSelection
         pageSize={9}
         rowsPerPageOptions={[9]}

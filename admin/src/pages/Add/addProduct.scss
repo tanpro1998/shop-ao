@@ -1,0 +1,24 @@
+.add {
+  padding: 2rem;
+
+  h3 {
+    text-align: center;
+    font-size: 30px;
+  }
+
+  hr {
+    margin-bottom: 2rem;
+  }
+
+  .button {
+    text-align: center;
+
+    .btn {
+      background-color: #1789ff;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+  }
+}

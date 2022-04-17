@@ -9,7 +9,7 @@ import {
 } from "@ant-design/icons";
 import number from "../../utils/number";
 import { Link } from "react-router-dom";
-const Widget = ({ type, user, product, order, sum, up }) => {
+const Widget = ({ type, user, product, accessory, order, sum, up }) => {
   let data;
 
   switch (type) {
@@ -41,12 +41,12 @@ const Widget = ({ type, user, product, order, sum, up }) => {
         ),
       };
       break;
-    case "orders":
+    case "accessories":
       data = {
-        title: "ORDERS",
+        title: "ACCESSORIES",
         isMoney: false,
-        link: "View all orders",
-        query: "orders",
+        link: "View all Accessories",
+        query: "accessories",
         icon: (
           <ShoppingCartOutlined
             className="icon"
@@ -55,12 +55,12 @@ const Widget = ({ type, user, product, order, sum, up }) => {
         ),
       };
       break;
-    case "earns":
+    case "orders":
       data = {
-        title: "EARNINGS",
+        title: "ORDERS",
         isMoney: true,
-        link: "View all earnings",
-        query: "earns",
+        link: "View all orders",
+        query: "orders",
         icon: (
           <MoneyCollectOutlined
             className="icon"
@@ -80,9 +80,8 @@ const Widget = ({ type, user, product, order, sum, up }) => {
         <span className="widget__left__counter">
           {type === "users" && user.length}
           {type === "products" && product.length}
+          {type === "accessories" && accessory.length}
           {type === "orders" && order?.length}
-          {type === "earns" && number(sum)}
-          {data.isMoney && " VND"}
         </span>
         <Link
           to={
@@ -90,6 +89,8 @@ const Widget = ({ type, user, product, order, sum, up }) => {
               ? "/users"
               : type === "products"
               ? "/products"
+              : type === "accessories"
+              ? "/accessories"
               : "/orders"
           }
           style={{ color: "black" }}
@@ -106,8 +107,8 @@ const Widget = ({ type, user, product, order, sum, up }) => {
           )}
           {type === "users" && "40%"}
           {type === "products" && "50%"}
-          {type === "orders" && "20%"}
-          {type === "earns" && "30%"}
+          {type === "accessories" && "20%"}
+          {type === "orders" && "30%"}
         </div>
         <div className="widget__right__icon">{data.icon}</div>
       </div>

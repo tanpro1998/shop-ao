@@ -1,28 +1,21 @@
 import React, { useEffect, useState } from "react";
 import Helmet from "../../components/Helmet/Helmet";
-import Section, { SectionBody, SectionTitle } from "../../components/Section/Section";
+import Section, {
+  SectionBody,
+  SectionTitle,
+} from "../../components/Section/Section";
 import ProductViewItem from "../../components/Product/ProductViewItem";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts } from "../../redux/callAPI";
 import { useParams } from "react-router-dom";
 import Grid from "../../components/Grid/Grid";
 import ProductCard from "../../components/Product/ProductCard";
 
-const ProductView = () => {
+const ProductView = ({ allProducts }) => {
   const { slug } = useParams();
-  const { products } = useSelector((state) => state.products);
-  const dispatch = useDispatch();
   const [product, setProduct] = useState({});
-  const [totalProduct, setTotalProduct] = useState([]);
 
   useEffect(() => {
-    if (products.length === 0) {
-      dispatch(getAllProducts());
-    } else {
-      setProduct(products.find((item) => item.slug === slug));
-      setTotalProduct(products);
-    }
-  }, [dispatch, products, slug]);
+    setProduct(allProducts.find((item) => item.slug === slug));
+  }, [allProducts, slug]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -39,7 +32,7 @@ const ProductView = () => {
           <SectionTitle>Tim hieu them</SectionTitle>
           <SectionBody>
             <Grid col={4} mdCol={2} smCol={1} gap={20}>
-              {totalProduct.slice(0, 8).map((item, index) => (
+              {allProducts.slice(0, 8).map((item, index) => (
                 <ProductCard
                   key={index}
                   id={item._id}

@@ -9,6 +9,7 @@ import { getAllProduct } from "./productSlice";
 import { getAllAccessory } from "./accessorySlice";
 import { getAllOrder } from "./orderSlice";
 import { message } from "antd";
+
 export const getAllUsers = () => async (dispatch) => {
   try {
     const res = await axiosPublic.get("/users/getallusers");
@@ -44,6 +45,32 @@ export const getAllOrders = () => async (dispatch) => {
   }
 };
 
+export const addProduct = (reqObj) => async (dispatch) => {
+  try {
+    await axiosProduct.post("/products/addproduct", reqObj);
+    message.success("Add Product Success");
+    setTimeout(() => {
+      window.location.href = "/products";
+    }, 500);
+  } catch (err) {
+    console.log(err);
+    message.error("Something went wrong or you are not admin!");
+  }
+};
+
+export const addAccessory = (reqObj) => async (dispatch) => {
+  try {
+    await axiosProduct.post("/accessories/addaccessory", reqObj);
+    message.success("Add Accessory Success");
+    setTimeout(() => {
+      window.location.href = "/accessories";
+    }, 500);
+  } catch (err) {
+    console.log(err);
+    message.error("Something went wrong or you are not admin!");
+  }
+};
+
 export const deleteProduct = (reqObj) => async (dispatch) => {
   try {
     await axiosProduct.post("/products/deleteproduct", reqObj);
@@ -56,18 +83,18 @@ export const deleteProduct = (reqObj) => async (dispatch) => {
     message.error("Something went wrong");
   }
 };
-// export const deleteAccessory = (reqObj) => async (dispatch) => {
-//   try {
-//     await axiosAccessory.post("/accessories/deleteaccessory", reqObj);
-//     message.success("Delete Accessory Success");
-//     setTimeout(() => {
-//       window.location.reload();
-//     }, 500);
-//   } catch (err) {
-//     console.log(err);
-//     message.error("Something went wrong");
-//   }
-// };
+export const deleteAccessory = (reqObj) => async (dispatch) => {
+  try {
+    await axiosAccessory.post("/accessories/deleteaccessory", reqObj);
+    message.success("Delete Accessory Success");
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
+  } catch (err) {
+    console.log(err);
+    message.error("Something went wrong");
+  }
+};
 
 export const adminLogin = (reqObj) => async (dispatch) => {
   try {

@@ -47,10 +47,15 @@ const Sidebar = () => {
               <span>Products</span>
             </li>
           </Link>
-          <li>
-            <CarOutlined className="sidebar__center__icon" />
-            <span>Accessories</span>
-          </li>
+          <Link
+            to="/accessories"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <li>
+              <CarOutlined className="sidebar__center__icon" />
+              <span>Accessories</span>
+            </li>
+          </Link>
           <Link to="/orders" style={{ textDecoration: "none", color: "black" }}>
             <li>
               <ShopOutlined className="sidebar__center__icon" />

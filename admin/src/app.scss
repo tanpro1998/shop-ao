@@ -32,6 +32,16 @@
     }
   }
 
+  .widget {
+
+    &__left {
+      &__link {
+        color: white;
+      }
+    }
+   
+  }
+
   .listContainer {
     .tableData {
       .dataGrid {

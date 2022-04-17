@@ -13,23 +13,9 @@ import { Link } from "react-router-dom";
 import Product from "../../components/Product/Product";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts } from "../../redux/callAPI";
 import Loading from "../../components/Loading/Loading";
 
-const Home = () => {
-  const { products } = useSelector((state) => state.products);
-  const { loading } = useSelector((state) => state.alert);
-  const dispatch = useDispatch();
-  const [totalProducts, setTotalProducts] = useState([]);
-
-  useEffect(() => {
-    dispatch(getAllProducts());
-  }, [dispatch]);
-
-  useEffect(() => {
-    setTotalProducts(products);
-  }, [products]);
+const Home = ({ allProducts, loading }) => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -61,7 +47,7 @@ const Home = () => {
 
           <SectionBody>
             <Grid col={4} mdCol={2} smCol={1} gap={20}>
-              {totalProducts.slice(0, 4).map((item, index) => (
+              {allProducts.slice(0, 4).map((item, index) => (
                 <Product
                   key={index}
                   img01={item.image01}
@@ -91,7 +77,7 @@ const Home = () => {
           <SectionTitle>Sản Phẩm Mới</SectionTitle>
           <SectionBody>
             <Grid col={4} mdCol={2} smCol={1} gap={20}>
-              {totalProducts.slice(0, 8).map((item, index) => (
+              {allProducts.slice(0, 8).map((item, index) => (
                 <Product
                   key={index}
                   img01={item.image01}
@@ -109,7 +95,7 @@ const Home = () => {
           <SectionTitle>Sản phẩm bán chạy</SectionTitle>
           <SectionBody>
             <Grid col={4} mdCol={2} smCol={1} gap={20}>
-              {totalProducts.slice(0, 16).map((item, index) => (
+              {allProducts.slice(0, 16).map((item, index) => (
                 <Product
                   key={index}
                   img01={item.image01}

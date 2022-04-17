@@ -4,65 +4,22 @@ import Features from "../../components/Features/Features";
 import Navbar from "../../components/Navbar/Navbar";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Widget from "../../components/Widget/Widget";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  getAllAccessories,
-  getAllOrders,
-  getAllProducts,
-  getAllUsers,
-} from "../../redux/callAPI";
 
-const Home = ({ currentUser }) => {
-  const { users } = useSelector((state) => state.users);
-  const { products } = useSelector((state) => state.products);
-  const { accessories } = useSelector((state) => state.accessories);
-  const { orders } = useSelector((state) => state.orders);
-  const [allUsers, setAllUsers] = useState([]);
-  const [allProducts, setAllProducts] = useState([]);
-  const [allAccessories, setAllAccessories] = useState([]);
-  const [allOrders, setAllOrders] = useState([]);
-  const resultOrders = allOrders?.data;
-
-  const total = allProducts.concat(allAccessories);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getAllUsers());
-    dispatch(getAllProducts());
-    dispatch(getAllAccessories());
-    dispatch(getAllOrders());
-  }, [dispatch]);
-
-  useEffect(() => {
-    setAllUsers(users);
-    setAllProducts(products);
-    setAllAccessories(accessories);
-    setAllOrders(orders);
-  }, [users, products, accessories, orders]);
-
-  let sum = 0;
-  for (let i = 0; i < resultOrders?.length; i++) {
-    sum += resultOrders[i].amount;
-  }
+const Home = ({ currentUser, users, products, accessories, orders, sum }) => {
   return (
     <div className="home">
       <Sidebar />
       <div className="home__container">
         <Navbar currentUser={currentUser} />
         <div className="widgets">
-          <Widget type="users" user={allUsers} up={true} />
-          <Widget type="products" product={total} up={false} />
-          <Widget type="orders" order={resultOrders} up={false} />
-          <Widget type="earns" up={true} sum={sum} />
+          <Widget type="users" user={users} up={true} />
+          <Widget type="products" product={products} up={false} />
+          <Widget type="accessories" up={true} accessory={accessories} />
+          <Widget type="orders" order={orders} up={false} />
         </div>
         <div className="charts">
           <Features sum={sum} />
-          <Chart
-            allData={resultOrders}
-            title={"Last 10 Months"}
-            aspect={2 / 1}
-          />
+          <Chart allData={orders} title={"Last 10 Months"} aspect={2 / 1} />
         </div>
       </div>
     </div>

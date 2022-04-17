@@ -8,8 +8,8 @@ import { useParams } from "react-router-dom";
 import { addItemToCart } from "../../redux/cartSlice";
 import number from "../../utils/number";
 
-const Accessory = () => { 
-  const { accessoryId} = useParams();
+const Accessory = ({ allAccessories }) => {
+  const { accessoryId } = useParams();
   const { accessories } = useSelector((state) => state.accessories);
   const dispatch = useDispatch();
   const [totalAccessories, setTotalAccessories] = useState([]);
@@ -38,13 +38,8 @@ const Accessory = () => {
   };
 
   useEffect(() => {
-    if (accessories.length === 0) {
-      dispatch(getAllAccessories());
-    } else {
-      setAccessory(accessories.find((item) => item._id === accessoryId));
-      setTotalAccessories(accessories);
-    }
-  }, [accessories, dispatch, accessoryId]);
+    setAccessory(allAccessories.find((item) => item._id === accessoryId));
+  }, [allAccessories, accessoryId]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -58,7 +53,7 @@ const Accessory = () => {
     <div>
       <Header />
       <Helmet title="Product">
-        {totalAccessories.length > 0 && (
+        {allAccessories.length > 0 && (
           <Row className="d-flex align-items-center">
             <Col lg={12} sm={24}>
               <div className="products__image p-5">
@@ -73,7 +68,7 @@ const Accessory = () => {
                 <div className="products__item">
                   <div className="products__item__title">Màu Sắc:</div>
                   <div className="products__item__list">
-                    {accessory.colors.map((item) => (
+                    {accessory.colors?.map((item) => (
                       <div
                         key={item}
                         className={`bg-${item} products__item__list__item ${
@@ -88,7 +83,7 @@ const Accessory = () => {
                 <div className="products__item">
                   <div className="products__item__title">Cỡ Size :</div>
                   <div className="products__item__list">
-                    {accessory.sizes.map((item) => (
+                    {accessory.sizes?.map((item) => (
                       <div
                         key={item}
                         className={`products__item__list__item ${

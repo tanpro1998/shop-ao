@@ -11,7 +11,7 @@ const EditProduct = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products);
   const { loading } = useSelector((state) => state.alert);
-  const [product, setProduct] = useState();
+  const [product, setProduct] = useState({});
   const [totalProducts, setTotalProducts] = useState([]);
 
   useEffect(() => {

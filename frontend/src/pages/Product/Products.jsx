@@ -3,16 +3,14 @@ import Helmet from "../../components/Helmet/Helmet";
 import { Row, Col } from "antd";
 import Header from "../../components/Header/Header";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts} from "../../redux/callAPI";
+import { getAllProducts } from "../../redux/callAPI";
 import { useParams } from "react-router-dom";
 import { addItemToCart } from "../../redux/cartSlice";
 import number from "../../utils/number";
 
-const Product = () => {
+const Product = ({ allProducts }) => {
   const { productId } = useParams();
-  const { products } = useSelector((state) => state.products);
   const dispatch = useDispatch();
-  const [totalProducts, setTotalProducts] = useState([]);
 
   const [product, setProduct] = useState({});
 
@@ -38,13 +36,8 @@ const Product = () => {
   };
 
   useEffect(() => {
-    if (products.length === 0) {
-      dispatch(getAllProducts());
-    } else {
-      setProduct(products.find((item) => item._id === productId));
-      setTotalProducts(products);
-    }
-  }, [products, dispatch, productId]);
+    setProduct(allProducts.find((item) => item._id === productId));
+  }, [allProducts, productId]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -59,7 +52,7 @@ const Product = () => {
     <div>
       <Header />
       <Helmet title="Product">
-        {totalProducts.length > 0 && (
+        {allProducts.length > 0 && (
           <Row className="">
             <Col lg={12} sm={24}>
               <div className="products__image ">
@@ -72,7 +65,7 @@ const Product = () => {
                 <div className="products__item">
                   <div className="products__item__title">Màu Sắc:</div>
                   <div className="products__item__list">
-                    {product.colors.map((item) => (
+                    {product.colors?.map((item) => (
                       <div
                         key={item}
                         className={`bg-${item} products__item__list__item ${
@@ -87,7 +80,7 @@ const Product = () => {
                 <div className="products__item">
                   <div className="products__item__title">Cỡ Size :</div>
                   <div className="products__item__list">
-                    {product.sizes.map((item) => (
+                    {product.sizes?.map((item) => (
                       <div
                         key={item}
                         className={`products__item__list__item ${

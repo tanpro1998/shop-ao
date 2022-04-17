@@ -24,7 +24,6 @@ const Catalog = () => {
 
   useEffect(() => {
     dispatch(getAllProducts());
-    dispatch(getAllAccessories());
   }, [dispatch, filter]);
 
   useEffect(() => {
