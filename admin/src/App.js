@@ -15,6 +15,7 @@ import {
   getAllProducts,
   getAllUsers,
 } from "./redux/callAPI";
+import Edit from "./pages/Edit/Edit";
 function App() {
   const admin = JSON.parse(localStorage.getItem("admin"));
   const { darkMode } = useContext(DarkModeContext);
@@ -24,8 +25,6 @@ function App() {
   const { accessories } = useSelector((state) => state.accessories);
   const { orders } = useSelector((state) => state.orders);
   const resultOrders = orders?.data;
-
-  const total = products.concat(accessories);
 
   const dispatch = useDispatch();
 
@@ -126,14 +125,42 @@ function App() {
             </Route>
             <Route path="addproduct">
               {admin ? (
-                <Route index element={<AddProduct type="products" />} />
+                <Route
+                  index
+                  element={<AddProduct currentUser={admin} type="products" />}
+                />
               ) : (
                 <Route index element={<Navigate to="/" />} />
               )}
             </Route>
             <Route path="addaccessory">
               {admin ? (
-                <Route index element={<AddProduct type="accessories" />} />
+                <Route
+                  index
+                  element={
+                    <AddProduct currentUser={admin} type="accessories" />
+                  }
+                />
+              ) : (
+                <Route index element={<Navigate to="/" />} />
+              )}
+            </Route>
+            <Route path="editproduct/:productId">
+              {admin ? (
+                <Route
+                  index
+                  element={<Edit currentUser={admin} type="products" />}
+                />
+              ) : (
+                <Route index element={<Navigate to="/" />} />
+              )}
+            </Route>
+            <Route path="editaccessory/:accessoryId">
+              {admin ? (
+                <Route
+                  index
+                  element={<Edit currentUser={admin} type="accessories" />}
+                />
               ) : (
                 <Route index element={<Navigate to="/" />} />
               )}

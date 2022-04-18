@@ -3,14 +3,13 @@ import {
   TableOutlined,
   UserOutlined,
   CodepenOutlined,
-  ShopOutlined,
-  CarOutlined,
   BarChartOutlined,
   BellOutlined,
   LogoutOutlined,
   SettingOutlined,
   EnvironmentOutlined,
   CloudOutlined,
+  ShoppingCartOutlined,
 } from "@ant-design/icons";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { Link } from "react-router-dom";
@@ -52,13 +51,13 @@ const Sidebar = () => {
             style={{ textDecoration: "none", color: "black" }}
           >
             <li>
-              <CarOutlined className="sidebar__center__icon" />
+              <CodepenOutlined className="sidebar__center__icon" />
               <span>Accessories</span>
             </li>
           </Link>
           <Link to="/orders" style={{ textDecoration: "none", color: "black" }}>
             <li>
-              <ShopOutlined className="sidebar__center__icon" />
+              <ShoppingCartOutlined className="sidebar__center__icon" />
               <span>Orders</span>
             </li>
           </Link>
@@ -89,7 +88,14 @@ const Sidebar = () => {
             <UserOutlined className="sidebar__center__icon" />
             <span>Profile</span>
           </li>
-          <li>
+          <li
+            onClick={() => [
+              localStorage.removeItem("admin"),
+              localStorage.removeItem("access"),
+              localStorage.removeItem("refresh"),
+              (window.location.href = "/login"),
+            ]}
+          >
             <LogoutOutlined className="sidebar__center__icon" />
             <span>Logout</span>
           </li>

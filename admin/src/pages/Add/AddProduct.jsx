@@ -3,8 +3,10 @@ import "./addProduct.scss";
 import { Col, Row, Form, Input } from "antd";
 import { useDispatch } from "react-redux";
 import { addAccessory, addProduct } from "../../redux/callAPI";
+import Sidebar from "../../components/Sidebar/Sidebar";
+import Navbar from "../../components/Navbar/Navbar";
 
-const AddProduct = ({ type }) => {
+const AddProduct = ({ type, currentUser }) => {
   const dispatch = useDispatch();
 
   const onFinish = (values) => {
@@ -14,59 +16,77 @@ const AddProduct = ({ type }) => {
   };
   return (
     <div className="add">
-      <Row justify="center">
-        <Col lg={12} sm={24}>
-          <Form layout="vertical" onFinish={onFinish}>
-            <h3>Add New Product</h3>
-            <hr />
-            <Form.Item name="title" label="Title" rules={[{ required: true }]}>
-              <Input />
-            </Form.Item>
-            <Form.Item name="price" label="Price" rules={[{ required: true }]}>
-              <Input />
-            </Form.Item>
-            <Form.Item
-              name="image01"
-              label="Image01"
-              rules={[{ required: true }]}
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item
-              name="image02"
-              label="Image02"
-              rules={[{ required: true }]}
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item name="slug" label="Slug" rules={[{ required: true }]}>
-              <Input />
-            </Form.Item>
-            <Form.Item
-              name="categorySlug"
-              label="Category Slug"
-              rules={[{ required: true }]}
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item
-              name="colors"
-              label="Colors"
-              rules={[{ required: true }]}
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item name="sizes" label="Sizes" rules={[{ required: true }]}>
-              <Input />
-            </Form.Item>
-            <div className="button">
-              <button className="btn" type="submit">
-                ADD PRODUCT
-              </button>
-            </div>
-          </Form>
-        </Col>
-      </Row>
+      <Sidebar />
+      <div className="listContainer">
+        <Navbar currentUser={currentUser} />
+        <Row justify="center">
+          <Col lg={12} sm={24}>
+            <Form layout="vertical" onFinish={onFinish}>
+              <h3>
+                {type === "products" ? "Add New Product" : "Add  New Accessory"}
+              </h3>
+              <hr />
+              <Form.Item
+                className="formItem"
+                name="title"
+                rules={[{ required: true }]}
+              >
+                <Input placeholder="Title" />
+              </Form.Item>
+              <Form.Item
+                className="formItem"
+                name="price"
+                rules={[{ required: true }]}
+              >
+                <Input placeholder="Price" />
+              </Form.Item>
+              <Form.Item
+                className="formItem"
+                name="image01"
+                rules={[{ required: true }]}
+              >
+                <Input placeholder="Image 01" />
+              </Form.Item>
+              <Form.Item
+                className="formItem"
+                name="image02"
+                rules={[{ required: true }]}
+              >
+                <Input placeholder="Image 02" />
+              </Form.Item>
+              <Form.Item name="slug" rules={[{ required: true }]}>
+                <Input placeholder="Slug" />
+              </Form.Item>
+              <Form.Item
+                className="formItem"
+                name="categorySlug"
+                rules={[{ required: true }]}
+              >
+                <Input placeholder="Category Slug" />
+              </Form.Item>
+              <Form.Item
+                className="formItem"
+                name="colors"
+                rules={[{ required: true }]}
+              >
+                <Input placeholder="Colors" />
+              </Form.Item>
+              <Form.Item
+                className="formItem"
+                name="sizes"
+                rules={[{ required: true }]}
+              >
+                <Input placeholder="Sizes" />
+              </Form.Item>
+              <div className="button">
+                <button className="btn" type="submit">
+                  {type === "products" ? "ADD PRODUCT" : "ADD ACCESSORY"}
+                </button>
+              </div>
+            </Form>
+          </Col>
+        </Row>
+      </div>
     </div>
   );
 };

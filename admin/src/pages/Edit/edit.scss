@@ -1,6 +1,6 @@
-.add {
-  display: flex;
+.edit {
   width: 100%;
+  display: flex;
 
   .listContainer {
     flex: 6;
@@ -9,20 +9,19 @@
       font-size: 30px;
       margin: 2rem 0;
     }
-
     hr {
       margin-bottom: 2rem;
     }
-  }
-  .button {
-    text-align: center;
 
-    .btn {
-      background-color: #1789ff;
-      color: white;
-      border: none;
-      padding: 10px;
-      cursor: pointer;
+    .button {
+      text-align: center;
+
+      .btn {
+        padding: 10px;
+        background-color: #1789ff;
+        color: white;
+        border: none;
+      }
     }
   }
 }

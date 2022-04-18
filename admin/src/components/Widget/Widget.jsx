@@ -1,15 +1,13 @@
 import React from "react";
 import {
   CodepenOutlined,
-  MoneyCollectOutlined,
   ShoppingCartOutlined,
   UpOutlined,
   DownOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import number from "../../utils/number";
 import { Link } from "react-router-dom";
-const Widget = ({ type, user, product, accessory, order, sum, up }) => {
+const Widget = ({ type, user, product, accessory, order, up }) => {
   let data;
 
   switch (type) {
@@ -48,9 +46,9 @@ const Widget = ({ type, user, product, accessory, order, sum, up }) => {
         link: "View all Accessories",
         query: "accessories",
         icon: (
-          <ShoppingCartOutlined
+          <CodepenOutlined
             className="icon"
-            style={{ color: "white", backgroundColor: "yellow" }}
+            style={{ color: "white", backgroundColor: "teal" }}
           />
         ),
       };
@@ -62,9 +60,9 @@ const Widget = ({ type, user, product, accessory, order, sum, up }) => {
         link: "View all orders",
         query: "orders",
         icon: (
-          <MoneyCollectOutlined
+          <ShoppingCartOutlined
             className="icon"
-            style={{ color: "white", backgroundColor: "teal" }}
+            style={{ color: "white", backgroundColor: "yellow" }}
           />
         ),
       };

@@ -27,21 +27,16 @@ export const getAllProducts = () => async (dispatch) => {
   }
 };
 
-export const getAllAccessories = () => async (dispatch) => {
+export const editProduct = (reqObj) => async (dispatch) => {
   try {
-    const res = await axiosPublic.get("/accessories/getallaccessories");
-    dispatch(getAllAccessory(res.data));
+    await axiosProduct.post("/products/editproduct", reqObj);
+    message.success("Edit Product Success");
+    setTimeout(() => {
+      window.location.href = "/products";
+    }, 500);
   } catch (err) {
     console.log(err);
-  }
-};
-
-export const getAllOrders = () => async (dispatch) => {
-  try {
-    const res = await stripeInstance.get("/v1/charges");
-    dispatch(getAllOrder(res.data));
-  } catch (err) {
-    console.log(err);
+    message.error("Something went wrong or you are not admin");
   }
 };
 
@@ -51,19 +46,6 @@ export const addProduct = (reqObj) => async (dispatch) => {
     message.success("Add Product Success");
     setTimeout(() => {
       window.location.href = "/products";
-    }, 500);
-  } catch (err) {
-    console.log(err);
-    message.error("Something went wrong or you are not admin!");
-  }
-};
-
-export const addAccessory = (reqObj) => async (dispatch) => {
-  try {
-    await axiosProduct.post("/accessories/addaccessory", reqObj);
-    message.success("Add Accessory Success");
-    setTimeout(() => {
-      window.location.href = "/accessories";
     }, 500);
   } catch (err) {
     console.log(err);
@@ -83,6 +65,42 @@ export const deleteProduct = (reqObj) => async (dispatch) => {
     message.error("Something went wrong");
   }
 };
+
+export const getAllAccessories = () => async (dispatch) => {
+  try {
+    const res = await axiosPublic.get("/accessories/getallaccessories");
+    dispatch(getAllAccessory(res.data));
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const editAccessory = (reqObj) => async (dispatch) => {
+  try {
+    await axiosProduct.post("/accessories/editaccessory", reqObj);
+    message.success("Edit Accessory Success");
+    setTimeout(() => {
+      window.location.href = "/accessories";
+    }, 500);
+  } catch (err) {
+    console.log(err);
+    message.error("Something went wrong or you are not admin");
+  }
+};
+
+export const addAccessory = (reqObj) => async (dispatch) => {
+  try {
+    await axiosProduct.post("/accessories/addaccessory", reqObj);
+    message.success("Add Accessory Success");
+    setTimeout(() => {
+      window.location.href = "/accessories";
+    }, 500);
+  } catch (err) {
+    console.log(err);
+    message.error("Something went wrong or you are not admin!");
+  }
+};
+
 export const deleteAccessory = (reqObj) => async (dispatch) => {
   try {
     await axiosAccessory.post("/accessories/deleteaccessory", reqObj);
@@ -93,6 +111,14 @@ export const deleteAccessory = (reqObj) => async (dispatch) => {
   } catch (err) {
     console.log(err);
     message.error("Something went wrong");
+  }
+};
+export const getAllOrders = () => async (dispatch) => {
+  try {
+    const res = await stripeInstance.get("/v1/charges");
+    dispatch(getAllOrder(res.data));
+  } catch (err) {
+    console.log(err);
   }
 };
 

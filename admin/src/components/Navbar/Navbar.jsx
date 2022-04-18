@@ -55,17 +55,7 @@ const Navbar = ({ currentUser }) => {
               }
               alt=""
             />
-            <div
-              className="logoutBtn"
-              onClick={() => [
-                localStorage.removeItem("admin"),
-                localStorage.removeItem("access"),
-                localStorage.removeItem("refresh"),
-                (window.location.href = "/login"),
-              ]}
-            >
-              Log Out
-            </div>
+            <div className="userAdmin">{currentUser?.name}</div>
           </div>
         </div>
       </div>

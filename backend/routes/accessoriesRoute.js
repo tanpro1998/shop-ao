@@ -12,7 +12,7 @@ accessoriesRouter.get("/getallaccessories", async (req, res) => {
   }
 });
 
-accessoriesRouter.post("/addaccessory", async (req, res) => {
+accessoriesRouter.post("/addaccessory", verifyTokenAdmin, async (req, res) => {
   try {
     const addNewAccessory = new Accessories(req.body);
     await addNewAccessory.save();
@@ -22,7 +22,7 @@ accessoriesRouter.post("/addaccessory", async (req, res) => {
   }
 });
 
-accessoriesRouter.post("/editaccessory", async (req, res) => {
+accessoriesRouter.post("/editaccessory", verifyTokenAdmin, async (req, res) => {
   try {
     const accessory = await Accessories.findOne({ _id: req.body._id });
     accessory.title = req.body.title;
@@ -31,6 +31,7 @@ accessoriesRouter.post("/editaccessory", async (req, res) => {
     accessory.image02 = req.body.image02;
     accessory.categorySlug = req.body.categorySlug;
     accessory.slug = req.body.slug;
+    accessory.desc = req.body.desc;
 
     await accessory.save();
     res.send("Edit Accessory Successful");

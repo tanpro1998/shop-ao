@@ -33,20 +33,26 @@
   }
 
   .widget {
-
     &__left {
       &__link {
         color: white;
       }
     }
-   
   }
 
   .listContainer {
+
+    h3 {
+      color: white;
+    }
     .tableData {
       .dataGrid {
         color: white;
       }
+    }
+
+    .formItem {
+      color: red;
     }
   }
 

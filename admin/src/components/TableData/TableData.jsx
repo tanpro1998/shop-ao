@@ -40,7 +40,7 @@ const TableData = ({ users, products, accessories, type }) => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
+            <Link to="" style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
             <div className="deleteButton">Delete</div>
@@ -51,11 +51,11 @@ const TableData = ({ users, products, accessories, type }) => {
   ];
 
   const ProductColumns = [
-    { field: "_id", headerName: "ID", width: 400 },
+    { field: "_id", headerName: "ID", width: 300 },
     {
       field: "title",
       headerName: "Product",
-      width: 500,
+      width: 300,
       renderCell: (params) => {
         return (
           <div className="cellImage">
@@ -69,11 +69,40 @@ const TableData = ({ users, products, accessories, type }) => {
     {
       field: "price",
       headerName: "Price",
-      width: 300,
+      width: 200,
       renderCell: (params) => {
         return (
           <div className="cellPrice">
             <div>{number(params.row.price)} VND</div>
+          </div>
+        );
+      },
+    },
+
+    {
+      field: "createdAt",
+      headerName: "Create At",
+      width: 200,
+      renderCell: (params) => {
+        return (
+          <div className="cellTime">
+            <div>
+              {params.row.createdAt.slice(0, 10).split("-").reverse().join("-")}
+            </div>
+          </div>
+        );
+      },
+    },
+    {
+      field: "updatedAt",
+      headerName: "Update At",
+      width: 200,
+      renderCell: (params) => {
+        return (
+          <div className="cellTime">
+            <div>
+              {params.row.updatedAt.slice(0, 10).split("-").reverse().join("-")}
+            </div>
           </div>
         );
       },
@@ -85,7 +114,10 @@ const TableData = ({ users, products, accessories, type }) => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
+            <Link
+              to={type === "products" && `/editproduct/${params.row._id}`}
+              style={{ textDecoration: "none" }}
+            >
               <div className="viewButton">Edit</div>
             </Link>
 
@@ -104,11 +136,11 @@ const TableData = ({ users, products, accessories, type }) => {
   ];
 
   const AccessoryColumns = [
-    { field: "_id", headerName: "ID", width: 400 },
+    { field: "_id", headerName: "ID", width: 300 },
     {
       field: "title",
       headerName: "Accessory",
-      width: 500,
+      width: 300,
       renderCell: (params) => {
         return (
           <div className="cellImage">
@@ -122,11 +154,39 @@ const TableData = ({ users, products, accessories, type }) => {
     {
       field: "price",
       headerName: "Price",
-      width: 300,
+      width: 200,
       renderCell: (params) => {
         return (
           <div className="cellPrice">
             <div>{number(params.row.price)} VND</div>
+          </div>
+        );
+      },
+    },
+    {
+      field: "createdAt",
+      headerName: "Create At",
+      width: 200,
+      renderCell: (params) => {
+        return (
+          <div className="cellTime">
+            <div>
+              {params.row.createdAt.slice(0, 10).split("-").reverse().join("-")}
+            </div>
+          </div>
+        );
+      },
+    },
+    {
+      field: "updatedAt",
+      headerName: "Update At",
+      width: 200,
+      renderCell: (params) => {
+        return (
+          <div className="cellTime">
+            <div>
+              {params.row.updatedAt.slice(0, 10).split("-").reverse().join("-")}
+            </div>
           </div>
         );
       },
@@ -138,7 +198,10 @@ const TableData = ({ users, products, accessories, type }) => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
+            <Link
+              to={type === "accessories" && `/editaccessory/${params.row._id}`}
+              style={{ textDecoration: "none" }}
+            >
               <div className="viewButton">Edit</div>
             </Link>
 
@@ -160,13 +223,14 @@ const TableData = ({ users, products, accessories, type }) => {
     <div className="tableData">
       <div className="tableData__title">
         {type === "users"
-          ? "Add New User"
+          ? ""
           : type === "products"
           ? "Add New Product"
           : "Add New Accessory"}
         <Link
           to={type === "products" ? "/addproduct" : "/addaccessory"}
           className="link"
+          style={{ display: type === "users" ? "none" : "block" }}
         >
           Add New
         </Link>

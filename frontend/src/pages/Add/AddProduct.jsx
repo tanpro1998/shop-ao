@@ -15,7 +15,7 @@ const Add = () => {
       <Header />
       <Row justify="center">
         <Col lg={12} sm={24}>
-          <Form className="bs1 p-2 mt-5" layout="vertical" onFinish={onFinish}>
+          <Form className="bs1 p-2 mt-5" layout="vertical" onFinish={onFinish}> 
             <h3 className="text-center font-weight-bold">Add New Product</h3>
             <hr />
             <Form.Item name="title" label="Title" rules={[{ required: true }]}>
