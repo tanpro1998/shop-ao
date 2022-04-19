@@ -14,7 +14,7 @@ const mainNav = [
   { display: "Liên Hệ", path: "/contact" },
 ];
 
-const Header = ({ admin }) => {
+const Header = () => {
   const { pathname } = useLocation();
   const activeNav = mainNav.findIndex((e) => e.path === pathname);
   const headerRef = useRef("");
@@ -30,11 +30,8 @@ const Header = ({ admin }) => {
       <Menu.Item key={1}>
         <a href="/catalog">Sản phẩm</a>
       </Menu.Item>
-      <Menu.Item key={2}>
-        <a href="/admin">Admin</a>
-      </Menu.Item>
       <Menu.Item
-        key={3}
+        key={2}
         onClick={() => {
           localStorage.clear();
           jsCookie.remove("access");
@@ -72,15 +69,9 @@ const Header = ({ admin }) => {
       <div className="container">
         <div className="header__logo">
           <Link to="/">
-            {admin ? (
-              <div className="header__logo__banner">
-                <span>FLASH admin</span>
-              </div>
-            ) : (
-              <div className="header__logo__banner">
-                <span>FLASH</span>
-              </div>
-            )}
+            <div className="header__logo__banner">
+              <span>FLASH</span>
+            </div>
           </Link>
         </div>
         <div className="header__menu">
@@ -107,15 +98,6 @@ const Header = ({ admin }) => {
             ))}
           </div>
           <div className="header__menu__right">
-            <div className="header__menu__item header__menu__right__item">
-              {admin ? (
-                <Link to="/add">
-                  <span>+Add</span>
-                </Link>
-              ) : (
-                ""
-              )}
-            </div>
             <div
               className="header__menu__item header__menu__right__item"
               style={{ position: "relative" }}

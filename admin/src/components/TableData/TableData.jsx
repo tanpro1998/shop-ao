@@ -5,6 +5,7 @@ import "./tableData.scss";
 import { useDispatch } from "react-redux";
 import { deleteProduct, deleteAccessory } from "../../redux/callAPI";
 import number from "../../utils/number";
+import { Popconfirm } from "antd";
 const TableData = ({ users, products, accessories, type }) => {
   const dispatch = useDispatch();
 

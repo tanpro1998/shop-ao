@@ -6,9 +6,6 @@ import Cart from "../pages/Cart/Cart";
 import Products from "../pages/Product/Products";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
-import Admin from "../pages/Admin/Admin";
-import AddProduct from "../pages/Add/AddProduct";
-import EditProduct from "../pages/Edit/EditProduct";
 import Accessories from "../pages/Accessory/Accessories";
 import Contact from "../pages/Contact/Contact";
 import ProductView from "../pages/Product/ProductView";
@@ -44,21 +41,6 @@ const Router = () => {
           path="slug/:slug"
           element={<ProductView allProducts={products} />}
         />
-        {user ? (
-          <Route path="admin" element={<Admin products={accessories} />} />
-        ) : (
-          <Route path="*" element={<Navigate to="/" />} />
-        )}
-        {user ? (
-          <Route path="add" element={<AddProduct />} />
-        ) : (
-          <Route path="*" element={<Navigate to={"/"} />} />
-        )}
-        {user ? (
-          <Route path="editproduct/:productId" element={<EditProduct />} />
-        ) : (
-          <Route path="*" element={<Navigate to={"/"} />} />
-        )}
         <Route path="catalog" element={<Catalog />} />
         <Route path="catalog/:slug" element={<ProductView />} />
         <Route
