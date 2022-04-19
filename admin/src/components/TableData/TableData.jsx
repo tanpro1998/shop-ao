@@ -3,9 +3,13 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import "./tableData.scss";
 import { useDispatch } from "react-redux";
-import { deleteProduct, deleteAccessory } from "../../redux/callAPI";
+import {
+  deleteProduct,
+  deleteAccessory,
+  deleteUser,
+  editRole,
+} from "../../redux/callAPI";
 import number from "../../utils/number";
-import { Popconfirm } from "antd";
 const TableData = ({ users, products, accessories, type }) => {
   const dispatch = useDispatch();
 
@@ -41,10 +45,18 @@ const TableData = ({ users, products, accessories, type }) => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
+            <Link
+              to={type === "users" && `/editrole/${params.row._id}`}
+              style={{ textDecoration: "none" }}
+            >
+              <div className="viewButton">Edit Role</div>
             </Link>
-            <div className="deleteButton">Delete</div>
+            <div
+              className="deleteButton"
+              onClick={() => dispatch(deleteUser({ userId: params.row._id }))}
+            >
+              Delete
+            </div>
           </div>
         );
       },

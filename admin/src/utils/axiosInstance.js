@@ -11,14 +11,14 @@ export const axiosPublic = axios.create({
   baseURL: BASE_URL,
 });
 
-export const axiosProduct = axios.create({
+export const axiosInstance = axios.create({
   baseURL: BASE_URL,
   headers: { authorization: `Bearer ${ACCESS_TOKEN}` },
 });
-export const axiosAccessory = axios.create({
-  baseURL: BASE_URL,
-  headers: { authorization: `Bearer ${ACCESS_TOKEN}` },
-});
+// export const axiosAccessory = axios.create({
+//   baseURL: BASE_URL,
+//   headers: { authorization: `Bearer ${ACCESS_TOKEN}` },
+// });
 
 export const stripeInstance = axios.create({
   baseURL: "https://api.stripe.com",
@@ -36,7 +36,7 @@ const refreshToken = async () => {
   }
 };
 
-axiosProduct.interceptors.request.use(
+axiosInstance.interceptors.request.use(
   async (config) => {
     const decodedToken = jwt_decode(ACCESS_TOKEN);
     const isExpired = dayjs.unix(decodedToken.exp).diff(dayjs()) < 1;
@@ -53,19 +53,19 @@ axiosProduct.interceptors.request.use(
   }
 );
 
-axiosAccessory.interceptors.request.use(
-  async (config) => {
-    const decodedToken = jwt_decode(ACCESS_TOKEN);
-    const isExpired = dayjs.unix(decodedToken.exp).diff(dayjs()) < 1;
-    if (isExpired) {
-      const data = await refreshToken();
-      localStorage.setItem("access", data.accessToken);
-      localStorage.setItem("refresh", data.refreshToken);
-      config.headers.authorization = `Bearer ${data.accessToken}`;
-    }
-    return config;
-  },
-  (err) => {
-    return Promise.reject(err);
-  }
-);
+// axiosAccessory.interceptors.request.use(
+//   async (config) => {
+//     const decodedToken = jwt_decode(ACCESS_TOKEN);
+//     const isExpired = dayjs.unix(decodedToken.exp).diff(dayjs()) < 1;
+//     if (isExpired) {
+//       const data = await refreshToken();
+//       localStorage.setItem("access", data.accessToken);
+//       localStorage.setItem("refresh", data.refreshToken);
+//       config.headers.authorization = `Bearer ${data.accessToken}`;
+//     }
+//     return config;
+//   },
+//   (err) => {
+//     return Promise.reject(err);
+//   }
+// );

@@ -1,8 +1,7 @@
 import { getAllUser } from "./userSlice";
 import {
   axiosPublic,
-  axiosProduct,
-  axiosAccessory,
+  axiosInstance,
   stripeInstance,
 } from "../utils/axiosInstance";
 import { getAllProduct } from "./productSlice";
@@ -18,6 +17,32 @@ export const getAllUsers = () => async (dispatch) => {
     console.log(err);
   }
 };
+
+export const editRole = (reqObj) => async () => {
+  try {
+    await axiosInstance.post("/users/editrole", reqObj);
+    message.success("Edit Role Success");
+    setTimeout(() => {
+      window.location.href = "/users";
+    }, 500);
+  } catch (err) {
+    console.log(err);
+    message.error("Something went wrong or you are not admin");
+  }
+};
+
+export const deleteUser = (reqObj) => async () => {
+  try {
+    await axiosInstance.post("/users/deleteuser", reqObj);
+    message.success("Delete User Success");
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
+  } catch (err) {
+    console.log(err);
+    message.error("Something went wrong or you are not admin");
+  }
+};
 export const getAllProducts = () => async (dispatch) => {
   try {
     const res = await axiosPublic.get("/products/getallproducts");
@@ -27,9 +52,9 @@ export const getAllProducts = () => async (dispatch) => {
   }
 };
 
-export const editProduct = (reqObj) => async (dispatch) => {
+export const editProduct = (reqObj) => async () => {
   try {
-    await axiosProduct.post("/products/editproduct", reqObj);
+    await axiosInstance.post("/products/editproduct", reqObj);
     message.success("Edit Product Success");
     setTimeout(() => {
       window.location.href = "/products";
@@ -40,9 +65,9 @@ export const editProduct = (reqObj) => async (dispatch) => {
   }
 };
 
-export const addProduct = (reqObj) => async (dispatch) => {
+export const addProduct = (reqObj) => async () => {
   try {
-    await axiosProduct.post("/products/addproduct", reqObj);
+    await axiosInstance.post("/products/addproduct", reqObj);
     message.success("Add Product Success");
     setTimeout(() => {
       window.location.href = "/products";
@@ -53,9 +78,9 @@ export const addProduct = (reqObj) => async (dispatch) => {
   }
 };
 
-export const deleteProduct = (reqObj) => async (dispatch) => {
+export const deleteProduct = (reqObj) => async () => {
   try {
-    await axiosProduct.post("/products/deleteproduct", reqObj);
+    await axiosInstance.post("/products/deleteproduct", reqObj);
     message.success("Delete Product Success");
     setTimeout(() => {
       window.location.reload();
@@ -75,9 +100,9 @@ export const getAllAccessories = () => async (dispatch) => {
   }
 };
 
-export const editAccessory = (reqObj) => async (dispatch) => {
+export const editAccessory = (reqObj) => async () => {
   try {
-    await axiosProduct.post("/accessories/editaccessory", reqObj);
+    await axiosInstance.post("/accessories/editaccessory", reqObj);
     message.success("Edit Accessory Success");
     setTimeout(() => {
       window.location.href = "/accessories";
@@ -88,9 +113,9 @@ export const editAccessory = (reqObj) => async (dispatch) => {
   }
 };
 
-export const addAccessory = (reqObj) => async (dispatch) => {
+export const addAccessory = (reqObj) => async () => {
   try {
-    await axiosProduct.post("/accessories/addaccessory", reqObj);
+    await axiosInstance.post("/accessories/addaccessory", reqObj);
     message.success("Add Accessory Success");
     setTimeout(() => {
       window.location.href = "/accessories";
@@ -101,9 +126,9 @@ export const addAccessory = (reqObj) => async (dispatch) => {
   }
 };
 
-export const deleteAccessory = (reqObj) => async (dispatch) => {
+export const deleteAccessory = (reqObj) => async () => {
   try {
-    await axiosAccessory.post("/accessories/deleteaccessory", reqObj);
+    await axiosInstance.post("/accessories/deleteaccessory", reqObj);
     message.success("Delete Accessory Success");
     setTimeout(() => {
       window.location.reload();
@@ -122,7 +147,7 @@ export const getAllOrders = () => async (dispatch) => {
   }
 };
 
-export const adminLogin = (reqObj) => async (dispatch) => {
+export const adminLogin = (reqObj) => async () => {
   try {
     const res = await axiosPublic.post("/users/login", reqObj);
     localStorage.setItem("admin", JSON.stringify(res.data));
@@ -134,6 +159,6 @@ export const adminLogin = (reqObj) => async (dispatch) => {
     }, 500);
   } catch (err) {
     console.log(err);
-    message.error("Something went wrong");
+    message.error("Wrong username or password");
   }
 };

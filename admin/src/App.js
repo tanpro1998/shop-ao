@@ -145,6 +145,16 @@ function App() {
                 <Route index element={<Navigate to="/" />} />
               )}
             </Route>
+            <Route path="editrole/:userId">
+              {admin ? (
+                <Route
+                  index
+                  element={<Edit currentUser={admin} type="users" />}
+                />
+              ) : (
+                <Route index element={<Navigate to="/" />} />
+              )}
+            </Route>
             <Route path="editproduct/:productId">
               {admin ? (
                 <Route

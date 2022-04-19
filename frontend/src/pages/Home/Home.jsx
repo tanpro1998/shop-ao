@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Helmet from "../../components/Helmet/Helmet";
 import HeroSlider from "../../components/Slide/HeroSlider";
 import heroSliderData from "../../assets/fake-data/heroSliderData";
@@ -16,7 +16,6 @@ import Footer from "../../components/Footer/Footer";
 import Loading from "../../components/Loading/Loading";
 
 const Home = ({ allProducts, loading }) => {
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -35,9 +34,12 @@ const Home = ({ allProducts, loading }) => {
           <SectionBody>
             <Grid col={4} mdCol={2} smCol={1} gap={20}>
               {policy.map((item, index) => (
-                <Link to="/" key={index}>
-                  <Card name={item.name} desc={item.desc} icon={item.icon} />
-                </Link>
+                <Card
+                  name={item.name}
+                  desc={item.desc}
+                  icon={item.icon}
+                  key={index}
+                />
               ))}
             </Grid>
           </SectionBody>

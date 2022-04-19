@@ -140,7 +140,7 @@ export const userLogin = (reqObj) => async (dispatch) => {
     }, 500);
   } catch (err) {
     console.log(err);
-    message.error("Something went wrong");
+    message.error("Wrong username or password");
   }
 };
 
@@ -148,7 +148,6 @@ export const userLogout = () => async (dispatch) => {
   dispatch(loading());
   try {
     await publicRequest.post("/users/logout");
-    // jsCookie.remove("refresh");
     message.success("Logout Success");
     setTimeout(() => {
       window.location.href = "/login";
