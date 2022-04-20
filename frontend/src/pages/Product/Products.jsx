@@ -60,8 +60,10 @@ const Product = ({ allProducts }) => {
               </div>
             </Col>
             <Col lg={12} sm={24}>
-              <div className="products p-5">
-                <h1 className="products__title text-center">{product.title}</h1>
+              <div className="products pt-5">
+                <div className="products__title">
+                  <h1>{product.title}</h1>
+                </div>
                 <div className="products__item">
                   <div className="products__item__title">Màu Sắc:</div>
                   <div className="products__item__list">

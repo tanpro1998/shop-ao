@@ -3,7 +3,6 @@ import { message } from "antd";
 
 import { getAllAccessory } from "./accessoriesSlice";
 import { getAllProduct } from "./productSlice";
-// import { getAllUser } from "./userSlice";
 
 import { loading } from "./alertSlice";
 import { publicRequest, userRequest } from "../utils/axiosInstance";

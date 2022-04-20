@@ -41,9 +41,34 @@
   }
 
   .listContainer {
-
     h3 {
       color: white;
+    }
+
+    [title="Admin"] {
+      color: white ;
+    }
+
+    [title="Title"] {
+      color: white ;
+    }
+    [title="Price"] {
+      color: white ;
+    }
+    [title="Image 01"] {
+      color: white ;
+    }
+    [title="Image 02"] {
+      color: white ;
+    }
+    [title="Slug"] {
+      color: white ;
+    }
+    [title="Category Slug"] {
+      color: white ;
+    }
+    [title="Description"] {
+      color: white ;
     }
     .tableData {
       .dataGrid {

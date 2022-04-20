@@ -13,9 +13,7 @@ const Product = (props) => {
           <img src={props.img02} alt="" />
         </div>
       </Link>
-      <h3 className="product-card__name" onClick={() => console.log(props.id)}>
-        {props.name}
-      </h3>
+      <h3 className="product-card__name">{props.name}</h3>
       <div className="product-card__price">{number(props.price)}</div>
       <div className="product-card__btn">
         <Link to={`/product/${props.id}`}>

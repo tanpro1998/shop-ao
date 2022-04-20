@@ -15,14 +15,16 @@
       margin-top: 3rem;
 
       .input {
-        width: 300px;
+        width: 500px;
         height: 40px;
         margin-top: 1rem;
         outline: none;
         padding-left: 10px;
+      }
 
-        &:focus {
-          border-color: #1789ff;
+      @media  screen and (max-width: 480px) {
+        .input {
+          width: 300px;
         }
       }
     }

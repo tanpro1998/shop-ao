@@ -18,10 +18,10 @@ const Login = () => {
       <div className="d-flex align-items-center justify-content-center">
         <Form
           layout="vertical"
-          className="login-form p-5 ml-5"
+          className="login-form"
           onFinish={onFinish}
         >
-          <h1 className="text-center font-weight-bold fo">Login</h1>
+          <h1 className="text-center font-weight-bold">Login</h1>
           <hr />
           <Form.Item
             name="username"

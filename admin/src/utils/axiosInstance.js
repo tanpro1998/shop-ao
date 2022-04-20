@@ -15,10 +15,6 @@ export const axiosInstance = axios.create({
   baseURL: BASE_URL,
   headers: { authorization: `Bearer ${ACCESS_TOKEN}` },
 });
-// export const axiosAccessory = axios.create({
-//   baseURL: BASE_URL,
-//   headers: { authorization: `Bearer ${ACCESS_TOKEN}` },
-// });
 
 export const stripeInstance = axios.create({
   baseURL: "https://api.stripe.com",
@@ -52,20 +48,3 @@ axiosInstance.interceptors.request.use(
     return Promise.reject(err);
   }
 );
-
-// axiosAccessory.interceptors.request.use(
-//   async (config) => {
-//     const decodedToken = jwt_decode(ACCESS_TOKEN);
-//     const isExpired = dayjs.unix(decodedToken.exp).diff(dayjs()) < 1;
-//     if (isExpired) {
-//       const data = await refreshToken();
-//       localStorage.setItem("access", data.accessToken);
-//       localStorage.setItem("refresh", data.refreshToken);
-//       config.headers.authorization = `Bearer ${data.accessToken}`;
-//     }
-//     return config;
-//   },
-//   (err) => {
-//     return Promise.reject(err);
-//   }
-// );

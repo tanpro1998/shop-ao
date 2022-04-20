@@ -21,10 +21,10 @@ const Register = () => {
       >
         <Form
           layout="vertical"
-          className="login-form p-5 ml-5"
+          className="login-form"
           onFinish={onFinish}
         >
-          <h1 className="text-center font-weight-bold fo">Login</h1>
+          <h1 className="text-center font-weight-bold">Register</h1>
           <hr />
           <Form.Item name="name" label="Name" rules={[{ required: true }]}>
             <Input className="input" />

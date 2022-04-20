@@ -16,6 +16,7 @@ import {
   getAllUsers,
 } from "./redux/callAPI";
 import Edit from "./pages/Edit/Edit";
+
 function App() {
   const admin = JSON.parse(localStorage.getItem("admin"));
   const { darkMode } = useContext(DarkModeContext);

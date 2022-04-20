@@ -28,7 +28,6 @@ app.use("/api/accessories", accessoriesRouter);
 app.use("/api/carts", cartRouter);
 app.use("/api/orders", orderRouter);
 app.use("/api/checkout", stripeRouter);
-app.use("https://api.stripe.com", stripeRTRouter);
 
 // const __dirname = path.resolve();
 // if (process.env.NODE_ENV === "production") {

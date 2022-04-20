@@ -3,12 +3,12 @@ import {
   TableOutlined,
   UserOutlined,
   CodepenOutlined,
-  BarChartOutlined,
-  BellOutlined,
+  // BarChartOutlined,
+  // BellOutlined,
   LogoutOutlined,
-  SettingOutlined,
-  EnvironmentOutlined,
-  CloudOutlined,
+  // SettingOutlined,
+  // EnvironmentOutlined,
+  // CloudOutlined,
   ShoppingCartOutlined,
 } from "@ant-design/icons";
 import { DarkModeContext } from "../../context/darkModeContext";
@@ -63,7 +63,7 @@ const Sidebar = () => {
               <span>Orders</span>
             </li>
           </Link>
-          <p className="sidebar__center__title">USEFUL</p>
+          {/* <p className="sidebar__center__title">USEFUL</p>
           <li>
             <BarChartOutlined className="sidebar__center__icon" />
             <span>Stats</span>
@@ -84,12 +84,12 @@ const Sidebar = () => {
           <li>
             <SettingOutlined className="sidebar__center__icon" />
             <span>Settings</span>
-          </li>
+          </li> */}
           <p className="sidebar__center__title">USER</p>
-          <li>
+          {/* <li>
             <UserOutlined className="sidebar__center__icon" />
             <span>Profile</span>
-          </li>
+          </li> */}
           <li
             onClick={() => [
               localStorage.removeItem("admin"),

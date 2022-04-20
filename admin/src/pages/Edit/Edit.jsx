@@ -125,14 +125,14 @@ const Edit = ({ type, currentUser }) => {
                       </Form.Item>
                       <Form.Item
                         name="image01"
-                        label="Image01"
+                        label="Image 01"
                         rules={[{ required: true }]}
                       >
                         <Input />
                       </Form.Item>
                       <Form.Item
                         name="image02"
-                        label="image02"
+                        label="Image 02"
                         rules={[{ required: true }]}
                       >
                         <Input />
@@ -147,6 +147,20 @@ const Edit = ({ type, currentUser }) => {
                       <Form.Item
                         name="categorySlug"
                         label="Category Slug"
+                        rules={[{ required: true }]}
+                      >
+                        <Input />
+                      </Form.Item>
+                      <Form.Item
+                        name="colors"
+                        label="Colors"
+                        rules={[{ required: true }]}
+                      >
+                        <Input />
+                      </Form.Item>
+                      <Form.Item
+                        name="sizes"
+                        label="Sizes"
                         rules={[{ required: true }]}
                       >
                         <Input />
