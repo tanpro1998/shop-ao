@@ -15,7 +15,7 @@ const Cart = () => {
   const { total } = useSelector((state) => state.cart);
   const [stripeToken, setStripeToken] = useState(null);
   const dispatch = useDispatch();
-  const KEY = process.env.REACT_APP_STRIPE_KEY
+  const KEY = process.env.REACT_APP_STRIPE_KEY;
 
   const onToken = (token) => {
     setStripeToken(token);
@@ -47,9 +47,9 @@ const Cart = () => {
                 Số đơn hàng trong giỏ hàng: <b>{quantity}</b>
               </p>
               <div className="car__info__text__price">
-                <span>
+                <spa>
                   Thành tiền: <b>{number(total)}</b> VND
-                </span>
+                </spa>
               </div>
             </div>
             <div className="cart__info__btn">

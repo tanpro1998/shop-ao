@@ -3,6 +3,7 @@
   &__image {
     padding-top: 2rem;
     margin: auto;
+    width: 80%;
     @include tablet {
       text-align: center;
     }

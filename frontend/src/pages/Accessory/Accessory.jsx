@@ -2,17 +2,14 @@ import React, { useEffect, useState } from "react";
 import Helmet from "../../components/Helmet/Helmet";
 import { Row, Col } from "antd";
 import Header from "../../components/Header/Header";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllAccessories } from "../../redux/callAPI";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addItemToCart } from "../../redux/cartSlice";
 import number from "../../utils/number";
 
 const Accessory = ({ allAccessories }) => {
   const { accessoryId } = useParams();
-  const { accessories } = useSelector((state) => state.accessories);
   const dispatch = useDispatch();
-  const [totalAccessories, setTotalAccessories] = useState([]);
 
   const [accessory, setAccessory] = useState({});
 

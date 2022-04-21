@@ -9,7 +9,7 @@ import Button from "../../components/Button/Button";
 import InfinityList from "../../components/Infinity/InfinityList";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import { getAllAccessories, getAllProducts } from "../../redux/callAPI";
+import {  getAllProducts } from "../../redux/callAPI";
 
 const Catalog = () => {
   const { products } = useSelector((state) => state.products);
