@@ -24,7 +24,7 @@ const Navbar = ({ currentUser }) => {
         <div className="navbar__wrapper__items">
           <div className="navbar__wrapper__items__item">
             <GlobalOutlined className="icon" />
-            <p>English</p>
+            <span>English</span>
           </div>
           <div
             className="navbar__wrapper__items__item"
@@ -50,7 +50,7 @@ const Navbar = ({ currentUser }) => {
             <img
               src={
                 currentUser
-                  ? "https://scontent.fsgn5-9.fna.fbcdn.net/v/t39.30808-6/273301925_664914081311894_2335935164305714610_n.jpg?_nc_cat=105&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=pvbSUP-OgioAX8_xC71&_nc_ht=scontent.fsgn5-9.fna&oh=00_AT-oL0eb3g4zb-C22jjQnl6TVlhwWJ5LNMZfiFZEjPtoMw&oe=625D9910"
+                  ? "https://us.123rf.com/450wm/anatolir/anatolir2011/anatolir201105528/159470802-jurist-avatar-icon-flat-style.jpg?ver=6"
                   : "https://www.seekpng.com/png/detail/428-4287240_no-avatar-user-circle-icon-png.png"
               }
               alt=""
