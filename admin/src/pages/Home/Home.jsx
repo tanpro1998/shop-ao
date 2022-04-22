@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Chart from "../../components/chart/Chart";
 import Features from "../../components/Features/Features";
 import Navbar from "../../components/Navbar/Navbar";
