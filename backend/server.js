@@ -28,7 +28,7 @@ app.use("/api/accessories", accessoriesRouter);
 app.use("/api/carts", cartRouter);
 app.use("/api/orders", orderRouter);
 app.use("/api/checkout", stripeRouter);
-
+  
 // const __dirname = path.resolve();
 // if (process.env.NODE_ENV === "production") {
 //   app.use(express.static(path.join(__dirname, "/frontend/build")));
