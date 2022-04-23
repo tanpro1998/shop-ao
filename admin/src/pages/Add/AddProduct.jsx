@@ -10,7 +10,7 @@ const AddProduct = ({ type, currentUser }) => {
   const dispatch = useDispatch();
 
   const onFinish = (values) => {
-    type === "product"
+    type === "products"
       ? dispatch(addProduct(values))
       : dispatch(addAccessory(values));
   };
@@ -29,54 +29,68 @@ const AddProduct = ({ type, currentUser }) => {
               <Form.Item
                 className="formItem"
                 name="title"
-                rules={[{ required: true }]}
+                rules={[{ required: true, message: "Title is Required!" }]}
               >
                 <Input placeholder="Title" />
               </Form.Item>
               <Form.Item
                 className="formItem"
                 name="price"
-                rules={[{ required: true }]}
+                rules={[{ required: true, message: "Price is Required!" }]}
               >
-                <Input placeholder="Price" />
+                <Input placeholder="Price" type="number" />
               </Form.Item>
               <Form.Item
                 className="formItem"
                 name="image01"
-                rules={[{ required: true }]}
+                rules={[{ required: true, message: "Image 01  is Required!" }]}
               >
                 <Input placeholder="Image 01" />
               </Form.Item>
               <Form.Item
                 className="formItem"
                 name="image02"
-                rules={[{ required: true }]}
+                rules={[{ required: true, message: "Image 02 is Required!" }]}
               >
                 <Input placeholder="Image 02" />
               </Form.Item>
-              <Form.Item name="slug" rules={[{ required: true }]}>
+              <Form.Item
+                name="slug"
+                rules={[{ required: true, message: "Slug is Required!" }]}
+              >
                 <Input placeholder="Slug" />
               </Form.Item>
               <Form.Item
                 className="formItem"
                 name="categorySlug"
-                rules={[{ required: true }]}
+                rules={[
+                  { required: true, message: "Category Slug is Required!" },
+                ]}
               >
                 <Input placeholder="Category Slug" />
               </Form.Item>
               <Form.Item
                 className="formItem"
                 name="colors"
-                rules={[{ required: true }]}
+                rules={[{ required: true, message: "Colors is Required!" }]}
               >
                 <Input placeholder="Colors" />
               </Form.Item>
               <Form.Item
                 className="formItem"
                 name="sizes"
-                rules={[{ required: true }]}
+                rules={[{ required: true, message: "Sizes is Required!" }]}
               >
                 <Input placeholder="Sizes" />
+              </Form.Item>
+              <Form.Item
+                className="formItem"
+                name="description"
+                rules={[
+                  { required: true, message: "Description is Required!" },
+                ]}
+              >
+                <Input placeholder="Description" />
               </Form.Item>
               <div className="button">
                 <button className="btn" type="submit">

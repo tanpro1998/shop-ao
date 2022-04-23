@@ -102,8 +102,10 @@ const Edit = ({ type, currentUser }) => {
                   {type === "users" ? (
                     <Form.Item
                       name="isAdmin"
-                      label="Admin"
-                      rules={[{ required: true }]}
+                      label="isAdmin"
+                      rules={[
+                        { required: true, message: "isAdmin is Required!" },
+                      ]}
                     >
                       <Input />
                     </Form.Item>
@@ -112,64 +114,88 @@ const Edit = ({ type, currentUser }) => {
                       <Form.Item
                         name="title"
                         label="Title"
-                        rules={[{ required: true }]}
+                        rules={[
+                          { required: true, message: "Title is Required!" },
+                        ]}
                       >
                         <Input />
                       </Form.Item>
                       <Form.Item
                         name="price"
                         label="Price"
-                        rules={[{ required: true }]}
+                        rules={[
+                          { required: true, message: "Price is Required!" },
+                        ]}
                       >
                         <Input />
                       </Form.Item>
                       <Form.Item
                         name="image01"
                         label="Image 01"
-                        rules={[{ required: true }]}
+                        rules={[
+                          { required: true, message: "Image 01 is Required!" },
+                        ]}
                       >
                         <Input />
                       </Form.Item>
                       <Form.Item
                         name="image02"
                         label="Image 02"
-                        rules={[{ required: true }]}
+                        rules={[
+                          { required: true, message: "Image 02 is Required!" },
+                        ]}
                       >
                         <Input />
                       </Form.Item>
                       <Form.Item
                         name="slug"
                         label="Slug"
-                        rules={[{ required: true }]}
+                        rules={[
+                          { required: true, message: "Slug is Required!" },
+                        ]}
                       >
                         <Input />
                       </Form.Item>
                       <Form.Item
                         name="categorySlug"
                         label="Category Slug"
-                        rules={[{ required: true }]}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Category Slug is Required!",
+                          },
+                        ]}
                       >
                         <Input />
                       </Form.Item>
                       <Form.Item
                         name="colors"
                         label="Colors"
-                        rules={[{ required: true }]}
+                        rules={[
+                          { required: true, message: "Colors is Required!" },
+                        ]}
                       >
                         <Input />
                       </Form.Item>
                       <Form.Item
                         name="sizes"
                         label="Sizes"
-                        rules={[{ required: true }]}
+                        rules={[
+                          { required: true, message: "Sizes is Required!" },
+                        ]}
                       >
                         <Input />
                       </Form.Item>
 
                       <Form.Item
-                        name="desc"
+                        name="description"
                         label="Description"
-                        rules={[{ required: true }]}
+                        rules={[
+                          {
+                            required: true,
+                            message: "Description is Required!",
+                          },
+                        ]}
                       >
                         <Input />
                       </Form.Item>

@@ -67,7 +67,9 @@ function App() {
               {admin ? (
                 <Route
                   index
-                  element={<ListUser currentUser={admin} users={users} />}
+                  element={
+                    <ListUser currentUser={admin} users={users} type="users" />
+                  }
                 />
               ) : (
                 <Route index element={<Navigate to="/" />} />
