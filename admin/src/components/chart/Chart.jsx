@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import {
   AreaChart,
   Area,
@@ -8,11 +9,9 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const Chart = ({ title, aspect, allData }) => {
-  // let i;
-  // for (i = 0; i < allData?.length; i++) {
-  //   console.log(allData[i].amount);
-  // }
+const Chart = ({ title, aspect }) => {
+  const { orders } = useSelector((state) => state.orders);
+  const allData = orders?.data;
   const data = [
     { name: "January", Total: allData !== undefined && allData[0].amount },
     { name: "February", Total: allData !== undefined && allData[1].amount },

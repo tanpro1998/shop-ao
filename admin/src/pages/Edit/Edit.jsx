@@ -30,7 +30,11 @@ const Edit = ({ type, currentUser }) => {
   const [totalAccessories, setTotalAccessories] = useState([]);
 
   useEffect(() => {
-    if (products.length === 0 || accessories.length === 0) {
+    if (
+      products.length === 0 ||
+      accessories.length === 0 ||
+      users.length === 0
+    ) {
       type === "products"
         ? dispatch(getAllProducts())
         : type === "accessories"

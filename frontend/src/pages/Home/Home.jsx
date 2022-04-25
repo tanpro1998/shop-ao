@@ -13,15 +13,15 @@ import { Link } from "react-router-dom";
 import Product from "../../components/Product/Product";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import Loading from "../../components/Loading/Loading";
+import Spin from "../../components/Spin/Spin";
 
-const Home = ({ allProducts, loading }) => {
+const Home = ({ allProducts, spin }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   return (
     <div>
-      {loading && <Loading />}
+      {spin === true && <Spin />}
       <Helmet title="Trang Chủ">
         <Header />
         <HeroSlider
@@ -79,17 +79,20 @@ const Home = ({ allProducts, loading }) => {
           <SectionTitle>Sản Phẩm Mới</SectionTitle>
           <SectionBody>
             <Grid col={4} mdCol={2} smCol={1} gap={20}>
-              {allProducts.slice(0, 8).map((item, index) => (
-                <Product
-                  key={index}
-                  img01={item.image01}
-                  img02={item.image02}
-                  name={item.title}
-                  price={Number(item.price)}
-                  slug={item.slug}
-                  id={item._id}
-                />
-              ))}
+              {allProducts
+                .slice(0, 8)
+                .sort((a, b) => a.createdAt - b.createdAt)
+                .map((item, index) => (
+                  <Product
+                    key={index}
+                    img01={item.image01}
+                    img02={item.image02}
+                    name={item.title}
+                    price={Number(item.price)}
+                    slug={item.slug}
+                    id={item._id}
+                  />
+                ))}
             </Grid>
           </SectionBody>
         </Section>
@@ -97,17 +100,20 @@ const Home = ({ allProducts, loading }) => {
           <SectionTitle>Sản phẩm bán chạy</SectionTitle>
           <SectionBody>
             <Grid col={4} mdCol={2} smCol={1} gap={20}>
-              {allProducts.slice(0, 16).map((item, index) => (
-                <Product
-                  key={index}
-                  img01={item.image01}
-                  img02={item.image02}
-                  name={item.title}
-                  price={Number(item.price)}
-                  slug={item.slug}
-                  id={item._id}
-                />
-              ))}
+              {allProducts
+                .slice(0, 16)
+                .sort((a, b) => a.price - b.price)
+                .map((item, index) => (
+                  <Product
+                    key={index}
+                    img01={item.image01}
+                    img02={item.image02}
+                    name={item.title}
+                    price={Number(item.price)}
+                    slug={item.slug}
+                    id={item._id}
+                  />
+                ))}
             </Grid>
           </SectionBody>
         </Section>

@@ -7,7 +7,12 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-const Widget = ({ type, user, product, accessory, order, up }) => {
+import { useSelector } from "react-redux";
+const Widget = ({ type, up }) => {
+  const { users } = useSelector((state) => state.users);
+  const { products } = useSelector((state) => state.products);
+  const { accessories } = useSelector((state) => state.accessories);
+  const { orders } = useSelector((state) => state.orders);
   let data;
 
   switch (type) {
@@ -76,10 +81,10 @@ const Widget = ({ type, user, product, accessory, order, up }) => {
       <div className="widget__left">
         <span className="widget__left__title">{data.title}</span>
         <span className="widget__left__counter">
-          {type === "users" && user.length}
-          {type === "products" && product.length}
-          {type === "accessories" && accessory.length}
-          {type === "orders" && order?.length}
+          {type === "users" && users.length}
+          {type === "products" && products.length}
+          {type === "accessories" && accessories.length}
+          {type === "orders" && orders.data?.length}
         </span>
         <Link
           to={

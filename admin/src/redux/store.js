@@ -5,10 +5,6 @@ import productReducer from "./productSlice";
 import accessoryReducer from "./accessorySlice";
 import orderReducer from "./orderSlice";
 
-// const rootReducer = combineReducers({
-//   darkMode: darkModeReducer,
-// });
-
 const rootReducer = combineReducers({
   darkMode: darkModeReducer,
   users: userReducer,

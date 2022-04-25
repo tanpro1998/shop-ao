@@ -2,15 +2,17 @@ import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import "./tableData.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   deleteProduct,
   deleteAccessory,
   deleteUser,
-  editRole,
 } from "../../redux/callAPI";
 import number from "../../utils/number";
-const TableData = ({ users, products, accessories, type }) => {
+const TableData = ({ type }) => {
+  const { users } = useSelector((state) => state.users);
+  const { products } = useSelector((state) => state.products);
+  const { accessories } = useSelector((state) => state.accessories);
   const dispatch = useDispatch();
 
   const UserColumns = [

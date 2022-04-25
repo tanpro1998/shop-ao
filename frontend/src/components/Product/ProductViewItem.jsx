@@ -56,7 +56,7 @@ const ProductViewItem = ({ product }) => {
           <div className="product-desc__title">Chi tiết sản phẩm</div>
           <div
             className="product-desc__content"
-            dangerouslySetInnerHTML={{ __html: product.desc }}
+            dangerouslySetInnerHTML={{ __html: product.description }}
           ></div>
           <div className="product-desc__toggle">
             <Button size="sm" onClick={() => setDescExpand(!descExpand)}>

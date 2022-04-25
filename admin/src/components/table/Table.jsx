@@ -11,8 +11,11 @@ import {
   Paper,
 } from "@mui/material";
 import number from "../../utils/number";
+import { useSelector } from "react-redux";
 
-const List = ({ orders }) => {
+const List = () => {
+  const { orders } = useSelector((state) => state.orders);
+  const resultOrders = orders?.data;
   return (
     <div>
       <TableContainer component={Paper} className="table">
@@ -28,7 +31,7 @@ const List = ({ orders }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {orders?.map((order) => (
+            {resultOrders?.map((order) => (
               <TableRow key={order.id}>
                 <TableCell className="tableCell">{order.id}</TableCell>
                 <TableCell className="tableCell">

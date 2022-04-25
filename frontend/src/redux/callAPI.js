@@ -4,12 +4,10 @@ import { message } from "antd";
 import { getAllAccessory } from "./accessoriesSlice";
 import { getAllProduct } from "./productSlice";
 
-import { loading } from "./alertSlice";
-import { publicRequest, userRequest } from "../utils/axiosInstance";
+import { publicRequest } from "../utils/axiosInstance";
 import jsCookie from "js-cookie";
 
 export const getAllProducts = () => async (dispatch) => {
-  dispatch(loading());
   try {
     const res = await publicRequest.get("/products/getallproducts");
     dispatch(getAllProduct(res.data));
@@ -18,50 +16,7 @@ export const getAllProducts = () => async (dispatch) => {
   }
 };
 
-export const addProduct = (reqObj) => async (dispatch) => {
-  dispatch(loading());
-  try {
-    await userRequest.post("/products/addproduct", reqObj);
-    message.success("Add Product Success");
-    setTimeout(() => {
-      window.location.href = "/admin";
-    }, 500);
-  } catch (err) {
-    console.log(err);
-    message.error("Something went wrong or you are not admin!");
-  }
-};
-
-export const editProduct = (reqObj) => async (dispatch) => {
-  dispatch(loading());
-  try {
-    await userRequest.post("/products/editproduct", reqObj);
-    message.success("Edit Product Success");
-    setTimeout(() => {
-      window.location.href = "/admin";
-    }, 500);
-  } catch (err) {
-    console.log(err);
-    message.error("Something went wrong or you are not admin");
-  }
-};
-
-export const deleteProduct = (reqObj) => async (dispatch) => {
-  dispatch(loading());
-  try {
-    await userRequest.post("/products/deleteproduct", reqObj);
-    message.success("Delete Product Success");
-    setTimeout(() => {
-      window.location.reload();
-    }, 500);
-  } catch (err) {
-    console.log(err);
-    message.error("Something went wrong or you are not admin");
-  }
-};
-
 export const getAllAccessories = () => async (dispatch) => {
-  dispatch(loading());
   try {
     const res = await publicRequest.get("/accessories/getallaccessories");
     dispatch(getAllAccessory(res.data));
@@ -70,50 +25,9 @@ export const getAllAccessories = () => async (dispatch) => {
   }
 };
 
-// export const addAccessory = (reqObj) => async (dispatch) => {
-//   dispatch(loading());
-//   try {
-//     await userRequest.post("/accessories/addaccessory", reqObj);
-//     message.success("Add Accessory Success");
-//     setTimeout(() => {
-//       window.location.href = "/admin";
-//     }, 500);
-//   } catch (err) {
-//     console.log(err);
-//     message.error("Something went wrong or you are not admin");
-//   }
-// };
-
-// export const editAccessory = (reqObj) => async (dispatch) => {
-//   dispatch(loading());
-//   try {
-//     await userRequest.post("/accessories/editaccessory", reqObj);
-//     message.success("Edit Accessory Success");
-//     setTimeout(() => {
-//       window.location.href = "/admin";
-//     }, 500);
-//   } catch (err) {
-//     console.log(err);
-//     message.error("Something went wrong");
-//   }
-// };
-
-// export const deleteAccessory = (reqObj) => async (dispatch) => {
-//   dispatch(loading());
-//   try {
-//     await userRequest.post("/accessories/deleteaccessory", reqObj);
-//     message.success("Delete Access Success");
-//     setTimeout(() => {
-//       window.location.reload();
-//     }, 500);
-//   } catch (err) {
-//     console.log(err);
-//     message.error("Something went wrong or you are not admin");
-//   }
-// };
+//
 
 export const userRegister = (reqObj) => async (dispatch) => {
-  dispatch(loading());
   try {
     await publicRequest.post("/users/register", reqObj);
     message.success("Register Success");
@@ -127,9 +41,9 @@ export const userRegister = (reqObj) => async (dispatch) => {
 };
 
 export const userLogin = (reqObj) => async (dispatch) => {
-  dispatch(loading());
   try {
     const res = await publicRequest.post("/users/login", reqObj);
+
     localStorage.setItem("user", JSON.stringify(res.data));
     jsCookie.set("access", res.data.accessToken);
     jsCookie.set("refresh", res.data.refreshToken);
@@ -144,7 +58,6 @@ export const userLogin = (reqObj) => async (dispatch) => {
 };
 
 export const userLogout = () => async (dispatch) => {
-  dispatch(loading());
   try {
     await publicRequest.post("/users/logout");
     message.success("Logout Success");
@@ -158,7 +71,6 @@ export const userLogout = () => async (dispatch) => {
 };
 
 export const checkOut = (reqObj) => async (dispatch) => {
-  dispatch(loading());
   try {
     await axios.post("http://localhost:5000/api/checkout/payment", reqObj);
     message.success("Checkout Success");

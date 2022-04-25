@@ -1,9 +1,9 @@
 .app.dark {
-  background-color: black;
+  background-color: #333;
   color: white;
 
   .sidebar {
-    background-color: black;
+    background-color: #333;
 
     &__center {
       li {
@@ -18,7 +18,7 @@
     &__wrapper {
       &__search {
         .icon {
-          color: black;
+          color: #333;
         }
       }
 
@@ -28,6 +28,14 @@
             color: yellow;
           }
         }
+      }
+    }
+  }
+
+  .charts {
+    .features__top {
+      h1 {
+        color: white;
       }
     }
   }
@@ -45,30 +53,36 @@
       color: white;
     }
 
-    [title="Admin"] {
-      color: white ;
+    [title="isAdmin"] {
+      color: white;
     }
 
     [title="Title"] {
-      color: white ;
+      color: white;
     }
     [title="Price"] {
-      color: white ;
+      color: white;
     }
     [title="Image 01"] {
-      color: white ;
+      color: white;
     }
     [title="Image 02"] {
-      color: white ;
+      color: white;
     }
     [title="Slug"] {
-      color: white ;
+      color: white;
+    }
+    [title="Colors"] {
+      color: white;
+    }
+    [title="Sizes"] {
+      color: white;
     }
     [title="Category Slug"] {
-      color: white ;
+      color: white;
     }
     [title="Description"] {
-      color: white ;
+      color: white;
     }
     .tableData {
       .dataGrid {
@@ -82,7 +96,7 @@
   }
 
   .table {
-    background-color: black;
+    background-color: #333;
 
     .tableCell {
       color: white;

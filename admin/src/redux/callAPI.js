@@ -1,10 +1,10 @@
-import { getAllUser } from "./userSlice";
 import {
   axiosPublic,
   axiosInstance,
   stripeInstance,
   axiosStripe,
 } from "../utils/axiosInstance";
+import { getAllUser } from "./userSlice";
 import { getAllProduct } from "./productSlice";
 import { getAllAccessory } from "./accessorySlice";
 import { getAllOrder } from "./orderSlice";
@@ -139,7 +139,7 @@ export const deleteAccessory = (reqObj) => async () => {
     message.error("Something went wrong");
   }
 };
-export const getAllOrders = (reqObj) => async (dispatch) => {
+export const getAllOrders = () => async (dispatch) => {
   try {
     const res = await stripeInstance.get("/v1/charges");
     dispatch(getAllOrder(res.data));

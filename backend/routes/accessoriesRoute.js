@@ -31,7 +31,7 @@ accessoriesRouter.post("/editaccessory", verifyTokenAdmin, async (req, res) => {
     accessory.image02 = req.body.image02;
     accessory.categorySlug = req.body.categorySlug;
     accessory.slug = req.body.slug;
-    accessory.desc = req.body.desc;
+    accessory.description = req.body.description;
 
     await accessory.save();
     res.send("Edit Accessory Successful");

@@ -1,26 +1,19 @@
 import React from "react";
 import { Form, Input } from "antd";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { userLogin } from "../../redux/callAPI";
-import Loading from "../../components/Loading/Loading";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.alert);
 
   const onFinish = (values) => {
     dispatch(userLogin(values));
   };
   return (
     <div className="login">
-      {loading && <Loading />}
       <div className="d-flex align-items-center justify-content-center">
-        <Form
-          layout="vertical"
-          className="login-form"
-          onFinish={onFinish}
-        >
+        <Form layout="vertical" className="login-form" onFinish={onFinish}>
           <h1 className="text-center font-weight-bold">Login</h1>
           <hr />
           <Form.Item

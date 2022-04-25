@@ -33,7 +33,7 @@ function App() {
     dispatch(getAllUsers());
     dispatch(getAllProducts());
     dispatch(getAllAccessories());
-    dispatch(getAllOrders());
+    dispatch(getAllOrders({}));
   }, [dispatch]);
 
   let sum = 0;
@@ -65,56 +65,28 @@ function App() {
             )}
             <Route path="users">
               {admin ? (
-                <Route
-                  index
-                  element={
-                    <ListUser currentUser={admin} users={users} type="users" />
-                  }
-                />
+                <Route index element={<ListUser currentUser={admin} />} />
               ) : (
                 <Route index element={<Navigate to="/" />} />
               )}
             </Route>
             <Route path="products">
               {admin ? (
-                <Route
-                  index
-                  element={
-                    <ListProduct
-                      currentUser={admin}
-                      products={products}
-                      type="products"
-                    />
-                  }
-                />
+                <Route index element={<ListProduct currentUser={admin} />} />
               ) : (
                 <Route index element={<Navigate to="/" />} />
               )}
             </Route>
             <Route path="accessories">
               {admin ? (
-                <Route
-                  index
-                  element={
-                    <ListAccessory
-                      currentUser={admin}
-                      accessories={accessories}
-                      type="accessories"
-                    />
-                  }
-                />
+                <Route index element={<ListAccessory currentUser={admin} />} />
               ) : (
                 <Route index element={<Navigate to="/" />} />
               )}
             </Route>
             <Route path="orders">
               {admin ? (
-                <Route
-                  index
-                  element={
-                    <ListOrder currentUser={admin} orders={resultOrders} />
-                  }
-                />
+                <Route index element={<ListOrder currentUser={admin} />} />
               ) : (
                 <Route index element={<Navigate to="/" />} />
               )}

@@ -18,7 +18,6 @@ const Router = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const { products } = useSelector((state) => state.products);
   const { accessories } = useSelector((state) => state.accessories);
-  const { loading } = useSelector((state) => state.alert);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,10 +29,7 @@ const Router = () => {
     <Routes>
       <Route path="/">
         {user ? (
-          <Route
-            index
-            element={<Home allProducts={products} loading={loading} />}
-          />
+          <Route index element={<Home allProducts={products} />} />
         ) : (
           <Route index element={<Navigate to="login" />} />
         )}
@@ -49,9 +45,7 @@ const Router = () => {
         />
         <Route
           path="/accessories"
-          element={
-            <Accessories allAccessories={accessories} loading={loading} />
-          }
+          element={<Accessories allAccessories={accessories} />}
         />
         <Route path="/accessories/:slug" element={<AccessoryView />} />
         <Route
