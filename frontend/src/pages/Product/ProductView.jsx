@@ -8,14 +8,16 @@ import ProductViewItem from "../../components/Product/ProductViewItem";
 import { useParams } from "react-router-dom";
 import Grid from "../../components/Grid/Grid";
 import ProductCard from "../../components/Product/ProductCard";
+import { useSelector } from "react-redux";
 
-const ProductView = ({ allProducts }) => {
+const ProductView = () => {
+  const { products } = useSelector((state) => state.products);
   const { slug } = useParams();
   const [product, setProduct] = useState({});
 
   useEffect(() => {
-    setProduct(allProducts.find((item) => item.slug === slug));
-  }, [allProducts, slug]);
+    setProduct(products.find((item) => item.slug === slug));
+  }, [products, slug]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -32,7 +34,7 @@ const ProductView = ({ allProducts }) => {
           <SectionTitle>Tim hieu them</SectionTitle>
           <SectionBody>
             <Grid col={4} mdCol={2} smCol={1} gap={20}>
-              {allProducts.slice(0, 8).map((item, index) => (
+              {products.slice(0, 8).map((item, index) => (
                 <ProductCard
                   key={index}
                   id={item._id}

@@ -13,8 +13,10 @@ import { Link } from "react-router-dom";
 import Product from "../../components/Product/Product";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import { useSelector } from "react-redux";
 
-const Home = ({ allProducts, spin }) => {
+const Home = () => {
+  const { products } = useSelector((state) => state.products);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -47,7 +49,7 @@ const Home = ({ allProducts, spin }) => {
 
           <SectionBody>
             <Grid col={4} mdCol={2} smCol={1} gap={20}>
-              {allProducts.slice(0, 4).map((item, index) => (
+              {products.slice(0, 4).map((item, index) => (
                 <Product
                   key={index}
                   img01={item.image01}
@@ -77,7 +79,7 @@ const Home = ({ allProducts, spin }) => {
           <SectionTitle>Sản Phẩm Mới</SectionTitle>
           <SectionBody>
             <Grid col={4} mdCol={2} smCol={1} gap={20}>
-              {allProducts
+              {products
                 .slice(0, 8)
                 .sort((a, b) => a.createdAt - b.createdAt)
                 .map((item, index) => (
@@ -98,7 +100,7 @@ const Home = ({ allProducts, spin }) => {
           <SectionTitle>Sản phẩm bán chạy</SectionTitle>
           <SectionBody>
             <Grid col={4} mdCol={2} smCol={1} gap={20}>
-              {allProducts
+              {products
                 .slice(0, 16)
                 .sort((a, b) => a.price - b.price)
                 .map((item, index) => (

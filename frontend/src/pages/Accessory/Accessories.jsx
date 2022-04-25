@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Accessory from "../../components/Accessory/Accessory";
 import Grid from "../../components/Grid/Grid";
@@ -10,20 +10,9 @@ import Section, {
   SectionBody,
   SectionTitle,
 } from "../../components/Section/Section";
-import { getAllAccessories } from "../../redux/callAPI";
 
 const Accessories = () => {
   const { accessories } = useSelector((state) => state.accessories);
-  const dispatch = useDispatch();
-  const [totalAccessories, setTotalAccessories] = useState([]);
-
-  useEffect(() => {
-    dispatch(getAllAccessories());
-  }, [dispatch]);
-
-  useEffect(() => {
-    setTotalAccessories(accessories);
-  }, [accessories]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -35,7 +24,7 @@ const Accessories = () => {
         <SectionTitle>Top Sản Phẩm</SectionTitle>
         <SectionBody>
           <Grid col={4} mdCol={2} smCol={1} gap={20}>
-            {totalAccessories.slice(0, 4).map((item, index) => (
+            {accessories.slice(0, 4).map((item, index) => (
               <Accessory
                 key={index}
                 img01={item.image01}
@@ -66,7 +55,7 @@ const Accessories = () => {
         <SectionTitle>Sản Phẩm Mới</SectionTitle>
         <SectionBody>
           <Grid col={4} mdCol={2} smCol={1} gap={20}>
-            {totalAccessories
+            {accessories
               ?.slice(0, 8)
               .sort((a, b) => a.createdAt - b.createdAt)
               .map((item, index) => (
@@ -87,7 +76,7 @@ const Accessories = () => {
         <SectionTitle>Sản phẩm bán chạy</SectionTitle>
         <SectionBody>
           <Grid col={4} mdCol={2} smCol={1} gap={20}>
-            {totalAccessories
+            {accessories
               ?.slice(0, 12)
               .sort((a, b) => a.price - b.price)
               .map((item, index) => (

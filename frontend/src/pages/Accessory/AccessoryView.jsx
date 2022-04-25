@@ -12,8 +12,8 @@ import AccessoryCard from "../../components/Accessory/AccessoryCard";
 import AccessoryViewItem from "../../components/Accessory/AccessoryViewItem";
 
 const AccessoryView = () => {
-  const { slug } = useParams();
   const { accessories } = useSelector((state) => state.accessories);
+  const { slug } = useParams();
   const dispatch = useDispatch();
   const [accessory, setAccessory] = useState({});
   const [totalAccessory, setTotalAccessory] = useState([]);

@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import Helmet from "../../components/Helmet/Helmet";
 import { Row, Col } from "antd";
 import Header from "../../components/Header/Header";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addItemToCart } from "../../redux/cartSlice";
 import number from "../../utils/number";
 
-const Accessory = ({ allAccessories }) => {
+const Accessory = () => {
+  const { accessories } = useSelector((state) => state.accessories);
   const { accessoryId } = useParams();
   const dispatch = useDispatch();
 
@@ -35,8 +36,8 @@ const Accessory = ({ allAccessories }) => {
   };
 
   useEffect(() => {
-    setAccessory(allAccessories.find((item) => item._id === accessoryId));
-  }, [allAccessories, accessoryId]);
+    setAccessory(accessories.find((item) => item._id === accessoryId));
+  }, [accessories, accessoryId]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -50,7 +51,7 @@ const Accessory = ({ allAccessories }) => {
     <div>
       <Header />
       <Helmet title="Product">
-        {allAccessories.length > 0 && (
+        {accessories.length > 0 && (
           <Row className="d-flex align-items-center">
             <Col lg={12} sm={24}>
               <div className="products__image p-5">

@@ -25,8 +25,6 @@ export const getAllAccessories = () => async (dispatch) => {
   }
 };
 
-//
-
 export const userRegister = (reqObj) => async (dispatch) => {
   try {
     await publicRequest.post("/users/register", reqObj);
