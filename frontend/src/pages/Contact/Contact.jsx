@@ -25,7 +25,7 @@ const Contact = () => {
         <div className="wrapper">
           <Form
             layout="vertical"
-            className="contact__form p-5 ml-5"
+            className="contact__form p-5 "
             onFinish={handleSubmit}
           >
             <h1 className="">Liên Hệ</h1>

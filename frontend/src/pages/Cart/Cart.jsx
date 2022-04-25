@@ -47,9 +47,9 @@ const Cart = () => {
                 Số đơn hàng trong giỏ hàng: <b>{quantity}</b>
               </p>
               <div className="car__info__text__price">
-                <spa>
+                <span>
                   Thành tiền: <b>{number(total)}</b> VND
-                </spa>
+                </span>
               </div>
             </div>
             <div className="cart__info__btn">

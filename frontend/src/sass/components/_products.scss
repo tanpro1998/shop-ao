@@ -9,7 +9,7 @@
     }
 
     @include mobile {
-      text-align: center;
+      margin: 0 auto;
       width: 80%;
     }
   }
@@ -27,20 +27,22 @@
 
   &__item {
     @include flex(center, space-between);
-    margin-top: 2rem;
-    text-align: right;
+    margin-top: 5rem;
 
     @include tablet {
-      margin: 0 3rem;
+      width: 80%;
+      margin: 0 auto;
+      @include flex(center, space-between);
+      height: 50px;
+    }
+
+    @include mobile {
+      width: 80%;
     }
 
     &__title {
       font-size: 1.5rem;
       font-weight: 600;
-
-      @include tablet {
-        margin-bottom: 2rem;
-      }
 
       @include mobile {
         font-size: 1.4rem;
@@ -85,9 +87,15 @@
       width: 50%;
     }
 
-    &:last-child {
+    .button {
+      width: 100%;
+      @include tablet {
+        margin-top: 3rem;
+      }
       @include mobile {
-        margin-top: 2rem;
+        width: 80%;
+        margin:  0 auto;
+        margin-top: 3rem;
       }
     }
   }

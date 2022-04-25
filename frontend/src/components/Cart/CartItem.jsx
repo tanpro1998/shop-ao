@@ -19,44 +19,29 @@ const CartItem = ({ cart }) => {
             <th>Tên Sản Phẩm</th>
             <th>Đơn Giá</th>
             <th>Số Lượng</th>
-            <th>Xóa</th>
           </tr>
         </thead>
         <tbody className="cartItem__table__body">
           {cart.products.map((product, index) => (
-            <>
-              <tr key={index}>
-                <td className="cartItem__table__body__img">
-                  <img
-                    src={product.image01}
-                    alt=""
-                    style={{
-                      width: "120px",
-                      height: "120px",
-                      objectFit: "cover",
-                      marginBottom: "50px",
-                      marginTop: "50px",
-                    }}
-                  />
-                </td>
-                <td className="cartItem__table__body__title">
-                  {product.title}
-                </td>
-                <td className="cartItem__table__body__price">
-                  {number(product.price)}
-                </td>
-                <td className="cartItem__table__body__quantity">
-                  {product.quantity}
-                </td>
-                <td>
-                  <i
-                    className="bx bx-trash"
-                    style={{ cursor: "pointer" }}
-                    onClick={handleClick}
-                  ></i>
-                </td>
-              </tr>
-            </>
+            <tr key={index}>
+              <td className="cartItem__table__body__img">
+                <img src={product.image01} alt="" />
+              </td>
+              <td className="cartItem__table__body__title">{product.title}</td>
+              <td className="cartItem__table__body__price">
+                {number(product.price)}
+              </td>
+              <td className="cartItem__table__body__quantity">
+                {product.quantity}
+              </td>
+              <td>
+                <i
+                  className="bx bx-trash"
+                  style={{ cursor: "pointer" }}
+                  onClick={handleClick}
+                ></i>
+              </td>
+            </tr>
           ))}
         </tbody>
       </table>

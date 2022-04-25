@@ -13,7 +13,6 @@ import { Link } from "react-router-dom";
 import Product from "../../components/Product/Product";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import Spin from "../../components/Spin/Spin";
 
 const Home = ({ allProducts, spin }) => {
   useEffect(() => {
@@ -21,7 +20,6 @@ const Home = ({ allProducts, spin }) => {
   }, []);
   return (
     <div>
-      {spin === true && <Spin />}
       <Helmet title="Trang Chủ">
         <Header />
         <HeroSlider

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Helmet from "../../components/Helmet/Helmet";
 import { Row, Col } from "antd";
 import Header from "../../components/Header/Header";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addItemToCart } from "../../redux/cartSlice";
 import number from "../../utils/number";
@@ -64,7 +64,7 @@ const Product = ({ allProducts }) => {
                   <h1>{product.title}</h1>
                 </div>
                 <div className="products__item">
-                  <div className="products__item__title">Màu Sắc:</div>
+                  <span className="products__item__title">Màu Sắc:</span>
                   <div className="products__item__list">
                     {product.colors?.map((item) => (
                       <div
@@ -79,7 +79,7 @@ const Product = ({ allProducts }) => {
                   </div>
                 </div>
                 <div className="products__item">
-                  <div className="products__item__title">Cỡ Size :</div>
+                  <span className="products__item__title">Cỡ Size :</span>
                   <div className="products__item__list">
                     {product.sizes?.map((item) => (
                       <div
@@ -97,13 +97,13 @@ const Product = ({ allProducts }) => {
                   </div>
                 </div>
                 <div className=" products__item">
-                  <div className="products__item__title">Đơn giá:</div>
-                  <p className="products__item__price">
+                  <span className="products__item__title">Đơn giá:</span>
+                  <span className="products__item__price">
                     {number(product.price)} VNĐ
-                  </p>
+                  </span>
                 </div>
                 <div className=" products__item">
-                  <div className="products__item__title">Số lượng:</div>
+                  <span className="products__item__title">Số lượng:</span>
                   <input
                     type="number"
                     min={1}
@@ -114,7 +114,7 @@ const Product = ({ allProducts }) => {
                 </div>
                 <div className="products__item">
                   <button
-                    className="p-3 border-0 bg-blue color-white w-100"
+                    className="button p-3 border-0 bg-blue color-white"
                     onClick={handleClick}
                   >
                     Thêm vào giỏ hàng
