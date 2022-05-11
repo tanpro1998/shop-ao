@@ -3,7 +3,7 @@ import jwt_decode from "jwt-decode";
 import dayjs from "dayjs";
 import jsCookie from "js-cookie";
 
-const BASE_URL = "http://localhost:5000/api";
+const BASE_URL = "https://shopping-api-ao.herokuapp.com/api";
 
 const ACCESS_TOKEN = jsCookie.get("access");
 const REFRESH_TOKEN = jsCookie.get("refresh");
