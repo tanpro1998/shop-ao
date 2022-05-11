@@ -25,7 +25,7 @@ export const getAllAccessories = () => async (dispatch) => {
   }
 };
 
-export const userRegister = (reqObj) => async (dispatch) => {
+export const userRegister = (reqObj) => async () => {
   try {
     await publicRequest.post("/users/register", reqObj);
     message.success("Register Success");
@@ -38,7 +38,7 @@ export const userRegister = (reqObj) => async (dispatch) => {
   }
 };
 
-export const userLogin = (reqObj) => async (dispatch) => {
+export const userLogin = (reqObj) => async () => {
   try {
     const res = await publicRequest.post("/users/login", reqObj);
 
@@ -55,7 +55,7 @@ export const userLogin = (reqObj) => async (dispatch) => {
   }
 };
 
-export const userLogout = () => async (dispatch) => {
+export const userLogout = () => async () => {
   try {
     await publicRequest.post("/users/logout");
     message.success("Logout Success");
@@ -68,7 +68,7 @@ export const userLogout = () => async (dispatch) => {
   }
 };
 
-export const checkOut = (reqObj) => async (dispatch) => {
+export const checkOut = (reqObj) => async () => {
   try {
     await axios.post("http://localhost:5000/api/checkout/payment", reqObj);
     message.success("Checkout Success");

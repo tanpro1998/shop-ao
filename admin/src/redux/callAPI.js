@@ -4,6 +4,7 @@ import {
   stripeInstance,
   axiosStripe,
 } from "../utils/axiosInstance";
+import axios from "axios";
 import { getAllUser } from "./userSlice";
 import { getAllProduct } from "./productSlice";
 import { getAllAccessory } from "./accessorySlice";
