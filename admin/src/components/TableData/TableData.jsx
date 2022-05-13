@@ -12,6 +12,7 @@ import number from "../../utils/number";
 const TableData = ({ type }) => {
   const { users } = useSelector((state) => state.users);
   const { products } = useSelector((state) => state.products);
+  console.log(products);
   const { accessories } = useSelector((state) => state.accessories);
   const dispatch = useDispatch();
 
@@ -55,7 +56,13 @@ const TableData = ({ type }) => {
             </Link>
             <div
               className="deleteButton"
-              onClick={() => dispatch(deleteUser({ userId: params.row._id }))}
+              onClick={() => {
+                params.row.isAdmin === false &&
+                  dispatch(deleteUser({ userId: params.row._id }));
+              }}
+              style={{
+                cursor: params.row.isAdmin === true ? "not-allowed" : "pointer",
+              }}
             >
               Delete
             </div>

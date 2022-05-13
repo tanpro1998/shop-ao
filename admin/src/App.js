@@ -36,7 +36,6 @@ function App() {
     dispatch(getAllOrders());
   }, [dispatch]);
 
-  console.log(orders)
 
   let sum = 0;
   for (let i = 0; i < resultOrders?.length; i++) {

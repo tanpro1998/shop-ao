@@ -31,8 +31,8 @@ productRouter.post("/editproduct", verifyTokenAdmin, async (req, res) => {
     product.image02 = req.body.image02;
     product.categorySlug = req.body.categorySlug;
     product.colors = req.body.colors;
-    product.slug = req.body.slug;
     product.sizes = req.body.sizes;
+    product.slug = req.body.slug;
     product.description = req.body.description;
 
     await product.save();

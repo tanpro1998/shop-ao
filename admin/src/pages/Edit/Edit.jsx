@@ -28,6 +28,7 @@ const Edit = ({ type, currentUser }) => {
   const [totalUsers, setTotalUsers] = useState([]);
   const [totalProducts, setTotalProducts] = useState([]);
   const [totalAccessories, setTotalAccessories] = useState([]);
+  const { TextArea } = Input;
 
   useEffect(() => {
     if (
@@ -201,7 +202,7 @@ const Edit = ({ type, currentUser }) => {
                           },
                         ]}
                       >
-                        <Input />
+                        <TextArea />
                       </Form.Item>
                     </>
                   )}

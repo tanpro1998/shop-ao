@@ -2,7 +2,7 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import dayjs from "dayjs";
 
-const BASE_URL = "http://localhost:5000/api";
+const BASE_URL = "https://shopping-api-ao.herokuapp.com/api";
 const KEY = process.env.REACT_APP_STRIPE_SECRET_KEY;
 const ACCESS_TOKEN = localStorage.getItem("access");
 const REFRESH_TOKEN = localStorage.getItem("refresh");
