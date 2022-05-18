@@ -341,4 +341,4 @@ userRouter.post("/logout", verifyToken, (req, res) => {
   res.status(200).json("Logged out Success!");
 });
 
-export { userRouter };
+export default userRouter;

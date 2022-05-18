@@ -62,4 +62,4 @@ accessoriesRouter.get("/find/:id", async (req, res) => {
   }
 });
 
-export { accessoriesRouter };
+export default accessoriesRouter ;

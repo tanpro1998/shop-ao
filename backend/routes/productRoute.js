@@ -60,4 +60,4 @@ productRouter.get("/find/:id", async (req, res) => {
   }
 });
 
-export { productRouter };
+export default productRouter ;

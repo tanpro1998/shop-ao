@@ -21,4 +21,4 @@ stripeRouter.post("/payment", (req, res) => {
   );
 });
 
-export { stripeRouter };
+export default stripeRouter ;

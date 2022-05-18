@@ -2,12 +2,12 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import { connectDB } from "./connectDB.js";
-import { userRouter } from "./routes/userRoute.js";
-import { productRouter } from "./routes/productRoute.js";
-import { cartRouter } from "./routes/cartRoute.js";
-import { orderRouter } from "./routes/orderRoute.js";
-import { stripeRouter } from "./routes/stripe.js";
-import { accessoriesRouter } from "./routes/accessoriesRoute.js";
+import userRouter from "./routes/userRoute.js";
+import productRouter from "./routes/productRoute.js";
+import cartRouter from "./routes/cartRoute.js";
+import orderRouter from "./routes/orderRoute.js";
+import stripeRouter from "./routes/stripe.js";
+import accessoriesRouter from "./routes/accessoriesRoute.js";
 import cookieParser from "cookie-parser";
 
 const app = express();

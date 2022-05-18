@@ -1,51 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Grid from "../Grid/Grid";
-
-const footerAboutLinks = [
-  {
-    display: "Giới Thiệu",
-    path: "/about",
-  },
-  {
-    display: "Liên Hệ",
-    path: "/about",
-  },
-  {
-    display: "Tuyển Dụng",
-    path: "/about",
-  },
-  {
-    display: "Tin Tức",
-    path: "/about",
-  },
-  {
-    display: "Hệ Thống Cửa Hàng",
-    path: "/about",
-  },
-];
-
-const footerCustomerLinks = [
-  {
-    display: "Chính sách đổi trả",
-    path: "/about",
-  },
-  {
-    display: "Chính sách bảo hành",
-    path: "/about",
-  },
-  {
-    display: "Chính sách hoàn tiền",
-    path: "/about",
-  },
-];
+import {
+  FacebookOutlined,
+  InstagramOutlined,
+  TwitterOutlined,
+  YoutubeOutlined,
+} from "@ant-design/icons";
 
 const Footer = () => {
   return (
-    <footer className=" ">
-      <div className=" bg-black color-white container p-5 ">
+    <footer className="footer">
+      <div className=" bg-black color-white container p-5">
         <Grid col={4} mdCol={2} smCol={1} gap={10}>
-          <div>
+          <div style={{ transform: "translate(100%, 5%)" }}>
             <div className="footer__title">Tổng đài hỗ trợ</div>
             <div className="footer__content">
               <p>
@@ -59,23 +27,10 @@ const Footer = () => {
               </p>
             </div>
           </div>
-          <div>
-            <div className="footer__title">Về FLASH</div>
-            <div className="footer__content">
-              {footerAboutLinks.map((item, index) => (
-                <p key={index}>{item.display}</p>
-              ))}
-            </div>
-          </div>
-          <div>
-            <div className="footer__title">Chăm sóc khách hàng</div>
-            <div className="footer__content">
-              {footerCustomerLinks.map((item, index) => (
-                <p key={index}>{item.display}</p>
-              ))}
-            </div>
-          </div>
-          <div className="footer__about">
+          <div
+            className="footer__about"
+            style={{ transform: "translateX(100%)" }}
+          >
             <p>
               <Link to="/">
                 <span
@@ -94,6 +49,20 @@ const Footer = () => {
               triệu người tiêu dùng Việt. Hãy cùng Flash hướng đến một cuộc sống
               năng động, tích cực hơn.
             </p>
+          </div>
+          <div className="footer__link">
+            <a href="https://www.facebook.com/tan.duongtranthanh/">
+              <FacebookOutlined className="icon" />
+            </a>
+            <a href="https://www.instagram.com/tan.divad/">
+              <InstagramOutlined className="icon" />
+            </a>
+            <a href="https://twitter.com/Tan_david1661">
+              <TwitterOutlined className="icon" />
+            </a>
+            <a href="https://www.youtube.com/c/MixiGamingofficial">
+              <YoutubeOutlined className="icon" />
+            </a>
           </div>
         </Grid>
       </div>
