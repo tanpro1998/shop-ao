@@ -5,6 +5,7 @@
   position: relative;
   margin-bottom: 50px;
   margin-top: calc(#{$header-height} * -1);
+  width: 100%;
 
   @include tablet {
     margin-top: calc(#{$header-tablet-height} * -1);

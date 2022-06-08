@@ -30,12 +30,11 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllUsers());
-    dispatch(getAllProducts());
-    dispatch(getAllAccessories());
-    dispatch(getAllOrders());
+    getAllUsers(dispatch);
+    getAllProducts(dispatch);
+    getAllAccessories(dispatch);
+    getAllOrders(dispatch);
   }, [dispatch]);
-
 
   let sum = 0;
   for (let i = 0; i < resultOrders?.length; i++) {

@@ -1,9 +1,9 @@
 import express from "express";
 const productRouter = express.Router();
 import { Product } from "../models/productModel.js";
-import { verifyToken, verifyTokenAdmin } from "./verifyToken.js";
+import { verifyToken, verifyTokenAndAdmin } from "../middleware/verifyToken.js";
 
-productRouter.get("/getallproducts", async (req, res) => {
+productRouter.get("/", async (req, res) => {
   try {
     const products = await Product.find();
     res.status(200).json(products);
@@ -12,7 +12,7 @@ productRouter.get("/getallproducts", async (req, res) => {
   }
 });
 
-productRouter.post("/addproduct", verifyTokenAdmin, async (req, res) => {
+productRouter.post("/add", verifyTokenAndAdmin, async (req, res) => {
   try {
     const addNewProduct = new Product(req.body);
     await addNewProduct.save();
@@ -22,7 +22,7 @@ productRouter.post("/addproduct", verifyTokenAdmin, async (req, res) => {
   }
 });
 
-productRouter.post("/editproduct", verifyTokenAdmin, async (req, res) => {
+productRouter.post("/update", verifyTokenAndAdmin, async (req, res) => {
   try {
     const product = await Product.findOne({ _id: req.body._id });
     product.title = req.body.title;
@@ -42,7 +42,7 @@ productRouter.post("/editproduct", verifyTokenAdmin, async (req, res) => {
   }
 });
 
-productRouter.post("/deleteproduct", verifyTokenAdmin, async (req, res) => {
+productRouter.post("/delete", verifyTokenAndAdmin, async (req, res) => {
   try {
     await Product.findOneAndDelete({ _id: req.body.productId });
     res.send("Delete Product Successful");
@@ -60,4 +60,4 @@ productRouter.get("/find/:id", async (req, res) => {
   }
 });
 
-export default productRouter ;
+export default productRouter;

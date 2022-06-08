@@ -68,8 +68,6 @@ const ProductViewItem = ({ product }) => {
       <div className="product-view__info">
         <h1 className="product-view__info__title">{product.title}</h1>
         <div className="product-view__info__item">
-          {/* <div className="product-view__info__item__title">Đơn giá</div> */}
-
           <span className="product-view__info__item__price">
             {number(product.price)}
           </span>

@@ -9,7 +9,7 @@ import jsCookie from "js-cookie";
 
 export const getAllProducts = () => async (dispatch) => {
   try {
-    const res = await publicRequest.get("/products/getallproducts");
+    const res = await publicRequest.get("/products");
     dispatch(getAllProduct(res.data));
   } catch (err) {
     console.log(err);
@@ -18,7 +18,7 @@ export const getAllProducts = () => async (dispatch) => {
 
 export const getAllAccessories = () => async (dispatch) => {
   try {
-    const res = await publicRequest.get("/accessories/getallaccessories");
+    const res = await publicRequest.get("/accessories");
     dispatch(getAllAccessory(res.data));
   } catch (err) {
     console.log(err);
@@ -27,7 +27,7 @@ export const getAllAccessories = () => async (dispatch) => {
 
 export const userRegister = (reqObj) => async () => {
   try {
-    await publicRequest.post("/users/register", reqObj);
+    await publicRequest.post("/auth/register", reqObj);
     message.success("Register Success");
     setTimeout(() => {
       window.location.href = "/login";
@@ -40,11 +40,10 @@ export const userRegister = (reqObj) => async () => {
 
 export const userLogin = (reqObj) => async () => {
   try {
-    const res = await publicRequest.post("/users/login", reqObj);
+    const res = await publicRequest.post("/auth/login", reqObj);
 
     localStorage.setItem("user", JSON.stringify(res.data));
     jsCookie.set("access", res.data.accessToken);
-    jsCookie.set("refresh", res.data.refreshToken);
     message.success("Login Success");
     setTimeout(() => {
       window.location.href = "/";
@@ -57,7 +56,7 @@ export const userLogin = (reqObj) => async () => {
 
 export const userLogout = () => async () => {
   try {
-    await publicRequest.post("/users/logout");
+    await publicRequest.post("/auth/logout");
     message.success("Logout Success");
     setTimeout(() => {
       window.location.href = "/login";

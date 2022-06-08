@@ -2,7 +2,7 @@ import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import "./tableData.scss";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   deleteProduct,
   deleteAccessory,
@@ -12,9 +12,7 @@ import number from "../../utils/number";
 const TableData = ({ type }) => {
   const { users } = useSelector((state) => state.users);
   const { products } = useSelector((state) => state.products);
-  console.log(products);
   const { accessories } = useSelector((state) => state.accessories);
-  const dispatch = useDispatch();
 
   const UserColumns = [
     { field: "_id", headerName: "ID", width: 300 },
@@ -58,7 +56,7 @@ const TableData = ({ type }) => {
               className="deleteButton"
               onClick={() => {
                 params.row.isAdmin === false &&
-                  dispatch(deleteUser({ userId: params.row._id }));
+                  deleteUser({ userId: params.row._id });
               }}
               style={{
                 cursor: params.row.isAdmin === true ? "not-allowed" : "pointer",
@@ -146,7 +144,7 @@ const TableData = ({ type }) => {
             <div
               className="deleteButton"
               onClick={() => {
-                dispatch(deleteProduct({ productId: params.row._id }));
+                deleteProduct({ productId: params.row._id });
               }}
             >
               Delete
@@ -230,7 +228,7 @@ const TableData = ({ type }) => {
             <div
               className="deleteButton"
               onClick={() => {
-                dispatch(deleteAccessory({ accessoryId: params.row._id }));
+                deleteAccessory({ accessoryId: params.row._id });
               }}
             >
               Delete

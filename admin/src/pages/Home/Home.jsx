@@ -6,6 +6,7 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Widget from "../../components/Widget/Widget";
 
 const Home = ({ currentUser, sum }) => {
+ 
   return (
     <div className="home">
       <Sidebar />

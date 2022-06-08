@@ -16,21 +16,9 @@ export const verifyToken = (req, res, next) => {
   }
 };
 
-export const verifyTokenAuthorization = (req, res, next) => {
+export const verifyTokenAndAdmin = (req, res, next) => {
   verifyToken(req, res, () => {
-    if (
-      req.user._id === req.params.id ||
-      req.user.isAdmin === req.body.isAdmin
-    ) {
-      next();
-    } else {
-      return res.status(403).json("You are not allowed");
-    }
-  });
-};
-export const verifyTokenAdmin = (req, res, next) => {
-  verifyToken(req, res, () => {
-    if (req.user.isAdmin) {
+    if (req.user._id === req.params.id || req.user.isAdmin) {
       next();
     } else {
       return res.status(403).json("You are not allowed");

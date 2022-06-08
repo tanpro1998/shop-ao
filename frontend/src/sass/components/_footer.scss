@@ -36,8 +36,15 @@
     gap: 50px;
 
     .icon {
-      cursor: pointer;
       font-size: 20px;
+      cursor: pointer;
+      color: white;
+      transition: transform .2s ease-in-out;
+
+      &:hover {
+        transform: scale(1.5);
+        color: #1789ff;
+      }
     }
   }
 }

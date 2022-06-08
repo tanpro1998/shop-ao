@@ -1,28 +1,28 @@
 import {
   axiosPublic,
-  axiosInstance,
   stripeInstance,
-  axiosStripe,
+  axiosPrivate,
 } from "../utils/axiosInstance";
-import axios from "axios";
 import { getAllUser } from "./userSlice";
 import { getAllProduct } from "./productSlice";
 import { getAllAccessory } from "./accessorySlice";
 import { getAllOrder } from "./orderSlice";
 import { message } from "antd";
+import { login, logout } from "./authSlice";
+import jsCookie from "js-cookie";
 
-export const getAllUsers = () => async (dispatch) => {
+export const getAllUsers = async (dispatch) => {
   try {
-    const res = await axiosPublic.get("/users/getallusers");
+    const res = await axiosPublic.get("/users");
     dispatch(getAllUser(res.data));
   } catch (err) {
     console.log(err);
   }
 };
 
-export const editRole = (reqObj) => async () => {
+export const editRole = async (reqObj) => {
   try {
-    await axiosInstance.post("/users/editrole", reqObj);
+    await axiosPrivate.post("/users/editrole", reqObj);
     message.success("Edit Role Success");
     setTimeout(() => {
       window.location.href = "/users";
@@ -33,9 +33,9 @@ export const editRole = (reqObj) => async () => {
   }
 };
 
-export const deleteUser = (reqObj) => async () => {
+export const deleteUser = async (reqObj) => {
   try {
-    await axiosInstance.post("/users/deleteuser", reqObj);
+    await axiosPrivate.post("/users/delete", reqObj);
     message.success("Delete User Success");
     setTimeout(() => {
       window.location.reload();
@@ -45,18 +45,18 @@ export const deleteUser = (reqObj) => async () => {
     message.error("Something went wrong or you are not admin");
   }
 };
-export const getAllProducts = () => async (dispatch) => {
+export const getAllProducts = async (dispatch) => {
   try {
-    const res = await axiosPublic.get("/products/getallproducts");
+    const res = await axiosPublic.get("/products");
     dispatch(getAllProduct(res.data));
   } catch (err) {
     console.log(err);
   }
 };
 
-export const editProduct = (reqObj) => async () => {
+export const editProduct = async (reqObj) => {
   try {
-    await axiosInstance.post("/products/editproduct", reqObj);
+    await axiosPrivate.post("/products/update", reqObj);
     message.success("Edit Product Success");
     setTimeout(() => {
       window.location.href = "/products";
@@ -67,9 +67,9 @@ export const editProduct = (reqObj) => async () => {
   }
 };
 
-export const addProduct = (reqObj) => async () => {
+export const addProduct = async (reqObj) => {
   try {
-    await axiosInstance.post("/products/addproduct", reqObj);
+    await axiosPrivate.post("/products/add", reqObj);
     message.success("Add Product Success");
     setTimeout(() => {
       window.location.href = "/products";
@@ -80,9 +80,9 @@ export const addProduct = (reqObj) => async () => {
   }
 };
 
-export const deleteProduct = (reqObj) => async () => {
+export const deleteProduct = async (reqObj) => {
   try {
-    await axiosInstance.post("/products/deleteproduct", reqObj);
+    await axiosPrivate.post("/products/delete", reqObj);
     message.success("Delete Product Success");
     setTimeout(() => {
       window.location.reload();
@@ -93,18 +93,18 @@ export const deleteProduct = (reqObj) => async () => {
   }
 };
 
-export const getAllAccessories = () => async (dispatch) => {
+export const getAllAccessories = async (dispatch) => {
   try {
-    const res = await axiosPublic.get("/accessories/getallaccessories");
+    const res = await axiosPublic.get("/accessories");
     dispatch(getAllAccessory(res.data));
   } catch (err) {
     console.log(err);
   }
 };
 
-export const editAccessory = (reqObj) => async () => {
+export const editAccessory = async (reqObj) => {
   try {
-    await axiosInstance.post("/accessories/editaccessory", reqObj);
+    await axiosPrivate.post("/accessories/update", reqObj);
     message.success("Edit Accessory Success");
     setTimeout(() => {
       window.location.href = "/accessories";
@@ -115,9 +115,9 @@ export const editAccessory = (reqObj) => async () => {
   }
 };
 
-export const addAccessory = (reqObj) => async () => {
+export const addAccessory = async (reqObj) => {
   try {
-    await axiosInstance.post("/accessories/addaccessory", reqObj);
+    await axiosPrivate.post("/accessories/add", reqObj);
     message.success("Add Accessory Success");
     setTimeout(() => {
       window.location.href = "/accessories";
@@ -128,9 +128,9 @@ export const addAccessory = (reqObj) => async () => {
   }
 };
 
-export const deleteAccessory = (reqObj) => async () => {
+export const deleteAccessory = async (reqObj) => {
   try {
-    await axiosInstance.post("/accessories/deleteaccessory", reqObj);
+    await axiosPrivate.post("/accessories/delete", reqObj);
     message.success("Delete Accessory Success");
     setTimeout(() => {
       window.location.reload();
@@ -140,7 +140,7 @@ export const deleteAccessory = (reqObj) => async () => {
     message.error("Something went wrong");
   }
 };
-export const getAllOrders = () => async (dispatch) => {
+export const getAllOrders = async (dispatch) => {
   try {
     const res = await stripeInstance.get("/v1/charges");
     dispatch(getAllOrder(res.data));
@@ -149,12 +149,13 @@ export const getAllOrders = () => async (dispatch) => {
   }
 };
 
-export const adminLogin = (reqObj) => async () => {
+export const adminLogin = async (reqObj, dispatch) => {
   try {
-    const res = await axiosPublic.post("/users/login", reqObj);
+    const res = await axiosPublic.post("/auth/login", reqObj, {
+      withCredentials: true,
+    });
+    dispatch(login(res.data));
     localStorage.setItem("admin", JSON.stringify(res.data));
-    localStorage.setItem("access", res.data.accessToken);
-    localStorage.setItem("refresh", res.data.refreshToken);
     message.success("Login Success");
     setTimeout(() => {
       window.location.href = "/";
@@ -162,5 +163,19 @@ export const adminLogin = (reqObj) => async () => {
   } catch (err) {
     console.log(err);
     message.error("Wrong username or password");
+  }
+};
+
+export const adminLogout = async (dispatch, navigate) => {
+  try {
+    dispatch(logout());
+    localStorage.clear();
+    jsCookie.remove("access");
+    jsCookie.remove("refresh");
+    setTimeout(() => {
+      window.location.href = "/login";
+    }, 500);
+  } catch (error) {
+    console.log(error);
   }
 };

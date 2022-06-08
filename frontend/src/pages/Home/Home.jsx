@@ -68,7 +68,7 @@ const Home = () => {
             <Link to="/">
               <div className="banner">
                 <img
-                  src="https://www.ohpunstore.com/wp-content/uploads/2019/12/2Hoodie-Banner1.jpg"
+                  src="http://file.hstatic.net/1000253775/collection/banner_sp_t10.2019__10__8c9f634ff6fe4a7bbdb0af31342f17c6.jpg"
                   alt=""
                 />
               </div>

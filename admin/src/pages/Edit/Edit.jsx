@@ -69,10 +69,10 @@ const Edit = ({ type, currentUser }) => {
       ? (values._id = accessory._id)
       : (values._id = user._id);
     type === "products"
-      ? dispatch(editProduct(values))
+      ? editProduct(values)
       : type === "accessories"
-      ? dispatch(editAccessory(values))
-      : dispatch(editRole(values));
+      ? editAccessory(values)
+      : editRole(values);
   };
   return (
     <div className="edit">
@@ -173,7 +173,7 @@ const Edit = ({ type, currentUser }) => {
                       >
                         <Input />
                       </Form.Item>
-                      <Form.Item
+                      {/* <Form.Item
                         name="colors"
                         label="Colors"
                         rules={[
@@ -190,7 +190,7 @@ const Edit = ({ type, currentUser }) => {
                         ]}
                       >
                         <Input />
-                      </Form.Item>
+                      </Form.Item> */}
 
                       <Form.Item
                         name="description"

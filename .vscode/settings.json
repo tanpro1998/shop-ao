@@ -1,3 +1,17 @@
 {
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "cSpell.words": [
+        "Accsessory",
+        "addaccessory",
+        "addproduct",
+        "cfpassword",
+        "Codepen",
+        "deleteaccessory",
+        "dispatchs",
+        "editaccessory",
+        "editproduct",
+        "editrole",
+        "getallaccessories",
+        "getallproducts"
+    ]
 }

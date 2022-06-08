@@ -7,10 +7,17 @@ import {
   ShoppingCartOutlined,
 } from "@ant-design/icons";
 import { DarkModeContext } from "../../context/darkModeContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { adminLogout } from "../../redux/callAPI";
 
 const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
+  const dispatchs = useDispatch();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    adminLogout(dispatchs, navigate);
+  };
   return (
     <div className="sidebar">
       <div className="sidebar__top">
@@ -61,14 +68,7 @@ const Sidebar = () => {
 
           <p className="sidebar__center__title">USER</p>
 
-          <li
-            onClick={() => [
-              localStorage.removeItem("admin"),
-              localStorage.removeItem("access"),
-              localStorage.removeItem("refresh"),
-              (window.location.href = "/login"),
-            ]}
-          >
+          <li onClick={handleLogout}>
             <LogoutOutlined className="sidebar__center__icon" />
             <span>Logout</span>
           </li>

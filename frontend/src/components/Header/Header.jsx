@@ -21,6 +21,13 @@ const Header = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const isAdmin = user?.isAdmin;
   const { quantity } = useSelector((state) => state.cart);
+ 
+
+  const deleteAll = () => {
+    localStorage.clear();
+    jsCookie.remove("access");
+    jsCookie.remove("refresh");
+  };
 
   const menu = (
     <Menu>
@@ -33,9 +40,7 @@ const Header = () => {
       <Menu.Item
         key={2}
         onClick={() => {
-          localStorage.clear();
-          jsCookie.remove("access");
-          jsCookie.remove("refresh");
+          deleteAll();
           window.location.href = "/login";
         }}
       >
@@ -44,21 +49,21 @@ const Header = () => {
     </Menu>
   );
 
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      if (
-        document.body.scrollTop > 100 ||
-        document.documentElement.scrollTop > 100
-      ) {
-        headerRef.current?.classList.add("shrink");
-      } else {
-        headerRef.current?.classList.remove("shrink");
-      }
-    });
-    return () => {
-      window.removeEventListener("scroll", null);
-    };
-  }, []);
+  // useEffect(() => {
+  //   window.addEventListener("scroll", () => {
+  //     if (
+  //       document.body.scrollTop > 100 ||
+  //       document.documentElement.scrollTop > 100
+  //     ) {
+  //       headerRef.current?.classList.add("shrink");
+  //     } else {
+  //       headerRef.current?.classList.remove("shrink");
+  //     }
+  //   });
+  //   return () => {
+  //     window.removeEventListener("scroll", null);
+  //   };
+  // }, []);
 
   const menuLeft = useRef(null);
 

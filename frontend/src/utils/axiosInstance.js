@@ -3,10 +3,11 @@ import jwt_decode from "jwt-decode";
 import dayjs from "dayjs";
 import jsCookie from "js-cookie";
 
-const BASE_URL = "https://shopping-api-ao.herokuapp.com/api";
+// const BASE_URL = "https://shopping-api-ao.herokuapp.com/api";
+const BASE_URL = "http://localhost:5000/api";
 
 const ACCESS_TOKEN = jsCookie.get("access");
-const REFRESH_TOKEN = jsCookie.get("refresh");
+// const REFRESH_TOKEN = jsCookie.get("refresh");
 
 export const publicRequest = axios.create({
   baseURL: BASE_URL,
@@ -19,9 +20,7 @@ export const userRequest = axios.create({
 
 const refreshToken = async () => {
   try {
-    const res = await axios.post(`${BASE_URL}/users/refresh`, {
-      token: REFRESH_TOKEN,
-    });
+    const res = await axios.post(`${BASE_URL}/users/refresh`);
     return res.data;
   } catch (err) {
     console.log(err);
@@ -44,4 +43,3 @@ userRequest.interceptors.request.use(
     return Promise.reject(err);
   }
 );
-

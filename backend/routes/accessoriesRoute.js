@@ -1,9 +1,9 @@
 import express from "express";
 const accessoriesRouter = express.Router();
 import { Accessories } from "../models/accessoriesModel.js";
-import { verifyToken, verifyTokenAdmin } from "./verifyToken.js";
+import { verifyToken, verifyTokenAndAdmin } from "../middleware/verifyToken.js";
 
-accessoriesRouter.get("/getallaccessories", async (req, res) => {
+accessoriesRouter.get("/", async (req, res) => {
   try {
     const accessories = await Accessories.find();
     res.status(200).json(accessories);
@@ -12,7 +12,7 @@ accessoriesRouter.get("/getallaccessories", async (req, res) => {
   }
 });
 
-accessoriesRouter.post("/addaccessory", verifyTokenAdmin, async (req, res) => {
+accessoriesRouter.post("/add", verifyTokenAndAdmin, async (req, res) => {
   try {
     const addNewAccessory = new Accessories(req.body);
     await addNewAccessory.save();
@@ -22,7 +22,7 @@ accessoriesRouter.post("/addaccessory", verifyTokenAdmin, async (req, res) => {
   }
 });
 
-accessoriesRouter.post("/editaccessory", verifyTokenAdmin, async (req, res) => {
+accessoriesRouter.post("/update", verifyTokenAndAdmin, async (req, res) => {
   try {
     const accessory = await Accessories.findOne({ _id: req.body._id });
     accessory.title = req.body.title;
@@ -40,18 +40,14 @@ accessoriesRouter.post("/editaccessory", verifyTokenAdmin, async (req, res) => {
   }
 });
 
-accessoriesRouter.post(
-  "/deleteaccessory",
-  verifyTokenAdmin,
-  async (req, res) => {
-    try {
-      await Accessories.findOneAndDelete({ _id: req.body.accessoryId });
-      res.send("Delete Accessory Successful");
-    } catch (err) {
-      return res.status(400).json(err);
-    }
+accessoriesRouter.post("/delete", verifyTokenAndAdmin, async (req, res) => {
+  try {
+    await Accessories.findOneAndDelete({ _id: req.body.accessoryId });
+    res.send("Delete Accessory Successful");
+  } catch (err) {
+    return res.status(400).json(err);
   }
-);
+});
 
 accessoriesRouter.get("/find/:id", async (req, res) => {
   try {
@@ -62,4 +58,4 @@ accessoriesRouter.get("/find/:id", async (req, res) => {
   }
 });
 
-export default accessoriesRouter ;
+export default accessoriesRouter;

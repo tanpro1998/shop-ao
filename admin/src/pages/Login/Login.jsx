@@ -3,12 +3,14 @@ import "./login.scss";
 import { Form, Input } from "antd";
 import { useDispatch } from "react-redux";
 import { adminLogin } from "../../redux/callAPI";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onFinish = (values) => {
-    dispatch(adminLogin(values));
+    adminLogin(values, dispatch, navigate);
   };
   return (
     <div className="login">
