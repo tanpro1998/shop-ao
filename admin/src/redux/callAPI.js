@@ -57,7 +57,7 @@ export const getAllProducts = async (dispatch) => {
 export const editProduct = async (reqObj) => {
   try {
     await axiosPrivate.post("/products/update", reqObj);
-    message.success("Edit Product Success");
+    message.success("Update Product Success");
     setTimeout(() => {
       window.location.href = "/products";
     }, 500);
@@ -105,7 +105,7 @@ export const getAllAccessories = async (dispatch) => {
 export const editAccessory = async (reqObj) => {
   try {
     await axiosPrivate.post("/accessories/update", reqObj);
-    message.success("Edit Accessory Success");
+    message.success("Update Accessory Success");
     setTimeout(() => {
       window.location.href = "/accessories";
     }, 500);

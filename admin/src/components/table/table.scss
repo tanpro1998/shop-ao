@@ -19,11 +19,15 @@
     &.succeeded {
       color: white;
       background-color: darkgreen;
+      text-transform: capitalize;
     }
 
     &.Pending {
       color: white;
       background-color: darkgoldenrod;
     }
+  }
+  .method {
+    text-transform: capitalize;
   }
 }

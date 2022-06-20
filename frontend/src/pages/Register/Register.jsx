@@ -1,14 +1,13 @@
 import React from "react";
 import { Form, Input } from "antd";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import { userRegister } from "../../redux/callAPI";
 
 const Register = () => {
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onFinish = (values) => {
-    dispatch(userRegister(values));
+    userRegister(values, navigate);
   };
   return (
     <div className="login">

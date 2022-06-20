@@ -16,30 +16,35 @@ import { getAllAccessories, getAllProducts } from "../redux/callAPI";
 
 const Router = () => {
   const user = JSON.parse(localStorage.getItem("user"));
+  console.log(user);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllProducts());
-    dispatch(getAllAccessories());
+    getAllProducts(dispatch);
+    getAllAccessories(dispatch);
   }, [dispatch]);
 
   return (
     <Routes>
       <Route path="/">
-        {user ? (
-          <Route index element={<Home />} />
-        ) : (
-          <Route index element={<Navigate to="login" />} />
-        )}
-        <Route path="slug/:slug" element={<ProductView />} />
+        <Route index element={<Home />} />
+        <Route path="products/:slug" element={<ProductView />} />
         <Route path="catalog" element={<Catalog />} />
         <Route path="catalog/:slug" element={<ProductView />} />
-        <Route path="product/:productId" element={<Products />} />
-        <Route path="/accessories" element={<Accessories />} />
-        <Route path="/accessories/:slug" element={<AccessoryView />} />
-        <Route path="/accessory/:accessoryId" element={<Accessory />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/contact" element={<Contact />} />
+        {user ? (
+          <Route path="product/:productId" element={<Products />} />
+        ) : (
+          <Route path="*" element={<Navigate to="/login" />} />
+        )}
+        <Route path="accessories" element={<Accessories />} />
+        <Route path="accessories/:slug" element={<AccessoryView />} />
+        {user ? (
+          <Route path="accessory/:accessoryId" element={<Accessory />} />
+        ) : (
+          <Route path="*" element={<Navigate to="/login" />} />
+        )}
+        <Route path="cart" element={<Cart />} />
+        <Route path="contact" element={<Contact />} />
         {!user ? (
           <Route path="login" element={<Login />} />
         ) : (

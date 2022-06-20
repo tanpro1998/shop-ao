@@ -7,7 +7,7 @@ import number from "../../utils/number";
 const Product = (props) => {
   return (
     <div className="product-card">
-      <Link to={`/slug/${props.slug}`}>
+      <Link to={`/products/${props.slug}`}>
         <div className="product-card__image">
           <img src={props.img01} alt="" />
           <img src={props.img02} alt="" />

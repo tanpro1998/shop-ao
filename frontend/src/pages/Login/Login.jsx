@@ -1,15 +1,17 @@
 import React from "react";
 import { Form, Input } from "antd";
 import { Link } from "react-router-dom";
-import { useDispatch} from "react-redux";
 import { userLogin } from "../../redux/callAPI";
+import { useEffect } from "react";
 
 const Login = () => {
-  const dispatch = useDispatch();
-
   const onFinish = (values) => {
-    dispatch(userLogin(values));
+    userLogin(values);
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  },[]);
   return (
     <div className="login">
       <div className="d-flex align-items-center justify-content-center">
@@ -35,6 +37,9 @@ const Login = () => {
           </button>
           <Link to="/register">
             <p className="mt-2">Register Now</p>
+          </Link>
+          <Link to="/">
+            <p className="mt-2">Back to Home page</p>
           </Link>
         </Form>
       </div>

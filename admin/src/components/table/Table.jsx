@@ -44,7 +44,7 @@ const List = () => {
                   {number(order.amount)} VND
                 </TableCell>
                 <TableCell className="tableCell">
-                  {order.payment_method_details.type}
+                  <span className="method">{order.payment_method_details.type}</span>
                 </TableCell>
                 <TableCell className="tableCell">
                   <span className={`status ${order.status}`}>

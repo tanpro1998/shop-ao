@@ -148,6 +148,10 @@
             margin-right: 2rem;
           }
         }
+
+        &:first-child {
+          transform: translateY(2px);
+        }
       }
     }
 

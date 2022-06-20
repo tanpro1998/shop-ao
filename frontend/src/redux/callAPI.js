@@ -7,7 +7,7 @@ import { getAllProduct } from "./productSlice";
 import { publicRequest } from "../utils/axiosInstance";
 import jsCookie from "js-cookie";
 
-export const getAllProducts = () => async (dispatch) => {
+export const getAllProducts = async (dispatch) => {
   try {
     const res = await publicRequest.get("/products");
     dispatch(getAllProduct(res.data));
@@ -16,7 +16,7 @@ export const getAllProducts = () => async (dispatch) => {
   }
 };
 
-export const getAllAccessories = () => async (dispatch) => {
+export const getAllAccessories = async (dispatch) => {
   try {
     const res = await publicRequest.get("/accessories");
     dispatch(getAllAccessory(res.data));
@@ -25,12 +25,12 @@ export const getAllAccessories = () => async (dispatch) => {
   }
 };
 
-export const userRegister = (reqObj) => async () => {
+export const userRegister = async (reqObj, navigate) => {
   try {
     await publicRequest.post("/auth/register", reqObj);
     message.success("Register Success");
     setTimeout(() => {
-      window.location.href = "/login";
+      navigate("/login");
     }, 500);
   } catch (err) {
     console.log(err);
@@ -38,7 +38,7 @@ export const userRegister = (reqObj) => async () => {
   }
 };
 
-export const userLogin = (reqObj) => async () => {
+export const userLogin = async (reqObj) => {
   try {
     const res = await publicRequest.post("/auth/login", reqObj);
 
@@ -54,12 +54,14 @@ export const userLogin = (reqObj) => async () => {
   }
 };
 
-export const userLogout = () => async () => {
+export const userLogout = async (navigate) => {
   try {
     await publicRequest.post("/auth/logout");
+    localStorage.clear();
+    jsCookie.remove("access");
     message.success("Logout Success");
     setTimeout(() => {
-      window.location.href = "/login";
+      window.location.reload();
     }, 500);
   } catch (err) {
     console.log(err);
@@ -67,7 +69,7 @@ export const userLogout = () => async () => {
   }
 };
 
-export const checkOut = (reqObj) => async () => {
+export const checkOut = async (reqObj) => {
   try {
     await axios.post("http://localhost:5000/api/checkout/payment", reqObj);
     message.success("Checkout Success");

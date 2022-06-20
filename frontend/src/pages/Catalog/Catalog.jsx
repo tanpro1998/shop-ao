@@ -23,7 +23,7 @@ const Catalog = () => {
   const [allProducts, setAllProducts] = useState([]);
 
   useEffect(() => {
-    dispatch(getAllProducts());
+    getAllProducts(dispatch)
   }, [dispatch, filter]);
 
   useEffect(() => {

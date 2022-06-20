@@ -4,14 +4,22 @@
         "Accsessory",
         "addaccessory",
         "addproduct",
+        "antd",
         "cfpassword",
         "Codepen",
+        "Đăng",
         "deleteaccessory",
         "dispatchs",
         "editaccessory",
         "editproduct",
         "editrole",
         "getallaccessories",
-        "getallproducts"
+        "getallproducts",
+        "gulter",
+        "nhập",
+        "phẩm",
+        "tiết",
+        "Trang",
+        "xuất"
     ]
 }

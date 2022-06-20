@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, Dropdown, Button } from "antd";
 import { useSelector } from "react-redux";
-import jsCookie from "js-cookie";
+import { userLogout } from "../../redux/callAPI";
 
 const mainNav = [
   {
@@ -21,12 +21,9 @@ const Header = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const isAdmin = user?.isAdmin;
   const { quantity } = useSelector((state) => state.cart);
- 
 
-  const deleteAll = () => {
-    localStorage.clear();
-    jsCookie.remove("access");
-    jsCookie.remove("refresh");
+  const handleLogout = () => {
+    userLogout();
   };
 
   const menu = (
@@ -37,13 +34,7 @@ const Header = () => {
       <Menu.Item key={1}>
         <a href="/catalog">Sản phẩm</a>
       </Menu.Item>
-      <Menu.Item
-        key={2}
-        onClick={() => {
-          deleteAll();
-          window.location.href = "/login";
-        }}
-      >
+      <Menu.Item key={2} onClick={handleLogout}>
         <li>Đăng xuất</li>
       </Menu.Item>
     </Menu>
@@ -131,20 +122,28 @@ const Header = () => {
               </Link>
             </div>
             <div className="header__menu__item header__menu__right__item">
-              <Dropdown
-                overlay={menu}
-                className="header__menu__item header__menu__right__item__dropdown"
-              >
-                {user && isAdmin ? (
-                  <Button>
-                    <span style={{ color: "black" }}>{user?.name} (admin)</span>
-                  </Button>
-                ) : (
-                  <Button>
-                    <span style={{ color: "black" }}>{user?.name}</span>
-                  </Button>
-                )}
-              </Dropdown>
+              {user ? (
+                <Dropdown
+                  overlay={menu}
+                  className="header__menu__item header__menu__right__item__dropdown"
+                >
+                  {user && isAdmin ? (
+                    <Button>
+                      <span style={{ color: "black" }}>
+                        {user?.name} (admin)
+                      </span>
+                    </Button>
+                  ) : (
+                    <Button>
+                      <span style={{ color: "black" }}>{user?.name}</span>
+                    </Button>
+                  )}
+                </Dropdown>
+              ) : (
+                <Link to="/login">
+                  <span>Đăng nhập</span>
+                </Link>
+              )}
             </div>
           </div>
         </div>
