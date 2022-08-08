@@ -1,0 +1,104 @@
+.products {
+  padding-top: 5rem;
+  &__image {
+    padding-top: 2rem;
+    margin: auto;
+    width: 80%;
+    display: flex;
+    flex-direction: row-reverse;
+    @include tablet {
+      text-align: center;
+    }
+
+    @include mobile {
+      margin: 0 auto;
+      width: 80%;
+    }
+  }
+  &__title {
+    font-size: 2.5rem;
+    width: 100%;
+    text-align: center;
+
+    @include mobile {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      width: 100vw;
+    }
+  }
+
+  &__item {
+    @include flex(center, space-between);
+    margin-top: 5rem;
+
+    @include tablet {
+      width: 80%;
+      margin: 0 auto;
+      @include flex(center, space-between);
+      height: 50px;
+    }
+
+    @include mobile {
+      width: 80%;
+    }
+
+    &__title {
+      font-size: 1.5rem;
+      font-weight: 600;
+
+      @include mobile {
+        font-size: 1.4rem;
+      }
+    }
+
+    &__list {
+      @include flex(center, flex-end);
+
+      &__item {
+        @include flex(center, center);
+        width: 40px;
+        height: 40px;
+        border: 1px solid $text-second-color;
+        border-radius: 50%;
+        margin-left: 8rem;
+        cursor: pointer;
+        &.active {
+          border-color: $main-color;
+          transform: scale(1.1);
+        }
+
+        &:hover {
+          border-color: $main-color;
+        }
+
+        @include tablet {
+          width: 35px;
+          height: 35px;
+        }
+
+        @include mobile {
+          width: 20px;
+          height: 20px;
+          margin-left: 2rem;
+        }
+      }
+    }
+
+    &__input {
+      text-align: center;
+      width: 50%;
+    }
+
+    .button {
+      width: 100%;
+      @include tablet {
+        margin-top: 3rem;
+      }
+      @include mobile {
+        width: 80%;
+        margin:  0 auto;
+        margin-top: 3rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,105 @@
+.app.dark {
+  background-color: #333;
+  color: white;
+
+  .sidebar {
+    background-color: #333;
+
+    &__center {
+      li {
+        span {
+          color: white;
+        }
+      }
+    }
+  }
+
+  .navbar {
+    &__wrapper {
+      &__search {
+        .icon {
+          color: #333;
+        }
+      }
+
+      &__items {
+        &__item {
+          &:nth-child(2) {
+            color: yellow;
+          }
+        }
+      }
+    }
+  }
+
+  .charts {
+    .features__top {
+      h1 {
+        color: white;
+      }
+    }
+  }
+
+  .widget {
+    &__left {
+      &__link {
+        color: white;
+      }
+    }
+  }
+
+  .listContainer {
+    h3 {
+      color: white;
+    }
+
+    [title="isAdmin"] {
+      color: white;
+    }
+
+    [title="Title"] {
+      color: white;
+    }
+    [title="Price"] {
+      color: white;
+    }
+    [title="Image 01"] {
+      color: white;
+    }
+    [title="Image 02"] {
+      color: white;
+    }
+    [title="Slug"] {
+      color: white;
+    }
+    [title="Colors"] {
+      color: white;
+    }
+    [title="Sizes"] {
+      color: white;
+    }
+    [title="Category Slug"] {
+      color: white;
+    }
+    [title="Description"] {
+      color: white;
+    }
+    .tableData {
+      .dataGrid {
+        color: white;
+      }
+    }
+
+    .formItem {
+      color: red;
+    }
+  }
+
+  .table {
+    background-color: #333;
+
+    .tableCell {
+      color: white;
+    }
+  }
+}

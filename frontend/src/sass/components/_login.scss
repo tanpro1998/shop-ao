@@ -1,0 +1,11 @@
+.login {
+  .input {
+    width: 500px;
+    height: 50px;
+
+    @include mobile {
+      width: 300px;
+      margin: auto;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+POST http://localhost:5000/api/users/login
+Content-Type: application/json
+
+{
+    "username": "thanhtan1998",
+    "password": "16061998"
+}
+
+###
+GET http://localhost:5000/api/products/getallproducts
+
+###
+POST http://localhost:5000/api/users/refresh
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjVjNzk0YTI5ZGFhNThiNjU2ZDY3YyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0OTMxODkwNX0.IPqUiP2PO7gFjaw1tsBnt6arih2gKQRIWogkAJuly8E

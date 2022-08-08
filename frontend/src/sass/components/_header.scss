@@ -1,0 +1,212 @@
+.header {
+  background-color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  height: $header-height;
+  transition: height 0.3s ease;
+
+  @include tablet {
+    height: $header-tablet-height;
+    box-shadow: $box-shadow;
+  }
+
+  @include mobile {
+    height: $header-mobile-height;
+  }
+
+  .container {
+    height: 100%;
+  }
+
+  // &.shrink {
+  //   height: $header-shrink-height;
+  //   box-shadow: $box-shadow;
+  //   z-index: 100;
+
+  //   @include mobile {
+  //     height: $header-mobile-height;
+  //   }
+  // }
+
+  &__logo {
+    @include flex(center, center);
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    pointer-events: none;
+
+    @include tablet {
+      width: 90%;
+      font-size: 2rem;
+    }
+
+    @include mobile {
+      display: none;
+    }
+
+    &__banner {
+      --border-width: 3px;
+      padding: 0 3rem;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: black;
+
+      @include tablet {
+        padding: 0 1rem;
+      }
+
+      span {
+        font-size: 25px;
+        font-weight: bold;
+        color: #fff;
+      }
+
+      &::after {
+        position: absolute;
+        content: "";
+        top: calc(-1 * var(--border-width));
+        left: calc(-1 * var(--border-width));
+        z-index: -1;
+        width: calc(100% + var(--border-width) * 2);
+        height: calc(100% + var(--border-width) * 2);
+        background: linear-gradient(
+          60deg,
+          hsl(224, 85%, 66%),
+          hsl(269, 85%, 66%),
+          hsl(314, 85%, 66%),
+          hsl(359, 85%, 66%),
+          hsl(44, 85%, 66%),
+          hsl(89, 85%, 66%),
+          hsl(134, 85%, 66%),
+          hsl(179, 85%, 66%)
+        );
+        background-size: 300% 300%;
+        background-position: 0 50%;
+        border-radius: 5px;
+        animation: moveGradient 4s alternate infinite;
+      }
+    }
+  }
+  @keyframes moveGradient {
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  &__menu {
+    @include flex(center, space-between);
+    height: 100%;
+    font-size: 1.5rem;
+
+    &__item ~ &__item {
+      margin-left: 39px;
+
+      @include tablet {
+        margin-left: 20px;
+      }
+
+      @include mobile {
+        margin-left: 10px;
+      }
+    }
+
+    &__item.active span {
+      font-weight: 600;
+      color: $main-color;
+    }
+
+    &__item:hover span {
+      color: $main-color;
+    }
+
+    &__left,
+    &__right {
+      @include flex(center, center);
+      height: 100%;
+    }
+
+    &__right {
+      font-size: 1.5rem;
+
+      &__item {
+        @include flex(center, center);
+
+        @include tablet {
+          margin-right: 5px;
+        }
+
+        @include mobile {
+          &:first-child {
+            margin-right: 2rem;
+          }
+
+          &:nth-child(2) {
+            margin-right: 2rem;
+          }
+        }
+
+        &:first-child {
+          transform: translateY(2px);
+        }
+      }
+    }
+
+    &__left {
+      &__close {
+        display: none;
+        color: white;
+      }
+
+      @include tablet {
+        flex-direction: column;
+        background-color: black;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100vh;
+        justify-content: flex-start;
+        padding-top: 30px;
+        transform: translateX(-100%);
+        transition: transform 0.5s ease;
+        z-index: 999;
+
+        &.active {
+          transform: translateX(0);
+        }
+
+        &__item ~ &__item {
+          margin-left: unset;
+          margin-top: 40px;
+        }
+
+        &__close {
+          display: block;
+          position: absolute;
+          left: 20px;
+          font-size: 2.5rem;
+          cursor: pointer;
+        }
+      }
+    }
+    &__mobile-toggle {
+      display: none;
+
+      @include tablet {
+        display: block;
+        font-size: 2.5rem;
+        cursor: pointer;
+      }
+    }
+
+    &__item {
+      span {
+        color: #fff;
+      }
+    }
+  }
+}

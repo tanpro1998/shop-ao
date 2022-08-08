@@ -1,0 +1,28 @@
+.add {
+  display: flex;
+  width: 100%;
+
+  .listContainer {
+    flex: 6;
+    h3 {
+      text-align: center;
+      font-size: 30px;
+      margin: 2rem 0;
+    }
+
+    hr {
+      margin-bottom: 2rem;
+    }
+  }
+  .button {
+    text-align: center;
+
+    .btn {
+      background-color: #1789ff;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+  }
+}

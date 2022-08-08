@@ -1,0 +1,13 @@
+@import "./variables";
+@import "./mixins";
+@import "./base";
+
+
+@import "../pages/Home/home.scss";
+@import "../components/Navbar/navbar.scss";
+@import "../components/Sidebar/sidebar.scss";
+@import "../app.scss";
+@import "../components/Widget/widget.scss";
+@import "../components/Features/features.scss";
+@import "../components/chart/chart.scss";
+@import "../components/table/table.scss";
