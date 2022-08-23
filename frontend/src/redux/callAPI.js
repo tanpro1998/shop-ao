@@ -28,13 +28,13 @@ export const getAllAccessories = async (dispatch) => {
 export const userRegister = async (reqObj, navigate) => {
   try {
     await publicRequest.post("/auth/register", reqObj);
-    message.success("Register Success");
+    message.success("Đăng kí thành công!");
     setTimeout(() => {
       navigate("/login");
     }, 500);
   } catch (err) {
     console.log(err);
-    message.error("Something went wrong");
+    message.error("Đã xảy ra lỗi, vui lòng thử lại sau!");
   }
 };
 
@@ -44,13 +44,13 @@ export const userLogin = async (reqObj) => {
 
     localStorage.setItem("user", JSON.stringify(res.data));
     jsCookie.set("access", res.data.accessToken);
-    message.success("Login Success");
+    message.success("Đăng nhập thành công");
     setTimeout(() => {
       window.location.href = "/";
     }, 500);
   } catch (err) {
     console.log(err);
-    message.error("Wrong username or password");
+    message.error("Đã xảy ra lỗi, vui lòng thử lại sau!");
   }
 };
 
@@ -59,25 +59,25 @@ export const userLogout = async () => {
     await publicRequest.post("/auth/logout");
     localStorage.clear();
     jsCookie.remove("access");
-    message.success("Logout Success");
+    message.success("Đăng xuất thành công!");
     setTimeout(() => {
       window.location.reload();
     }, 500);
   } catch (err) {
     console.log(err);
-    message.error("Something went wrong");
+    message.error("Đã xảy ra lỗi, vui lòng thử lại sau!");
   }
 };
 
 export const checkOut = async (reqObj) => {
   try {
     await axios.post("http://localhost:5000/api/checkout/payment", reqObj);
-    message.success("Checkout Success");
+    message.success("Thanh toán đơn hàng thành công!");
     setTimeout(() => {
       window.location.reload();
     }, 500);
   } catch (err) {
     console.log(err);
-    message.error("Something went wrong");
+    message.error("Đã xảy ra lỗi, vui lòng thử lại sau!");
   }
 };
