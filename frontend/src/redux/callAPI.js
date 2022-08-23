@@ -50,7 +50,7 @@ export const userLogin = async (reqObj) => {
     }, 500);
   } catch (err) {
     console.log(err);
-    message.error("Đã xảy ra lỗi, vui lòng thử lại sau!");
+    message.error("Đã xảy ra lỗi, vui lòng thử lại sau");
   }
 };
 
