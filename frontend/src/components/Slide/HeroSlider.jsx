@@ -19,6 +19,8 @@ const HeroSlider = ({ data, control, auto, timeOut }) => {
     setActiveSlide(index);
   };
 
+  console.log(activeSlide);
+
   useEffect(() => {
     if (auto) {
       const slideAuto = setInterval(() => {

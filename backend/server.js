@@ -6,7 +6,7 @@ import userRouter from "./routes/userRoute.js";
 import productRouter from "./routes/productRoute.js";
 import cartRouter from "./routes/cartRoute.js";
 import orderRouter from "./routes/orderRoute.js";
-import stripeRouter from "./routes/stripe.js";
+import stripeRouter from "./routes/stripeRoute.js";
 import accessoriesRouter from "./routes/accessoriesRoute.js";
 import authRouter from "./routes/authRoute.js";
 import cookieParser from "cookie-parser";

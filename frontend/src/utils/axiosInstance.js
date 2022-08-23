@@ -7,7 +7,6 @@ import jsCookie from "js-cookie";
 const BASE_URL = "http://localhost:5000/api";
 
 const ACCESS_TOKEN = jsCookie.get("access");
-// const REFRESH_TOKEN = jsCookie.get("refresh");
 
 export const publicRequest = axios.create({
   baseURL: BASE_URL,

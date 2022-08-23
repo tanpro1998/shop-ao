@@ -53,7 +53,7 @@ const Contact = () => {
             <h3>Gọi ngay</h3>
             <span>+84 9649038991</span>
             <h3>Khu vực</h3>
-            <span>Bình Hưng, Bình Chánh, TP.HCM</span>
+            <span>Quận 10, TP.HCM</span>
             <h3>Thời gian làm việc</h3>
             <p>
               <b>Mon-Fri</b>: 10am-8pm
