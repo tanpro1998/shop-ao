@@ -1,20 +1,19 @@
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
-import Router from "../../routes/Router";
+import Routers from "../../routes/Router";
 import ScrollToTop from "../ScrollIntoView/ScrollToTop";
 
-const Layout = (props) => {
+const Layout = () => {
   return (
-    <BrowserRouter>
-      <ScrollToTop>
-        <div className="container">
-          <div className="main">
-            <Router />
-          </div>
+    <Router>
+      <div className="container">
+        <div className="main">
+          <ScrollToTop />
+          <Routers />
         </div>
-      </ScrollToTop>
-    </BrowserRouter>
+      </div>
+    </Router>
   );
 };
 
