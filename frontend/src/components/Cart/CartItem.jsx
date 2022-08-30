@@ -22,7 +22,7 @@ const CartItem = ({ cart }) => {
           </tr>
         </thead>
         <tbody className="cartItem__table__body">
-          {cart.products.map((product, index) => (
+          {cart.cartItems.map((product, index) => (
             <tr key={index}>
               <td className="cartItem__table__body__img">
                 <img src={product.image01} alt="" />
