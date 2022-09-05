@@ -4,8 +4,6 @@ import Home from "../pages/Home/Home";
 import Catalog from "../pages/Catalog/Catalog";
 import Cart from "../pages/Cart/Cart";
 import Products from "../pages/Product/Products";
-import Login from "../pages/Login/Login";
-import Register from "../pages/Register/Register";
 import Accessories from "../pages/Accessory/Accessories";
 import Contact from "../pages/Contact/Contact";
 import ProductView from "../pages/Product/ProductView";
@@ -13,6 +11,7 @@ import AccessoryView from "../pages/Accessory/AccessoryView";
 import Accessory from "../pages/Accessory/Accessory";
 import { useDispatch } from "react-redux";
 import { getAllAccessories, getAllProducts } from "../redux/callAPI";
+import SignInOutContainer from "../components/Form/Form";
 
 const Router = () => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -45,11 +44,11 @@ const Router = () => {
         <Route path="cart" element={<Cart />} />
         <Route path="contact" element={<Contact />} />
         {!user ? (
-          <Route path="login" element={<Login />} />
+          <Route path="login" element={<SignInOutContainer />} />
         ) : (
           <Route path="*" element={<Navigate to="/" />} />
         )}
-        <Route path="register" element={<Register />} />
+        {/* <Route path="register" element={<SignInOutContainer />} /> */}
       </Route>
     </Routes>
   );
