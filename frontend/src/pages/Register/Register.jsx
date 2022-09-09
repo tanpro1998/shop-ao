@@ -1,5 +1,4 @@
 import React from "react";
-// import { Form, Input } from "antd";
 import { useNavigate } from "react-router-dom";
 import { userRegister } from "../../redux/callAPI";
 import { Formik, Field, Form, ErrorMessage } from "formik";

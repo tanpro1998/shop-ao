@@ -77,11 +77,11 @@ const Sidebar = () => {
       <div className="sidebar__bottom">
         <div
           className="sidebar__bottom__color"
-          onClick={() => dispatch({ type: "LIGHT" })}
+          onClick={() => [dispatch({ type: "LIGHT" })]}
         ></div>
         <div
           className="sidebar__bottom__color"
-          onClick={() => dispatch({ type: "DARK" })}
+          onClick={() => [dispatch({ type: "DARK" })]}
         ></div>
       </div>
     </div>

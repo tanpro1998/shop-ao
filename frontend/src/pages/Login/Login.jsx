@@ -16,7 +16,7 @@ const paperStyle = { padding: 20, width: 500, margin: "0 auto" };
 const headerStyle = { margin: 0, fontWeight: "bold" };
 const typeStyle = { fontSize: 14 };
 
-const Register = () => {
+const Login = () => {
   const navigate = useNavigate();
 
   const initialValues = {
@@ -94,4 +94,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

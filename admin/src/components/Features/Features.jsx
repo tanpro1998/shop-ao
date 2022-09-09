@@ -7,8 +7,19 @@ import {
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import number from "../../utils/number";
+import { useSelector } from "react-redux";
 
-const Features = ({ sum }) => {
+const Features = () => {
+  const { orders } = useSelector((state) => state.orders);
+  const resultOrders = orders.data;
+  const firstOrder = resultOrders !== undefined && resultOrders[0];
+  const lastOrder =
+    resultOrders !== undefined && resultOrders[resultOrders.length - 1];
+  let sum = 0;
+  for (let i = 0; i < resultOrders?.length; i++) {
+    sum += resultOrders[i].amount;
+  }
+
   return (
     <div className="features">
       <div className="features__top">
@@ -21,11 +32,6 @@ const Features = ({ sum }) => {
         </div>
         <p className="features__bottom__title">Total sales</p>
         <p className="features__bottom__amount">{number(sum)} VND</p>
-        <p className="features__bottom__desc">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut
-          consectetur reprehenderit magni ab eos illo maiores animi aliquam
-          mollitia odit!
-        </p>
         <div className="features__bottom__summary">
           <div className="features__bottom__summary__item">
             <div className="features__bottom__summary__item__title">Target</div>
@@ -36,20 +42,20 @@ const Features = ({ sum }) => {
           </div>
           <div className="features__bottom__summary__item">
             <div className="features__bottom__summary__item__title">
-              Last Week
+              First Oder
             </div>
             <div className="features__bottom__summary__item__result">
               <ArrowUpOutlined className="up" />
-              <div className="number">{number(400000)}</div>
+              <div className="number">{number(firstOrder.amount)}</div>
             </div>
           </div>
           <div className="features__bottom__summary__item">
             <div className="features__bottom__summary__item__title">
-              Last Month
+              Last Order
             </div>
             <div className="features__bottom__summary__item__result">
               <ArrowUpOutlined className="up" />
-              <div className="number">{number(1000000)}</div>
+              <div className="number">{number(lastOrder.amount)}</div>
             </div>
           </div>
         </div>

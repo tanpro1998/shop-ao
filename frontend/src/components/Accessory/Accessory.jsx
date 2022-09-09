@@ -21,34 +21,6 @@ const Accessory = (props) => {
             Mua
           </Button>
         </Link>
-        {/* <Link to={`/editproduct/${props.id}`}>
-          <Button size="sm">
-            <div className="d-flex align-items-center">
-              <EditOutlined className="mr-2" />
-              Sửa
-            </div>
-          </Button>
-        </Link> */}
-        <span> </span>
-        {/* <Popconfirm
-          title="Are you want to delete this accessory?"
-          onConfirm={() => {
-            dispatch(deleteAccessory({ accessoryid: props.id }));
-          }}
-          okText="Yes"
-          cancelText="No"
-        >
-          {props.admin ? (
-            <Button size="sm" backgroundColor="red">
-              <div className="d-flex align-items-center">
-                <DeleteOutlined className="mr-2" />
-                Xóa
-              </div>
-            </Button>
-          ) : (
-            ""
-          )}
-        </Popconfirm> */}
       </div>
     </div>
   );

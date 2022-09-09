@@ -4,13 +4,13 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Table from "../../components/table/Table";
 import "./list.scss";
 
-const List = ({ currentUser, orders }) => {
+const List = () => {
   return (
     <div className="list">
       <Sidebar />
       <div className="listContainer">
-        <Navbar currentUser={currentUser} />
-        <Table orders={orders} />
+        <Navbar />
+        <Table />
       </div>
     </div>
   );

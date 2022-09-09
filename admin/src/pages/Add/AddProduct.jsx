@@ -6,7 +6,7 @@ import { addAccessory, addProduct } from "../../redux/callAPI";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
 
-const AddProduct = ({ type, currentUser }) => {
+const AddProduct = ({ type }) => {
   const dispatch = useDispatch();
 
   const onFinish = (values) => {
@@ -18,7 +18,7 @@ const AddProduct = ({ type, currentUser }) => {
     <div className="add">
       <Sidebar />
       <div className="listContainer">
-        <Navbar currentUser={currentUser} />
+        <Navbar />
         <Row justify="center">
           <Col lg={12} sm={24}>
             <Form layout="vertical" onFinish={onFinish}>

@@ -13,14 +13,15 @@ import {
 } from "../../redux/callAPI";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
-const Edit = ({ type, currentUser }) => {
+
+const Edit = ({ type }) => {
+  const { users } = useSelector((state) => state.users);
+  const { products } = useSelector((state) => state.products);
+  const { accessories } = useSelector((state) => state.accessories);
   const { userId } = useParams();
   const { productId } = useParams();
   const { accessoryId } = useParams();
   const dispatch = useDispatch();
-  const { users } = useSelector((state) => state.users);
-  const { products } = useSelector((state) => state.products);
-  const { accessories } = useSelector((state) => state.accessories);
 
   const [user, setUser] = useState({});
   const [product, setProduct] = useState({});
@@ -36,20 +37,20 @@ const Edit = ({ type, currentUser }) => {
       accessories.length === 0 ||
       users.length === 0
     ) {
-      type === "products"
+      type === "users"
+        ? dispatch(getAllUsers())
+        : type === "products"
         ? dispatch(getAllProducts())
-        : type === "accessories"
-        ? dispatch(getAllAccessories())
-        : dispatch(getAllUsers());
+        : dispatch(getAllAccessories());
     } else {
-      type === "products"
+      type === "users"
+        ? setUser(users.find((item) => item._id === userId))
+        : type === "products"
         ? setProduct(products.find((item) => item._id === productId))
-        : type === "accessories"
-        ? setAccessory(accessories.find((item) => item._id === accessoryId))
-        : setUser(users.find((item) => item._id === userId));
+        : setAccessory(accessories.find((item) => item._id === accessoryId));
+      setTotalUsers(users);
       setTotalProducts(products);
       setTotalAccessories(accessories);
-      setTotalUsers(users);
     }
   }, [
     products,
@@ -63,22 +64,22 @@ const Edit = ({ type, currentUser }) => {
   ]);
 
   const onFinish = (values) => {
-    type === "products"
+    type === "users"
+      ? (values._id = user._id)
+      : type === "products"
       ? (values._id = product._id)
-      : type === "accessories"
-      ? (values._id = accessory._id)
-      : (values._id = user._id);
-    type === "products"
+      : (values._id = accessory._id);
+    type === "users"
+      ? editRole(values)
+      : type === "products"
       ? editProduct(values)
-      : type === "accessories"
-      ? editAccessory(values)
-      : editRole(values);
+      : editAccessory(values);
   };
   return (
     <div className="edit">
       <Sidebar />
       <div className="listContainer">
-        <Navbar currentUser={currentUser} />
+        <Navbar />
         <Row justify="center">
           <Col lg={12} sm={24}>
             {totalProducts.length > 0 &&
@@ -173,25 +174,6 @@ const Edit = ({ type, currentUser }) => {
                       >
                         <Input />
                       </Form.Item>
-                      {/* <Form.Item
-                        name="colors"
-                        label="Colors"
-                        rules={[
-                          { required: true, message: "Colors is Required!" },
-                        ]}
-                      >
-                        <Input />
-                      </Form.Item>
-                      <Form.Item
-                        name="sizes"
-                        label="Sizes"
-                        rules={[
-                          { required: true, message: "Sizes is Required!" },
-                        ]}
-                      >
-                        <Input />
-                      </Form.Item> */}
-
                       <Form.Item
                         name="description"
                         label="Description"

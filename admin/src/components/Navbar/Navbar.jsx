@@ -11,7 +11,8 @@ import {
 import { DarkModeContext } from "../../context/darkModeContext";
 import "./navbar.scss";
 
-const Navbar = ({ currentUser }) => {
+const Navbar = () => {
+  const currentUser = JSON.parse(localStorage.getItem("admin"));
   const { dispatch } = useContext(DarkModeContext);
 
   return (
@@ -55,7 +56,7 @@ const Navbar = ({ currentUser }) => {
               }
               alt=""
             />
-            <div className="userAdmin">{currentUser?.name}</div>
+            <div className="userAdmin">{currentUser.name}</div>
           </div>
         </div>
       </div>

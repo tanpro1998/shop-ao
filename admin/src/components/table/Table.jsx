@@ -1,6 +1,5 @@
 import React from "react";
 import "./table.scss";
-// import TableContainer from "@mui/material/TableContainer"
 import {
   TableContainer,
   Table,
@@ -44,7 +43,9 @@ const List = () => {
                   {number(order.amount)} VND
                 </TableCell>
                 <TableCell className="tableCell">
-                  <span className="method">{order.payment_method_details.type}</span>
+                  <span className="method">
+                    {order.payment_method_details.type}
+                  </span>
                 </TableCell>
                 <TableCell className="tableCell">
                   <span className={`status ${order.status}`}>

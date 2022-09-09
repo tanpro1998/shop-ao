@@ -169,7 +169,7 @@ export const adminLogin = async (reqObj, dispatch) => {
 export const adminLogout = async (dispatch, navigate) => {
   try {
     dispatch(logout());
-    localStorage.clear();
+    localStorage.removeItem("admin");
     jsCookie.remove("access");
     jsCookie.remove("refresh");
     setTimeout(() => {

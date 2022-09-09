@@ -9,6 +9,7 @@ import {
   deleteUser,
 } from "../../redux/callAPI";
 import number from "../../utils/number";
+
 const TableData = ({ type }) => {
   const { users } = useSelector((state) => state.users);
   const { products } = useSelector((state) => state.products);

@@ -36,7 +36,7 @@ const AccessoryView = () => {
           </SectionBody>
         </Section>
         <Section>
-          <SectionTitle>Tim hieu them</SectionTitle>
+          <SectionTitle>Tìm hiểu thêm</SectionTitle>
           <SectionBody>
             <Grid col={4} mdCol={2} smCol={1} gap={20}>
               {totalAccessory.slice(0, 8).map((item, index) => (

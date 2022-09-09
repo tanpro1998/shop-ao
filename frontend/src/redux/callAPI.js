@@ -1,9 +1,7 @@
 import axios from "axios";
 import { message } from "antd";
-
 import { getAllAccessory } from "./accessoriesSlice";
 import { getAllProduct } from "./productSlice";
-
 import { publicRequest } from "../utils/axiosInstance";
 import jsCookie from "js-cookie";
 

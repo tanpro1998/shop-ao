@@ -4,12 +4,12 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
 import TableData from "../../components/TableData/TableData";
 
-const List = ({ currentUser, type }) => {
+const List = () => {
   return (
     <div className="list">
       <Sidebar />
       <div className="listContainer">
-        <Navbar currentUser={currentUser} />
+        <Navbar />
         <TableData type="users" />
       </div>
     </div>

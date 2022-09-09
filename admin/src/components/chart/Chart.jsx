@@ -11,7 +11,7 @@ import {
 
 const Chart = ({ title, aspect }) => {
   const { orders } = useSelector((state) => state.orders);
-  const allData = orders?.data;
+  const allData = orders.data;
   const data = [
     { name: "January", Total: allData !== undefined && allData[0].amount },
     { name: "February", Total: allData !== undefined && allData[1].amount },
