@@ -1,4 +1,4 @@
-import {Product} from "../models/productModel.js";
+import { Product } from "../models/productModel.js";
 
 export const getProduct = async (req, res) => {
   try {
@@ -40,19 +40,19 @@ export const updateProduct = async (req, res) => {
 };
 
 export const deleteProduct = async (req, res) => {
-    try {
-        await Product.findOneAndDelete({ _id: req.body.productId });
-        res.send("Delete Product Successful");
-      } catch (err) {
-        return res.status(400).json(err);
-      }
-}
+  try {
+    await Product.findOneAndDelete({ _id: req.body.productId });
+    res.send("Delete Product Successful");
+  } catch (err) {
+    return res.status(400).json(err);
+  }
+};
 
 export const getProductById = async (req, res) => {
-    try {
-        const product = await Product.findById(req.params.id);
-        res.status(200).json(product);
-      } catch (err) {
-        res.status(500).json(err);
-      }
-}
+  try {
+    const product = await Product.findById(req.params.id);
+    res.status(200).json(product);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
