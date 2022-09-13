@@ -1,6 +1,7 @@
 const image1 = require("../images/slider/hoodiexanh.png");
 const image2 = require("../images/slider/hoodiehong.png");
-const image3 = require("../images/slider/hoodiecam.png");
+const image3 = require("../images/slider/slide_4.png");
+const image4 = require("../images/slider/slide_5.png");
 
 const heroSliderData = [
   {
@@ -20,10 +21,18 @@ const heroSliderData = [
     color: "pink",
   },
   {
-    title: "Hoodie nữ năng động",
+    title: "Áo thun trẻ trung",
     description:
-      "Mẫu áo hoodie nữ được làm bằng chất liệu coolmax đem lại cảm giác mát lạnh khi mặc. Thiết kế mẫu áo hoodie coolmax này có kiểu dáng cực kỳ thoải mái. Tạo sự gọn gàng hứa hẹn sẽ là mẫu áo hoodie vô cùng hot trong thời điểm sắp tới",
+      "Áo thun thời trang trẻ trung, sang chảnh với chất vải Cotton cao cấp không bị phai màu, đường may cực kỳ tinh tế không sợ bung chỉ theo thời gian nhé – với thiết kế trẻ trung năng động",
     img: image3,
+    path: "/catalog/hoodie-davies-01",
+    color: "orange",
+  },
+  {
+    title: "Mũ bucket sành điệu",
+    description:
+      "Bạn là người yêu thích phong cách tối giản đương đại hay là bạn trẻ yêu thích phong cách thời trang năng động cá tính, hay phong cách sang trọng lịch lãm hoặc là phong cách bụi bặm đường phố?",
+    img: image4,
     path: "/catalog/hoodie-davies-01",
     color: "orange",
   },

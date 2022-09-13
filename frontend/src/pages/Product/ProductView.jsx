@@ -19,7 +19,6 @@ const ProductView = () => {
     setProduct(products.find((item) => item.slug === slug));
   }, [products, slug]);
 
-
   return (
     <div>
       <Helmet title="Chi tiet">

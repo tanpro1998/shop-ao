@@ -1,7 +1,7 @@
 import React from "react";
 import Helmet from "../../components/Helmet/Helmet";
-import HeroSlider from "../../components/Slide/HeroSlider";
-import heroSliderData from "../../assets/fake-data/heroSliderData";
+import Slider from "../../components/Slide/Slider";
+import slideData from "../../assets/fake-data/slideData";
 import Section, {
   SectionTitle,
   SectionBody,
@@ -22,12 +22,7 @@ const Home = () => {
     <div>
       <Helmet title="Trang Chủ">
         <Header />
-        <HeroSlider
-          data={heroSliderData}
-          control={true}
-          auto={true}
-          timeOut={5000}
-        />
+        <Slider />
         <Section>
           <SectionBody>
             <Grid col={4} mdCol={2} smCol={1} gap={20}>

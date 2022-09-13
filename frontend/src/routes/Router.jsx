@@ -48,7 +48,6 @@ const Router = () => {
         ) : (
           <Route path="*" element={<Navigate to="/" />} />
         )}
-        {/* <Route path="register" element={<SignInOutContainer />} /> */}
       </Route>
     </Routes>
   );
