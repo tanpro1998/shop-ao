@@ -20,7 +20,7 @@ connectDB();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://vercel.com/tanpro1998/shop-ao", "http://localhost:3006"],
+    origin: ["https://shop-ao.vercel.app/", "http://localhost:3006"],
     methods: ["GET", "POST"],
     credentials: true,
   })
