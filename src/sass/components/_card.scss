@@ -1,0 +1,35 @@
+.card {
+  @include flex(center, flex-start);
+  padding: 20px;
+  padding-left: 0;
+  box-shadow: $box-shadow;
+  transition: transform 0.5s ease;
+  flex-direction: row;
+
+  &:hover {
+    transform: translateY(-20px);
+  }
+
+  &__icon {
+    @include flex(center, center);
+    width: 40%;
+    color: teal;
+
+    i {
+      font-size: 3rem;
+    }
+  }
+
+  &__info {
+    &__name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    &__desc {
+      font-size: 1rem;
+      color: $text-second-color;
+    }
+  }
+}
