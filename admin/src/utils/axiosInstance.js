@@ -2,8 +2,8 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import dayjs from "dayjs";
 import jsCookie from "js-cookie";
-// const BASE_URL = "https://shopping-api-ao.herokuapp.com/api";
-const BASE_URL = "http://localhost:5000/api";
+const BASE_URL = "https://shopping-shirt-app.herokuapp.com/api";
+// const BASE_URL = "http://localhost:5000/api";
 
 const KEY = process.env.REACT_APP_STRIPE_SECRET_KEY;
 const ACCESS_TOKEN = jsCookie.get("access");
