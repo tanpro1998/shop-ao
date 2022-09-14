@@ -3,8 +3,8 @@ import jwt_decode from "jwt-decode";
 import dayjs from "dayjs";
 import jsCookie from "js-cookie";
 
-// const BASE_URL = "https://shopping-shirt-app.herokuapp.com/api";
-const BASE_URL = "http://localhost:5000/api";
+const BASE_URL = "https://shopping-shirt-app.herokuapp.com/api";
+// const BASE_URL = "http://localhost:5000/api";
 
 const ACCESS_TOKEN = jsCookie.get("access");
 
